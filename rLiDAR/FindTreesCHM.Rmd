@@ -1,0 +1,47 @@
+FindTreesCHM : Individual tree detection whitin the LiDAR-derived Canopy Height Model (CHM)
+================================================================================
+* Detects and computes the location and height of individual trees within the LiDAR-derived Canopy Height Model (CHM). 
+* The algorithm implemented in this function is local maximum with a fixed window size.
+
+#### Usage
+```{r}
+FindTreesCHM(chm,fws,minht)
+```
+#### Arguments
+
+* ``chm``: A LiDAR-derived Canopy Height Model (CHM) raster file.
+* ``fws``: A single dimension (in raster grid cell units) of fixed square window size, e.g. 3, 5, 7 and so on. 
+ - Default is 5.
+* ``minht``: Height threshold. Detect individual trees above specified height threshold, e.g. 1.37, 2.0, 3.5 m and so on. 
+ - Default is 1.37 m.
+
+#### Examples
+```{r}
+
+# Importing the LiDAR-derived CHM raster file
+data(chm) 
+# or set a CHM. e.g. chm<-raster("CHM_stand.asc") 
+```
+```{r}
+# Smoothing CHM
+schm<-CHMsmoothing(chm, "mean", 5)
+
+# Setting the fws:
+fws<-5 # dimention 5x5
+
+# Setting the specified height above ground for detectionbreak
+minht<-8.0
+
+# Getting the individual tree detection list
+treeList<-FindTreesCHM(schm, fws, minht)
+summary(treeList)
+```
+```{r}
+# Plotting the individual tree location on the CHM
+library(raster)
+plot(chm, main="LiDAR-derived CHM")
+library(sp) 
+XY<-SpatialPoints(treeList[,1:2]) # Spatial points
+plot(XY, add=TRUE, col="red")        # plotthing tree location
+
+```
