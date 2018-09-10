@@ -1,0 +1,21 @@
+spati2: Heights and diameters of Scots pine trees in Ilomantsi, Finland
+===========================================================================
+* A dataset of Scots pine tree heights and diameters. 
+* The trees were collected on 56 fixed-area sample plots. 
+* This is a subset of the larger data set ***spati***.
+
+```{r}
+library(lmfor)
+data(spati2)
+fithd(spati2$d,spati2$h,spati2$plot)
+```
+
+### Format
+
+A data frame with 1678 observations on the following 3 variables.
+
+### References
+
+Pukkala, T. 1989. Prediction of tree diameter and height in a Scots pine stand as a function of the spatial pattern of trees. 
+Silva Fennica 23(2): 83-99.
+

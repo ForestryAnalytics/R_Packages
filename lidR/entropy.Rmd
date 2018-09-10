@@ -1,0 +1,33 @@
+entropy
+===========
+
+***A normalized Shannon vertical complexity index***. 
+
+* The Shannon diversity index is a measure for quantifying diversity and is based on the number and frequency of species present. 
+* This index, developed by Shannon and Weaver for use in information theory, was successfully transferred to the description of species diversity in biological systems (Shannon 1948). 
+* Here it is applied to quantify the diversity and the evenness of an elevational distribution of LiDAR points. 
+
+It makes bins between 0 and the maximum elevation. If there are negative value the function returns NA. 
+
+```{r]
+library(lidR)
+
+z = runif(10000, 0, 10)
+# expected to be close to 1. 
+entropy(z, by = 1)
+```
+The highest diversity is given for a uniform distribution
+
+```{r}
+ z = runif(10000, 9, 10)
+entropy(z, by = 1)
+# Must be 0. 
+```
+The lowest diversity is given for a unique possibility
+
+```{r}
+z = abs(rnorm(10000, 10, 1))
+
+# expected to be between 0 and 1.
+entropy(z, by = 1)
+```

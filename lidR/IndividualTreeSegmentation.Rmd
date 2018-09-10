@@ -1,0 +1,16 @@
+Individual tree segmentation
+==============================================
+The lastrees function has several algorithms from the literature for individual tree 
+segmentation, based either on the digital canopy model or on the point-cloud. 
+
+Each algorithm has been coded from the source article to be as close as possible to what was written in the peer-reviwed papers. 
+Our goal is to make published algorithms usable, testable and comparable.
+
+```{r}
+las = readLAS("<file.las>")
+
+lastrees(las, algorithm = "li2012")
+
+col = random.colors(200)
+plot(las, color = "treeID", colorPalette = col)
+```

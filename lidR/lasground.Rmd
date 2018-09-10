@@ -1,0 +1,14 @@
+lasgrounds
+===========
+
+Implements algorithms for segmentation of ground points. 
+The function updates the field Classification of the LAS input object. 
+The points classified as 'ground' are assigned a value of 2 according to las specifications 
+(See the ASPRS documentation for the LAS file format). 
+
+### Usage
+<pre><code>
+lasground(las, algorithm, ...)
+
+lasground_pmf(las, ws, th, last_returns = TRUE)
+</code></pre>

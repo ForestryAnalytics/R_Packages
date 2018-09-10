@@ -1,0 +1,48 @@
+linesplot: A spaghetti plot of grouped data
+============================================
+
+Orders the observations by x and thereafter plots y on x and connects observations of the same group by lines. 
+Useful, for example, to plot a longitudinal dataset.
+
+#### Usage
+
+<pre><code>
+linesplot(x, y, group, 
+   xlab = "x", ylab = "y",  main = "", 
+   cex = 0.5, pch = 19, col = 1, col.lin = 1,  lw = FALSE, 
+   ylim = NULL, xlim = NULL, 
+   add = FALSE, lty = "solid", lwd=1)
+</code></pre>
+
+#### Arguments
+
+* x, y
+    Numerical vectors of the same length including the x and y variables. 
+* group
+    The variable specifying the group. Should be of the same length as vectors x and y. 
+xlab, ylab, main, cex, pch, col, col.lin, xlim, ylim, lty, lwd
+    Graphical parameters, see par 
+* lw
+    Boolean. Whether a loess smoother to be added onto the plot. 
+* add
+    Boolean. Whether to add to an existing plot or to open a new window. 
+
+#### Details
+
+* The observations within the group are connected at the increasing order of x.
+
+#### Examples
+
+```{r}
+D<-rep(seq(10,30),10)
+H<-(20+rep(rnorm(10,0,0.5),each=21))*exp(-1.5*D^(-1.3))
+plot<-rep(1:10,each=21)
+linesplot(D,H,plot)
+```
+
+
+#### References
+
+* Mehtatalo, L., de Miguel, S. and Gregoire, T.G. Modeling Height-diameter curves for prediction. Canadian Journal of Forest Research, 45(7): 826-837, 10.1139/cjfr-2015-0054.
+* Mehtatalo, L. 2004. A longitudinal height-diameter model for Norway spruce in Finland. Canadian Journal of Forest Research 34(1): 131-140.
+* Mehtatalo, L. 2005. Height-diameter models for Scots pine and birch in Finland. Silva Fennica 39(1): 55-66.

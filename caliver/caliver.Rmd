@@ -1,0 +1,4 @@
+The name caliver stands for CALIbration and VERification of forest fire gridded model outputs. 
+This is a package developed for the R programming language and available under an APACHE-2 license from a public repository. 
+In this paper we describe the functionalities of the package and give examples using publicly available datasets. Fire danger model outputs are taken from the modeling components of the European Forest Fire Information System (EFFIS) and observed burned areas from the Global Fire Emission Database (GFED). 
+Complete documentation, including a vignette, is also available within the package.

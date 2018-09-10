@@ -1,0 +1,26 @@
+lmfor: Functions for Forest Biometrics
+===================================
+Functions for different purposes related to Forest biometrics, including illustrative graphics, numerical 
+computation, modeling height-diameter relationships, prediction of tree volumes, and modelling of diameter 
+distributions. Datasets on tree height-diameter relationship, light response of moss photosynthesis, and 
+productivity of stump-lifting machines are included.
+
+* ``ywhiskers`` : A whiskers type residual plot
+* ``linesplot`` : A spaghetti plot of grouped data
+* ``lmfor-package`` : Functions of Lauri Mehtatalo
+* ``NR`` : Solve simple equations using Newton-Raphson algorithm.
+* ``fithd`` : Fit a Height-Diameter model to forest tree data using functions of package nlme.
+* ``ImputeHeights`` : Impute missing tree heights into a forest data using a nonlinear (mixed-effects) model.
+* ``foto`` : CO2 exchange of transplanted Sphagnum fuscum moss in a chronosequence of mires.
+* ``ddcomp`` : Evaluate the fit of a tree diameter distribution
+* ``HD models`` : Available 2- and 3- parameter H-D model functions to be used by function fithd.
+* ``circle`` : Plot circles of a specified radius
+* ``updown`` : Solve a simple equation using a step halving algorithm.
+* ``plot.hdmod`` : Diagnostic plot a Height-Diameter model residuals
+* ``NRnum`` : Solve systems of equations using the Gauss-Newton algorithm
+* ``spati2`` : Heights and diameters of Scots pine trees in Ilomantsi, Finland.
+* ``recweib`` : Recovery of Weibull parameters of tree diameter distribution using measured stand characteristics
+* ``stumplift`` : Productivity of stump lifting machines.
+* ``spati`` : Raw sample plot data of Scots pine in Ilomantsi, Finland.
+* ``predvol`` : Individual tree volume functions for Finland
+* ``qqplotHD`` : Normal QQ-plot of a fitted H-D model
