@@ -1,0 +1,104 @@
+
+
+ 
+ 
+  * ``
+  HDcurtis(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDgomperz(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDhossfeldIV(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDkorf(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDlogistic(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDmeyer(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDmichailoff(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDmicment(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDmicment2(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDnaslund(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDnaslund2(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDnaslund3(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDnaslund4(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDpower(d, a, b, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDprodan(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDratkowsky(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDrichards(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDsibbesen(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDweibull(d, a, b, c, bh=1.3)
+  `` : 
+ 
+ 
+  * ``
+  HDwykoff(d, a, b, bh=1.3)
+  `` : 
+ 
+
