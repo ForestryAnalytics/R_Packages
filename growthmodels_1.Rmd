@@ -1,4 +1,4 @@
-Package ‘growthmodels’
+Package â€˜growthmodelsâ€™
 February 20, 2015
 Type Package
 Title Nonlinear Growth Models
