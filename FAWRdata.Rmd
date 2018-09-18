@@ -1,0 +1,105 @@
+stage Stage’s Grand fir (Abies grandis (Dougl) Lindl.) tree measurement
+data
+### Description
+The data are internal stem measures from 66 trees. The trees were selected as having been dominant
+throughout their lives with no visible evidence of damage or forks. The trees came from stands
+throughout the inland range of the species.
+Usage
+data(stage)
+Format
+A data frame with 542 observations on the following 11 variables.
+Tree.ID A factor uniquely identifying the tree.
+Forest An integer distinguishing the forest.
+HabType An integer distinguishing the habitat type.
+Decade The decade of the trees life represented by the observation.
+Dbhib Diameter (in.) at 1.37 m (4’6”) inside bark.
+Height Height of tree (ft)
+Age Age of tree at felling
+Forest.ID The national forest in which the tree was felled.
+Hab.ID Daubenmmire’s (1952) classification of the local growing conditions: Ts/Pac Ts/Op Th/Pach
+AG/Pach PA/Pach
+dbhib.cm Diameter (cm.) at 1.37 m (4’6”) inside bark.
+height.m Height of tree (m)
+sweetgum 13
+### Details
+Quoting Stage (1963), "After felling, the total height was measured, and the age at breast height
+was determined by counting the rings on a crossection. Then, decadal height growth was measured,
+starting from the termination of the 1956 height growth. The count of whorls was checked by a ring
+count at every decadal point. ... Diameters at breast height (measuread along an average radius with
+a scale having 10 graduations per half inch) corresponding to each decadal height point were also
+recorded."
+The national forests are: Kaniksu, Coeur d’Alene, St. Joe, Clearwater, Nez Perce, Clark Fork,
+Umatilla, Wallowa, and Payette.
+Source
+Stage, A. 1963. A mathematical approach to polymorphic site index curves for grand fir. Forest
+Science 9(2) 167-180.
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+### Examples
+data(stage)
+str(stage)
+sweetgum Lenhart’s sweetgum (Liquidambar styraciflua L.) tree measurement
+data.
+### Description
+The original data, also supplied in the package, are measures of stem diameter and height at various
+locations on the bole of 39 sweetgum trees from Texas, USA.
+Usage
+data(sweetgum)
+Format
+A data frame with 39 tree-level observations on the following 8 variables.
+
+plot 	Identifies the plot in which the tree was felled.
+tree 	A factor that identifies the tree.
+dbh.in 	The tree diameter (in.) at 1.37 m (4’6”)
+stump.ht.ft 	The height of the stump after felling (ft).
+height.ft 	The height of the tree (ft).
+height.m 	The height of the tree (m).
+dbh.cm 	The tree diameter (cm.) at 1.37 m (4’6”)
+vol.m3 	The estimated biological volume of the stem (cubic meters).
+
+### Details
+The height measure is of the standing tree, so it includes the stump height. The volume was computed
+by fitting a spline to the height and diameter measures, and integrating the solid that corresponds
+to the profile of the spline. See Section 2.4.2 of Robinson and Hamann (2010) for more
+### Details.
+Source: The data were kindly supplied by Professor Timothy Gregoire and were originally collected by David Lenhart.
+### References
+
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+### Examples
+```{r}
+data(sweetgum)
+str(sweetgum)
+```
+
+## ufc 
+Upper Flat Creek forest cruise tree data
+
+### Description
+These are a subset of the tree measurement data from the Upper Flat Creek unit of the University of
+Idaho Experimental Forest, which was measured in 1991.
+
+### Usage
+<pre><code>
+data(ufc)
+</code></pre>
+###Format
+A data frame with 336 observations on the following 5 variables.
+* ``plot``: plot label
+* ``tree``: tree label
+* ``species``: species kbd with levels DF, GF, WC, WL
+* ``dbh.cm``: Tree diameter at 1.37 m. from the ground, measured in centimetres.
+* ``height.m``: tree height measured in metres
+
+### Details
+* The inventory was based on variable radius plots with 6.43 sq. m. per ha. BAF (Basal Area Factor).
+* The forest stand was 121.5 ha. This version of the data omits errors, trees with missing heights,
+and uncommon species. 
+* The four species are Douglas-fir, grand fir, western red cedar, and western
+larch.
+* Source: The data are provided courtesy of Harold Osborne and Ross Appelgren of the University of Idaho
+Experimental Forest.
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+### Examples
+data(ufc)
