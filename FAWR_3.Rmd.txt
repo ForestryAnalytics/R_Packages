@@ -1,0 +1,110 @@
+## ``sp.sums.2``
+sp.sums.2 Generates species summaries from a dataframe that contains stem
+measurements.
+### Description
+This function generates a dataframe object that contains the original stem measurements and appends
+columns named by log.grades, where log.grades corresponds to the minimum log diameters
+defined by log.breaks.
+Usage
+<pre><code>
+sp.sums.2( x,
+ log.breaks=c(2,5,12,18,32,999),
+ log.grades=c("pulp","s4","s3","s2","s1","peeler") )
+</code></pre>
+### Arguments
+x The dataframe containing the original stem measurements.
+* ``log.breaks`` The vector defining the minimum diameters for the log grades defined by log.grades.
+* ``log.grades`` The vector defining the text labels for the log.breaks.
+### Details
+The function generates summaries, by species, for common statistics used in growth and yield
+simulations. It performs the same function as the sp.sums function in the Rconifers library.
+### Value
+A dataframe that contains the original stem measurements with the log volumes appended for each
+species.
+Author(s)
+Jeff D. Hamann <jeff.hamann@forestinformatics.com>
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+### See Also
+rconifers::sp.sums
+
+### Examples
+```{r}
+# test <- data.frame(a = c(1,2), b = c(3,4))
+# show.cols.with.na(test)
+# is.na(test$a[2]) <- TRUE
+# show.cols.with.na(test)
+```
+SSallometric Self-starting version of the allometric function y = a x^b.
+### Description
+This function is used for fitting the allometric function to bivaraite data. The function is of the form
+y = alpha x ^ beta, where traditionally x and y are different dimensions of a sampling unit, such as
+diameter and volume of a tree.
+
+### Usage
+<pre><code>
+SSallometric(x, alpha, beta)
+</code></pre>
+### Arguments
+x predictor variable (e.g. volume)
+alpha product parameter
+beta exponent parameter
+### Value
+The function returns a numeric vector of response variables. The vector has two additional attributes:
+the gradient, which reports the first derivative of the function with respect to the parameters,
+evaluated at the response ### Value; and the hessian, which reports the matrix of second partial
+derivatives of the function with respect to the parameters evaluated at the response variable.
+Note
+Demonstrates construction and usage of self-starting functions using selfStart.
+
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+
+### See Also
+selfStart
+### Examples
+```{r}
+SSallometric(10, 2, 3)
+data(sweetgum)
+nls(vol.m3 ~ SSallometric(dbh.cm, alpha, beta), data = sweetgum)
+```
+
+
+##``vol.fvs.ni.m3`` 
+Predicts volume (m^3) from diameter (cm) and height (m) by species,
+using functions from Wykoff et al. (1982).
+### Description
+This vectorized function uses models and parameter estimates from Wykoff et al. (1982) to predict
+tree volumes given tree heights (m) and over-bark diameter measurements (cm) taken at 1.37 m
+(4’6”). The function vol.fvs.ni.bdft performs the computation in imperial units, and vol.fvs.ni.m3
+is a wrapper for convenience.
+
+
+### Usage
+<pre><code>
+vol.fvs.ni.m3(spp, dbh.cm, ht.m)
+vol.fvs.ni.bdft(spp, dbh.in, ht.ft)
+</code><pre>
+### Arguments
+* ``spp``: Tree species. Must be one of: WP, WL, DF, GF, WH, WC, LP, ES, SF, PP, MH
+* ``dbh.cm``: Tree diameter, cm, measured at 1.37 m. from the ground.
+* ``dbh.in``: Tree diameter, in., measured at 1.37 m. from the ground.
+* ``ht.m``: Tree height, m.
+* ``ht.ft``: Tree height, ft.
+
+### Details
+The species are: WP = white pine, WL = western larch, DF = Douglas-fir, GF = grand fir, WH =
+western hemlock, WC = western red cedar, LP = lodgepole pine, ES = Engelmann spruce, SF =
+subalpine fir, PP = ponderosa pine, and MH = mountain hemlock.
+### Value
+The function returns a vector of tree volumes, in cubic metres.
+Note
+The function doesn’t perform any input checks. Caveat computator.
+Author(s)
+Andrew Robinson <apro@unimelb.edu.au>
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+Wykoff, W. R., Crookston, N. L., Stage, A. R., 1982. User’s Guide to the Stand Prognosis Model.
+GTR-INT 133, USDA Forest Service, Ogden, UT.
+### Examples
+vol.fvs.ni.m3(c("DF, WH"), c(25, 27), c(15, 20))
