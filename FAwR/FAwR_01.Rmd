@@ -1,0 +1,192 @@
+## ``generate.log.vols``
+
+``generate.log.vols`` generates log volumes given a dataframe that contains stem measurements.
+
+### Description
+
+This function generates a dataframe object that contains the original stem measurements and appends columns named by ``log.grades``, where log.grades corresponds to the minimum log diameters defined by ``log.breaks``.
+
+### Usage
+
+<pre><code>
+generate.log.vols( x,
+  log.breaks=c(2,5,12,18,32,999),
+  log.grades=c("pulp","s4","s3","s2","s1","peeler"),
+  display.stems=FALSE )
+</code></pre>
+
+### Arguments
+
+* ``x``: The dataframe containing the original stem measurements.
+* ``log.breaks``: The vector defining the minimum diameters for the log grades defined by ``log.grades``.
+* ``log.grades``: The vector defining the text labels for the ``log.breaks``.
+* ``display.stems``:  The control switch to display stems as they are being merchanised.
+
+### Details
+
+* The function contains supporting function to determine the merchantable stem height, then talliesthe amount of Smalian log volume, in each of the ``log.grades``. 
+* The resulting dataframe is then converted to be appended to each tree record in ``x``. Normally, it would not be called directly.
+
+### Examples
+```{r}
+# test <- data.frame(a = c(1,2), b = c(3,4))
+# show.cols.with.na(test)
+# is.na(test$a[2]) <- TRUE
+# show.cols.with.na(test)
+```
+
+### Value
+A dataframe that contains the original stem measurements with the log volumes appended.
+
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+
+
+
+## ``get.col.report`` 
+Obtains column information about the GLPK problem object.
+### Description
+This function returns a data.frame object that contains several useful column attributes about a linear
+programming GLPK object.
+
+### Usage
+<pre><code>
+get.col.report( lp )
+</code></pre>
+
+### Arguments
+``lp`` A GLPK object.
+
+### Details
+The function generates a data.frame object that contains information from a GLPK object.
+
+### Value
+A data.frame that contains several elements returned from GLPK wrapper functions that return
+attributes from a column from an GLPK object.
+Author(s)
+Jeff D. Hamann <jeff.hamann@forestinformatics.com>
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+The GNU GLPK home page at http://www.gnu.org/software/glpk/glpk.html
+### See Also
+get.row.report
+
+## ``get.row.report``
+get.row.report Obtains row information about the GLPK problem object.
+### Description
+The function generates a data.frame object that contains row information from a GLPK object.
+Usage
+get.row.report( lp )
+### Arguments
+lp A GLPK object.
+### Details
+The function generates a data.frame object that contains row information from a GLPK object.
+### Value
+A data.frame that contains several elements returned from GLPK wrapper functions that return
+attributes from a row from an GLPK object.
+Author(s)
+Jeff D. Hamann <jeff.hamann@forestinformatics.com>
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+The GNU GLPK home page at http://www.gnu.org/software/glpk/glpk.html
+### See Also
+get.col.report
+
+
+## ``ht.fvs.ni.m`` 
+Predicts height (m) from diameter (cm) by species, using functions from Wykoff et al. (1982).
+
+### Description
+* This vectorized function uses models and parameter estimates from Wykoff et al. (1982) to predict
+tree heights given over-bark diameter measurements (cm) taken at 1.37 m (4’6”). 
+* The function ``ht.fvs.ni.ft`` performs the computation in imperial units, and ``ht.fvs.ni.m`` is a wrapper for convenience.
+
+### Usage
+<pre><code>
+ht.fvs.ni.ft(spp, dbh.in)
+ht.fvs.ni.m(spp, dbh.cm)
+</code></pre>
+### Arguments
+* ``spp``: Tree species. Must be one of: WP, WL, DF, GF, WH, WC, LP, ES, SF, PP, MH
+* ``dbh.cm``: Tree diameter, cm, measured at 1.37 m. from the ground.
+* ``dbh.in``: Tree diameter, in., measured at 1.37 m. from the ground.
+### Details
+* The species are: WP = white pine, WL = western larch, DF = Douglas-fir, GF = grand fir, WH =
+western hemlock, WC = western red cedar, LP = lodgepole pine, ES = Engelmann spruce, SF =
+subalpine fir, PP = ponderosa pine, and MH = mountain hemlock.
+* The function was fitted using least squares regression; the resposne variable was log of height and
+the predictor variable 1 / (DBH + 1).
+
+### Examples
+```{r}
+ht.fvs.ni.m(c("DF, WH"), c(25, 27))
+```
+
+### Value
+The function returns a vector of tree heights, in metres.
+Note
+The function doesn’t perform any input checks. Caveat computator.
+
+### References
+* Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+* Wykoff, W. R., Crookston, N. L., Stage, A. R., 1982. User’s Guide to the Stand Prognosis Model. GTR-INT 133, USDA Forest Service, Ogden, UT.
+
+## leuschner 
+Leuschner harvest schedule yield data
+### Description
+These data are used to present and study forest regulation using mathematical programming and R.
+Usage
+data(leuschner)
+### Format
+A data frame with 48 observations on the following 4 variables.
+
+* ``stand``: index variable identifying the type of forested area
+* ``period``: cutting period of the forest harvest schedule
+* ``age``: at harvest at cutting period midpoint of planning period
+* ``vol``: the stand volume at age, in thousands of cubic feet per acre
+
+### Examples
+```{r}
+data(leuschner)
+print( leuschner )
+```
+
+### Details
+* This table contains example yields for an 84,000 acre (33993.93 ha) Douglas-fir forest. 
+* The yields span over six (6) planning periods and eight (8) age classes from age 25 to 95 years of age.
+* The data were originally published in Leuschner (1990).
+### References
+* Leuschner, William A. 1990. Forest Regulation, Harvest Scheduling, and Planning Techniques.
+John Wiley and Sons, Inc.
+* Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+
+
+## ``show.cols.with.na``
+show.cols.with.na Identifies variables in a dataframe that have missing values, along
+with a count.
+### Description
+This function reports the number of missing ### Values in each variable in a dataframe. Variables that
+have no missing values are ignored.
+
+### Usage
+<pre><code>
+show.cols.with.na(x)
+</code></pre>
+
+### Examples
+```{r}
+test <- data.frame(a = c(1,2), b = c(3,4))
+show.cols.with.na(test)
+is.na(test$a[2]) <- TRUE
+show.cols.with.na(test)
+```
+
+### Arguments
+x The dataframe to check.
+### Value
+A vector of missing values counts, one value for each variable with missing values. If no variables
+have missing values then prints a message and exits.
+
+### References
+* Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+
