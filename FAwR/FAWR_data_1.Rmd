@@ -1,6 +1,6 @@
 
 ## gutten 
-gutten von Guttenberg’s Norway spruce (Picea abies [L.] Karst) tree measurement
+gutten von Guttenbergâ€™s Norway spruce (Picea abies [L.] Karst) tree measurement
 data.
 ### Description
 The data are measures from 107 trees. The trees were selected as being of average size from healthy
@@ -9,16 +9,22 @@ Usage
 data(gutten)
 ### Format
 A data frame with 1200 observations on the following 9 variables.
-site Growth quality class of the tree’s habitat. 5 levels.
-location Distinguishes tree location. 7 levels.
+* ``site`` Growth quality class of the treeâ€™s habitat. 5 levels.
+* ``location`` Distinguishes tree location. 7 levels.
 * ``tree``   An identifier for the tree within location.
-age.base The tree age taken at ground level.
-height Tree height, m.
+* ``age.base`` The tree age taken at ground level.
+* ``height`` Tree height, m.
 * ``dbh.cm``: Tree diameter, cm.
-volume Tree volume.
-age.bh Tree age taken at 1.3 m.
-tree.ID A factor uniquely identifying the tree.
-Source
+* ``volume`` Tree volume.
+* ``age.bh`` Tree age taken at 1.3 m.
+* ``tree.ID`` A factor uniquely identifying the tree.
+
+```{r}
+data(gutten)
+str(gutten)
+```
+
+### Source
 The data were kindly provided to us by Professor Boris Zeide, and are documented in von Guttenberg,
 A. R., 1915. Growth and yield of spruce in Hochgebirge. Franz Deuticke, Vienna (in
 German).
@@ -26,10 +32,7 @@ German).
 Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
 Zeide, B., 1993. Analysis of growth equations. Forest Science 39 (3), 549-616
 ### Examples
-```{r}
-data(gutten)
-str(gutten)
-```
+
 
 ## ``herbdata`` 
 Herbicide trial seedling data
@@ -37,12 +40,12 @@ Herbicide trial seedling data
 ### Description
 These data were collected during the 1994 planting season in Southwest Washington State.
 
-Usage
+### Usage
 <pre><code>
 data(herbdata)
 </code></pre>
 
-Format
+### Format
 A data frame with 961 observations on the following 8 variables.
 * treat treatment for control or application
 * rep replication
@@ -65,4 +68,6 @@ The data are provided courtesy of Don Wallace and Bruce Alber of the Wilbur-Elli
 ### References
 Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
 ### Examples
+```{r}
 data(herbdata)
+```
