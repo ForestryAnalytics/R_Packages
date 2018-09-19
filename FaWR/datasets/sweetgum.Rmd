@@ -1,0 +1,34 @@
+sweetgum Lenhart’s sweetgum (Liquidambar styraciflua L.) tree measurement
+data.
+### Description
+The original data, also supplied in the package, are measures of stem diameter and height at various
+locations on the bole of 39 sweetgum trees from Texas, USA.
+Usage
+data(sweetgum)
+Format
+A data frame with 39 tree-level observations on the following 8 variables.
+
+plot 	Identifies the plot in which the tree was felled.
+tree 	A factor that identifies the tree.
+dbh.in 	The tree diameter (in.) at 1.37 m (4’6”)
+stump.ht.ft 	The height of the stump after felling (ft).
+height.ft 	The height of the tree (ft).
+height.m 	The height of the tree (m).
+dbh.cm 	The tree diameter (cm.) at 1.37 m (4’6”)
+vol.m3 	The estimated biological volume of the stem (cubic meters).
+
+### Details
+The height measure is of the standing tree, so it includes the stump height. The volume was computed
+by fitting a spline to the height and diameter measures, and integrating the solid that corresponds
+to the profile of the spline. See Section 2.4.2 of Robinson and Hamann (2010) for more
+### Details.
+Source: The data were kindly supplied by Professor Timothy Gregoire and were originally collected by David Lenhart.
+### References
+
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+### Examples
+```{r}
+data(sweetgum)
+str(sweetgum)
+```
+
