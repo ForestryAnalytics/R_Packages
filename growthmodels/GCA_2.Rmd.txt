@@ -1,8 +1,9 @@
 ## ``chapmanRichards`` 
 Chapman-Richards growth model
-Description
+
+### Description
 Computes the Chapman-Richards growth model and its inverse
-y(t) = (1 ?? exp(??kt)1=(1??m))
+\[y(t) = (1 ?? exp(??kt)1=(1??m))\]
 generalisedLogistic 5
 ### Usage <pre><code>
 chapmanRichards(t, alpha, beta, k, m)
@@ -18,11 +19,16 @@ m slope of growth
 D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
 in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
 ### Examples
+
 growth <- chapmanRichards(0:10, 10, 0.5, 0.3, 0.5)
 # Calculate inverse function
 time <- chapmanRichards.inverse(growth, 10, 0.5, 0.3, 0.5)
-generalisedLogistic Generalised Logistic growth model
-Description
+
+## generalisedLogistic 
+
+Generalised Logistic growth model
+
+### Description
 Computes the Generalised Logistic growth model
 y(t) = A +
 U ?? A
