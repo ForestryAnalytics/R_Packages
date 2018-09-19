@@ -1,0 +1,44 @@
+## stage 
+Stage’s Grand fir (Abies grandis (Dougl) Lindl.) tree measurement
+data
+### Description
+The data are internal stem measures from 66 trees. The trees were selected as having been dominant
+throughout their lives with no visible evidence of damage or forks. The trees came from stands
+throughout the inland range of the species.
+
+### Usage
+data(stage)
+
+### Format
+A data frame with 542 observations on the following 11 variables.
+
+Tree.ID A factor uniquely identifying the tree.
+Forest An integer distinguishing the forest.
+HabType An integer distinguishing the habitat type.
+Decade The decade of the trees life represented by the observation.
+Dbhib Diameter (in.) at 1.37 m (4’6”) inside bark.
+Height Height of tree (ft)
+Age Age of tree at felling
+Forest.ID The national forest in which the tree was felled.
+Hab.ID Daubenmmire’s (1952) classification of the local growing conditions: Ts/Pac Ts/Op Th/Pach
+AG/Pach PA/Pach
+dbhib.cm Diameter (cm.) at 1.37 m (4’6”) inside bark.
+height.m Height of tree (m)
+
+### Details
+Quoting Stage (1963), "After felling, the total height was measured, and the age at breast height
+was determined by counting the rings on a crossection. Then, decadal height growth was measured,
+starting from the termination of the 1956 height growth. The count of whorls was checked by a ring
+count at every decadal point. ... Diameters at breast height (measuread along an average radius with
+a scale having 10 graduations per half inch) corresponding to each decadal height point were also
+recorded."
+The national forests are: Kaniksu, Coeur d’Alene, St. Joe, Clearwater, Nez Perce, Clark Fork,
+Umatilla, Wallowa, and Payette.
+Source
+Stage, A. 1963. A mathematical approach to polymorphic site index curves for grand fir. Forest
+Science 9(2) 167-180.
+### References
+Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+### Examples
+data(stage)
+str(stage)
