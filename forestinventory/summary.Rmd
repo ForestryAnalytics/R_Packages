@@ -1,0 +1,27 @@
+## ``summary``: Summarizing Global and Small-Area Estimation Results
+
+#### Description
+Summarizing Global and Small-Area Estimation Results
+
+### Usage
+<pre><code>
+## S3 method for class 'onephase'
+summary(object, coefs = FALSE, ...)
+## S3 method for class 'twophase'
+summary(object, coefs = FALSE, ...)
+## S3 method for class 'threephase'
+summary(object, coefs = FALSE, ...)
+</code></pre>
+
+### Arguments
+* object object of class onephase, twophase or threephase, containing estimation re-
+sults of the respective estimation method.
+* coefs of type "logical". If set to TRUE, also gives the regression coefficients of twophase and threephase estimations. Defaults to FALSE.
+* ... additional arguments, so far ignored.
+
+
+
+
+
+
+
