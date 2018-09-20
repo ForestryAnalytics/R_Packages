@@ -1,0 +1,54 @@
+## grisons
+grisons
+Data from a multiphase forest inventory in the canton of Grisons,
+Switzerland
+
+#### Description
+A dataset containing observations of 306 systematically arranged sample plots. Auxiliary infor-
+mation for all 306 plots is provided in the form of LiDAR canopy height metrics. For a systematic
+subsample of 67 out of the 306 plots, terrestrial information of the timber volume is provided from a
+terrestrial survey in the year 2007. Originally the inventory was carried out as a twophase inventory
+and has been artificially extended to a threephase inventory for demonstration purposes.
+Usage
+grisons
+
+#### Format
+data frame with 306 rows and 14 columns
+
+#### Details
+*  phase_id_2p phase-membership of each observation for the twophase inventory. The large
+phase is indicated by 1, the terrestrial phase by 2.
+*  phase_id_3p phase-membership of each observation for the threephase inventory, i.e. the
+largest phase (0), the large phase (1) and terrestrial phase (2). Note: The threephase sample
+scheme was artificially created for demonstration purposes of the threephase-functions.
+*  boundary_weights proportion of analysis-window for auxiliary information lying within the
+forest.
+*  mean mean canopy height at the sample location based on the LiDAR canopy height model.
+*  stddev standard deviation of the LiDAR canopy height model at the sample location.
+*  max maximum value of the LiDAR canopy height model at the sample location.
+*  q75 75%-Quantile of the LiDAR canopy height model at the sample location.
+*  smallarea smallarea-indicator for each observation.
+*  tvol terrestrial timber volume from field survey. Use for twophase-inventory.
+*  tvol.3p terrestrial timber volume from field survey. Use for threephase-inventory.
+Note
+There are additional columns in grisons to demonstrate the function-behaviours for special cases
+which might occur in a forest inventory
+*  phase_id_3p_nG0 one of the smallareas does not contain any terrestrial observation.
+*  phase_id_3p_nG1 one of the smallareas does contain only a single terrestrial observation.mphase.gain
+9
+*  tvol.3p_nG0 Use as response variable to test phase_id_3p_nG0 for threephase-inventory.
+*  tvol.3p_nG1 Use as response variable to test phase_id_3p_nG1 for threephase-inventory.
+We leave testing these special cases to the user.
+
+#### Source
+The terrestrial data are kindly provided by the forest service of the canton grisons.
+The dataset was created and used within the framework of the publications listed under 
+#### References.
+
+#### References
+* Mandallaz, D., Breschan, J., & Hill, A. (2013). New regression estimators in forest inventories with
+two-phase sampling and partially exhaustive information: a design-based monte carlo approach
+with applications to small-area estimation. Canadian Journal of Forest Research, 43(11), 1023-
+1031.
+Hill, A., Breschan, J., & * Mandallaz, D. (2014). Accuracy assessment of timber volume maps using
+forest inventory data and LiDAR canopy height models. Forests, 5(9), 2253-2275.
