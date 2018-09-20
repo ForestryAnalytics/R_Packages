@@ -1,0 +1,40 @@
+## mphase.gain
+
+#### Description
+``mphase.gain`` takes as input an object created by the estTable function and returns a validation of
+which multiphase method and estimator performed best in comparison to the onephase estimation
+(baseline) in terms of estimation precision.
+
+#### Usage
+<pre><code>
+mphase.gain(esttable.obj, pref.vartype = "g_variance", exclude.synth = TRUE)
+<code><pre>
+
+#### Arguments
+* esttable.obj an object of class esttable created by the estTable function
+* pref.vartype preferred type of multiphase variance that should be compared to the onephase
+variance, if more then one variance type has been calculated in the multiphase
+estimation object(s) stored in esttable. Valid input values are "g_variance"
+(default) and "ext_variance".
+* exclude.synth logical. If set to TRUE (default), synthetic estimations are not considered in the
+validation.
+
+#### Value
+mphase.gain returns a data.frame containing the following components:
+*  area: in case of small area estimation: the name of the small area
+*  var_onephase: standard error of the onephase estimation
+*  var_multiphase: smallest variance among the (set of) multiphase estimations stored in ``esttable.obj``
+*  estimator: multiphase estimator with the smallest variance
+*  method: estimation Method of the multiphase estimator with the smallest variance
+*  gain: the gain is the reduction (if value is positive) or possibly also the increase (if value is
+negative) in variance when applying the multiphase as alternative to the onephase estimation
+*  rel.eff: the relative efficiency defined as the ratio between the onephase variance and the
+multiphase variance
+
+#### Note
+* The gain can be interpreted as: "The multiphase estimation procedure leads to a gain % reduction
+in variance compared to the onephase procedure".
+* The relative efficiency can be interpreted as: "Using the onephase estimation procedure, the terres-
+trial sample size would have to be rel.eff times larger in order to achieve the same precision (in
+terms of variance) as the mutiphase estimation procedure".
+
