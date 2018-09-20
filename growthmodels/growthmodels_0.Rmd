@@ -1,0 +1,60 @@
+Package ‘growthmodels’
+============================
+* February 20, 2015
+* Type Package
+* Title Nonlinear Growth Models
+* Version 1.2.0
+* Date 2013-11-23
+* Author Daniel Rodriguez Perez
+* Maintainer Daniel Rodriguez Perez <daniel.rodriguez.perez@gmail.com>
+* License GPL-3
+* URL https://github.com/drodriguezperez/growthmodels
+* BugReports https://github.com/drodriguezperez/growthmodels/issues
+
+#### Description 
+A compilation of nonlinear growth models used in many areas
+
+
+
+### Description
+A compilation of nonlinear growth models used in many areas.
+
+### Contents
+growthmodels-package . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+blumberg . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+brody . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+chapmanRichards . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+generalisedLogistic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+generalisedRichard . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+gompertz . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+logistic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+loglogistic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+mitcherlich . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+mmf . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+monomolecular . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+negativeExponential . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+richard . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+schnute . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+stannard . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+vonBertalanffy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+weibull . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+
+
+### Details
+* Package: growthmodels
+* Version: 1.2.0
+* License: GPL-3
+* Author(s) Daniel Rodriguez Perez <daniel.rodriguez.perez@gmail.com>
+
+### References
+* D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
+in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
+* M. M. Kaps, W. O. W. Herring, and W. R. W. Lamberson, "Genetic and environmental parameters
+for traits derived from the Brody growth curve and their relationships with weaning weight in Angus
+cattle.," Journal of Animal Science, vol. 78, no. 6, pp. 1436-1442, May 2000.
+* A. Tsoularis and J. Wallace, "Analysis of logistic growth models.," Math Biosci, vol. 179, no. 1,
+pp. 21-55, Jul. 2002.
+* A. Khamiz, Z. Ismail, and A. T. Muhammad, "Nonlinear growth models for modeling oil palm yield
+growth," Journal of Mathematics and Statistics, vol. 1, no. 3, p. 225, 2005.
+http://en.wikipedia.org/wiki/Generalised_logistic_function
+
