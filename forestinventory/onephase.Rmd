@@ -1,0 +1,101 @@
+onephase
+onephase
+
+#### Description
+onephase is used to calculate estimations exclusively based on terrestrial observations of a forest
+inventory (i.e. the local densities). The estimation method is available for simple and cluster-
+sampling and provides point estimates of the sample mean and their variances.
+Usage
+onephase(formula, data, phase_id = list(phase.col = NA, terrgrid.id = NA),
+cluster = NA, area = list(sa.col = NA, areas = NA))
+Arguments
+formula an object of class "formula" that must be of the form Y ~ 1, where Y is the
+terrestrial response value of interest provided in data.
+data a data frame or vector containing the response value Y. Specifications are given
+under ’
+#### Details’.
+phase_id an object of class "list" containing two elements:onephase
+11
+*  phase.col: the column name in data that specifies the phase membership
+of each observation
+*  terrgrid.id: the indicator identifying the the terrestrial (a.k.a. "ground
+truth") phase for that column (must be of type "numeric")
+Note: Only has to be specified if data is of class data.frame.
+cluster Specifies the column name in data containing the cluster identification. Only
+used in case of cluster sampling.
+area (Optional) an object of class "list" containing two elements:
+*  sa.col: the column name in data containing domain identification
+*  areas: vector of desired domains for which the estimation should be com-
+puted. If estimations for multiple domains should be computed, the do-
+mains have to be defined within a character vector using c()
+Further 
+#### Details of the parameter-specifications are given under ’
+#### Details’.
+
+#### Details
+data can either be a vector only containing the observations of the response variable Y, or a data
+frame containing a column for the response variable and a column for the sample-grid indication that
+has to be further specified by argument phase_id. Additional optional columns include a cluster
+identification in case of cluster sampling, as well as a column that specifies a domain (e.g. a forest
+district) the respective terrestrial observation falls into. The latter allows to compute onephase-
+estimations for multiple domains at a time (see Examples).
+
+### Value
+onephase returns an object of class "onephase".
+The functions summary and confint can be used to obtain a summary of the estimation results
+(point estimations, variances and sample sizes) and the confidence intervals for the respective point
+estimates.
+An object of class "onephase" returns a list of the following components:
+input a list containing the function inputs
+estimation a data frame containing the following components:
+* 
+* 
+* 
+* 
+samplesizes
+area: the domain (only present if argument area has been used)
+estimate: the point estimate
+variance: the variance of the point estimate
+n2: the terrestrial sample size
+a named numeric vector giving the terrestrial samplesize
+
+#### References
+* Mandallaz, D. (2007). Sampling techniques for forest inventories. Chapter 4. CRC Press.12
+plot.esttable
+
+ 
+#### Examples 
+```{r}
+# ----------- non-cluster sampling------------------#
+## load grisons dataset:
+data(grisons)
+## 1) calculate onephase-estimation for entire dataset:
+op <- onephase(formula = tvol~1 ,data = grisons,
+phase_id =list(phase.col = "phase_id_2p",terrgrid.id = 2))
+summary(op)
+confint(op)
+## 2) calculate onephase-estimation for given domains (areas) in dataset:
+op.a <- onephase(formula = tvol~1,
+data = grisons,
+phase_id = list(phase.col = "phase_id_2p", terrgrid.id = 2),
+area = list(sa.col = "smallarea", areas = c("A", "B")))
+summary(op.a)
+confint(op.a)
+# ----------- cluster sampling ------------------#
+## load zurichberg dataset:
+data(zberg)
+## 1) calculate onephase-estimation for entire dataset:
+op.clust <- onephase(formula = basal~1, data = zberg,
+phase_id = list(phase.col = "phase_id_2p",terrgrid.id = 2),
+cluster = "cluster")
+summary(op.clust)
+confint(op.clust)
+## 2) calculate onephase-estimation for given areas in dataset:
+op.clust.a <- onephase(formula = basal~1,
+data = zberg,
+phase_id = list(phase.col = "phase_id_2p", terrgrid.id = 2),
+cluster = "cluster",
+area = list(sa.col = "ismallg23", areas = c("2", "3")))
+summary(op.clust.a)
+confint(op.clust.a)
+```
