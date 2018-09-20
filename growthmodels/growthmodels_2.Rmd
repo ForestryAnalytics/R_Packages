@@ -4,50 +4,57 @@ Chapman-Richards growth model
 ### Description
 Computes the Chapman-Richards growth model and its inverse
 \[y(t) = (1 ?? exp(??kt)1=(1??m))\]
-generalisedLogistic 5
-### Usage <pre><code>
+
+### Usage 
+<pre><code>
 chapmanRichards(t, alpha, beta, k, m)
 chapmanRichards.inverse(x, alpha, beta, k, m)
+</code></pre>
+
 ### Arguments 
 *``t``: time
 *``x``: size
 *``alpha``: upper asymptote
 *``beta``: growth range
 *``k``: growth rate
-m slope of growth
+* ``m``: slope of growth
 ### References
 D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
 in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
 ### Examples
-
+```{r}
 growth <- chapmanRichards(0:10, 10, 0.5, 0.3, 0.5)
 # Calculate inverse function
 time <- chapmanRichards.inverse(growth, 10, 0.5, 0.3, 0.5)
+```
 
-## generalisedLogistic 
+## ``generalisedLogistic`` 
 
 Generalised Logistic growth model
 
 ### Description
 Computes the Generalised Logistic growth model
-y(t) = A +
-U ?? A
-1 + exp(??k(t ?? t0))
-### Usage <pre><code>
+\[y(t) = A + U ?? A 1 + exp(??k(t ?? t0))\]
+
+### Usage 
+<pre><code>
 generalisedLogistic(t, A, U, k, beta, t0)
 generalisedLogistic.inverse(x, A, U, k, beta, t0 = 0)
-6 generalisedRichard
+</code></pre>
+
 ### Arguments 
 *``t``: time
 *``x``: size
-A the lower asymptote
-U the upper asymptote
-k growth range
+* ``A``: the lower asymptote
+* ``U``: the upper asymptote
+*``k``: growth range
 *``beta``: growth range
-t0 time shift (default 0)
+* ``t0`` time shift (default 0)
 ### References
 http://en.wikipedia.org/wiki/Generalised_logistic_function
 ### Examples
+```{r}
 growth <- generalisedLogistic(0:10, 5, 10, 0.3, 0.5, 3)
 # Calculate inverse function
 time <- generalisedLogistic.inverse(growth, 5, 10, 0.3, 0.5, 3)
+```
