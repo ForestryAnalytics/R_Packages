@@ -4,9 +4,11 @@ Computes the Generalised Richard growth model and its inverse
 y(t) = A +
 U ?? A
 (1 + exp(??k(t ?? t0)))(1=m)
-### Usage <pre><code>
+### Usage 
+<pre><code>
 generalisedRichard(t, A, U, k, m, beta, t0)
 generalisedRichard.inverse(x, A, U, k, m, beta, t0 = 0)
+</code></pre>
 ### Arguments 
 *``t``: time
 *``x``: size
@@ -20,38 +22,48 @@ gompertz 7
 ### References
 http://en.wikipedia.org/wiki/Generalised_logistic_function
 ### Examples
+```{r}
 growth <- generalisedRichard(0:10, 5, 10, 0.3, 0.5, 1, 3)
 time <- generalisedRichard.inverse(growth, 5, 10, 0.3, 0.5, 1, 3)
-gompertz Gompertz growth model
-Description
+```
+
+## gompertz Gompertz growth model
+
+###Description
 Computes the Gompertz growth model and its inverse
 y(t) = exp(??exp(??kt))
-### Usage <pre><code>
+### Usage 
+<pre><code>
 gompertz(t, alpha, beta, k)
 gompertz.inverse(x, alpha, beta, k)
+```
 ### Arguments 
 *``t``: time
 *``x``: size
 *``alpha``: upper asymptote
-beta growth displacement
+*``beta``: growth displacement
 *``k``: growth rate
-### References
-D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
-in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
+
 ### Examples
 growth <- gompertz(0:10, 10, 0.5, 0.3)
 # Calculate inverse function
 time <- gompertz.inverse(growth, 10, 0.5, 0.3)
-8 loglogistic
-logistic Logistic growth model
-Description
+### References
+D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
+in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
+
+## ``logistic`` Logistic growth model
+
+#### Description
 Computes the Logistic growth model
 y(t) =
 
 1 + exp(??kt)
-### Usage <pre><code>
+### Usage 
+<pre><code>
 logistic(t, alpha, beta, k)
 logistic.inverse(x, alpha, beta, k)
+</code></pre>
 ### Arguments 
 *``t``: time
 *``x``: size
@@ -62,19 +74,22 @@ logistic.inverse(x, alpha, beta, k)
 D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
 in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
 ### Examples
+```{r}
 growth <- logistic(0:10, 10, 0.5, 0.3)
 # Calculate inverse function
 time <- logistic.inverse(growth, 10, 0.5, 0.3)
-loglogistic Log-logistic growth model
-Description
-Computes the Log-logistic growth model
-y(t) =
-
-1 + exp(??klog(t)
-mitcherlich 9
-### Usage <pre><code>
+```
+
+## ``loglogistic`` Log-logistic growth model
+
+#### Description: Computes the Log-logistic growth model
+\[y(t) = 1 + exp(??klog(t)\]
+
+### Usage 
+<pre><code>
 loglogistic(t, alpha, beta, k)
 loglogistic.inverse(x, alpha, beta, k)
+</code></pre>
 ### Arguments 
 *``t``: time
 *``x``: size
@@ -88,37 +103,46 @@ growth," Journal of Mathematics and Statistics, vol. 1, no. 3, p. 225, 2005.
 growth <- loglogistic(0:10, 10, 0.5, 0.3)
 # Calculate inverse function
 time <- loglogistic.inverse(growth, 10, 0.5, 0.3)
-mitcherlich Mitcherlich growth model
-Description
+
+## ``mitcherlich`` Mitcherlich growth model
+
+#### Description
 Computes the Mitcherlich growth model
-y(t) = ( ?? kt)
-### Usage <pre><code>
-mitcherlich(t, alpha, beta, k)
+\[y(t) = ( ?? kt)\]
+
+### Usage 
+<pre><code>
+0mitcherlich(t, alpha, beta, k)
 mitcherlich.inverse(x, alpha, beta, k)
+</code></pre>
+
 ### Arguments 
 *``t``: time
 *``x``: size
 *``alpha``: upper asymptote
 *``beta``: growth range
 *``k``: growth rate
-10 mmf
+
 ### References
 D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
 in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
 ### Examples
+```{r}
 growth <- mitcherlich(0:10, 10, 0.5, 0.3)
 # Calculate inverse function
 time <- mitcherlich.inverse(growth, 10, 0.5, 0.3)
-mmf Morgan-Mercer-Flodin growth model
-Description
+```
+## ``mmf`` Morgan-Mercer-Flodin growth model
+
+#### Description
 Computes the Morgan-Mercer-Flodin growth model
-y(t) =
-(w0 + tm)
-
-+ tm
-### Usage <pre><code>
+\[y(t) = (w0 + tm) + tm \]
+
+### Usage 
+<pre><code>
 mmf(t, alpha, w0, gamma, m)
 mmf.inverse(x, alpha, w0, gamma, m)
+</code></pre>
 ### Arguments 
 *``t``: time
 *``x``: size
@@ -130,7 +154,8 @@ m growth rate
 A. Khamiz, Z. Ismail, and A. T. Muhammad, "Nonlinear growth models for modeling oil palm yield
 growth," Journal of Mathematics and Statistics, vol. 1, no. 3, p. 225, 2005.
 ### Examples
+```{r}
 growth <- mmf(0:10, 10, 0.5, 4, 1)
 # Calculate inverse function
 time <- mmf.inverse(growth, 10, 0.5, 4, 1)
-monomolecular 11
+```
