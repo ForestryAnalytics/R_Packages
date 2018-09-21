@@ -1,0 +1,39 @@
+## catalog
+
+``catalog`` Build a catalog of las tiles/files
+
+#### Description 
+
+Build a LAScatalog object from a folder name. A catalog is the representation of a set of las files,
+since a computer cannot load all the data at once. A catalog is a simple way to manage all the files
+sequentially by reading only the headers. Also a catalog contains metadata so users can configure
+how it will be processed.
+
+#### Usage 
+<pre><code>
+catalog(folder, ...)
+cores(ctg)
+cores(ctg) <- value
+by_file(ctg)
+by_file(ctg) <- value
+buffer(ctg)
+buffer(ctg) <- value
+progress(ctg)
+progress(ctg) <- value
+tiling_size(ctg)
+tiling_size(ctg) <- value
+vrt(ctg)
+vrt(ctg) <- value
+stop_early(ctg)
+stop_early(ctg) <- value
+</code></pre>
+
+#### Arguments 
+
+* folder string. The path of a folder containing a set of .las files
+* ... Extra parameters to list.files. Typically ‘recursive = TRUE‘.
+* ctg A LAScatalog object.
+* value An appropriated value for catalog settings. See LAScatalog
+
+### Value
+A LAScatalog object
