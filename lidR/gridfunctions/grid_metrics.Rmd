@@ -1,0 +1,112 @@
+## ``grid_metrics``
+Rasterize the space and compute metrics for each cell
+
+#### Description 
+* Computes a series of user-defined descriptive statistics for a LiDAR dataset within each pixel of
+a raster. 
+* Output is a data.table in which each line is a pixel (single grid cell), and each column
+is a metric.
+* Works both with LAS or catalog objects. ``grid_metrics`` is similar to lasmetrics or
+``grid_hexametrics`` except it computes metrics within each cell in a predefined grid. 
+* The grid cell coordinates are pre-determined for a given resolution.
+
+#### Usage
+<pre><code>
+grid_metrics(x, func, res = 20, start = c(0, 0), 
+  splitlines = FALSE,
+  filter = "")
+<code><pre>
+
+#### Arguments 
+
+x
+func
+res
+start
+splitlines
+filter
+An object of class LAS or a catalog (see section "Use with a LAScatalog")
+the function to be applied to each cell (see section "Parameter func")
+numeric. The size of the cells. Default 20.
+vector x and y coordinates for the reference raster. Default is (0,0) (see section
+"Parameter start").
+logical. If TRUE the algorithm will compute the metrics for each flightline
+individually. It returns the same cells several times in overlap.
+character. Streaming filter while reading the files (see ``readLAS``). If the input
+is a LAScatalog the function ``readLAS`` is called internally. The user cannot
+manipulate the lidar data directly but can use streaming filters instead.
+
+#### Details 
+
+* ``grid_metrics`` is similar to lasmetrics or ``grid_hexametrics`` except it computes metrics within each
+cell in a predefined grid. 
+* The grid cell coordinates are pre-determined for a given resolution, so
+the algorithm will always provide the same coordinates independently of the dataset. When start =
+(0,0) and res = 20 ``grid_metrics`` will produce the following raster centers: (10,10), (10,30), (30,10)
+etc.. When start = (-10, -10) and res = 20 ``grid_metrics`` will produce the following raster centers:
+(0,0), (0,20), (20,0) etc.. * In Quebec (Canada) the reference is (-831600, 117980) in the NAD83
+coordinate system.
+
+#### Value 
+
+Returns a data.table containing the metrics for each cell. The table has the class "lasmetrics"
+enabling easy plotting.
+Parameter func
+The function to be applied to each cell is a classical function (see Examples) that returns a labelled
+list of metrics. The following existing functions allow the user to compute some metrics:
+•
+•
+•
+•
+stdmetrics
+entropy
+VCI
+LAD
+Users must write their own functions to create metrics. ``grid_metrics`` will dispatch the LiDAR
+data for each cell in the user’s function. The user writes their function without considering grid
+cells, only a point cloud (see example).
+Parameter start
+The algorithm will always provide the same coordinates independently of the dataset. When start =
+(0,0) and res = 20 ``grid_metrics`` will produce the following raster centers: (10,10), (10,30), (30,10)
+etc.. When start = (-10, -10) and res = 20 ``grid_metrics`` will produce the following raster centers:
+(0,0), (0,20), (20,0) etc.. In Quebec (Canada) reference is (-831600, 117980) in the NAD83 coordi-
+nate system.
+####  Use with a LAScatalog
+When the parameter x is a LAScatalog the function processes the entire dataset in a continuous way
+using a multicore process. The user can modify the processing options using the available options.
+lidR supports .lax files. Computation speed will be significantly improved with a spatial index.
+
+#### Examples   
+```{r}
+LASfile <- system.file("extdata", "Megaplot.laz", package="lidR")
+lidar = ``readLAS``(LASfile)
+
+# Canopy surface model with 4 m^2 cells
+metrics = ``grid_metrics``(lidar, max(Z), 2)
+plot(metrics)
+```
+```{r}
+# Mean height with 400 m^2 cells
+metrics = ``grid_metrics``(lidar, mean(Z), 20)
+plot(metrics)
+```
+
+```{r}
+# Define your own new metrics
+myMetrics = function(z, i)
+{
+metrics = list(
+zwimean = sum(z*i)/sum(i), # Mean elevation weighted by intensities
+zimean = mean(z*i),
+# Mean products of z by intensity
+zsqmean = sqrt(mean(z^2)) # Quadratic mean
+)
+}
+return(metrics)
+metrics = ``grid_metrics``(lidar, myMetrics(Z, Intensity))
+plot(metrics)
+plot(metrics, "zwimean")
+plot(metrics, "zimean")
+plot(metrics, "zsqmean")
+#etc.
+```
