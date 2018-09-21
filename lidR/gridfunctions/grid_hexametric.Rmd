@@ -1,0 +1,63 @@
+
+
+## ````grid_hexametrics````
+Compute metrics for hexagonal cells
+
+#### Description 
+
+Computes a series of descriptive statistics for a LiDAR dataset within hexagonal cells from a hexag-
+onal grid pattern. This function is identical to ``grid_metrics`` or ``grid_metrics``3d or tree_metrics but
+with hexagonal cells instead of classical square pixels. Please refer to ``grid_metrics`` for more infor-
+mation.
+
+####  Usage
+<pre><code>
+``grid_hexametrics``(.las, func, res = 20, splitlines = FALSE, debug = FALSE)
+</code></pre>
+
+#### Arguments 
+
+* ``.las``: An object of class LAS
+* ``func``: the function to be applied to each hexagonal cell
+* ``res``: numeric. The inscribed circle radius of a hexagon. Default = 20.
+* ``splitlines``: logical. 
+- If TRUE the algorithm will compute the metrics for each flightline individually. 
+- It returns the same cells several times in overlaps.
+* ``debug logical``:. If you encounter a non trivial error try debug = TRUE.
+
+#### Value 
+
+* It returns a data.table containing the metrics for each hexagonal cell. 
+* The table has the clas "lashexametrics" enabling easy plotting.
+
+#### Examples   
+```{r}
+LASfile <- system.file("extdata", "Megaplot.laz", package="lidR")
+lidar = ``readLAS``(LASfile)
+# Maximum elevation with a resolution of 4 m
+hm = ``grid_hexametrics``(lidar, max(Z), 4)
+plot(hm)
+```
+```{r}
+# Mean height with a resolution of 20 m
+hm = ``grid_hexametrics``(lidar, mean(Z))
+plot(hm)
+```
+```{r}
+# Define your own new metrics
+myMetrics = function(z, i)
+{
+metrics = list(
+zwimean = sum(z*i)/sum(i), # Mean elevation weighted by intensities
+zimean = mean(z*i),
+# Mean products of z by intensity
+zsqmean = sqrt(mean(z^2)) # Quadratic mean
+)
+}
+return(metrics)
+metrics = ``grid_hexametrics``(lidar, myMetrics(Z, Intensity), 10)
+plot(metrics, "zwimean")
+plot(metrics, "zimean")
+plot(metrics, "zsqmean")
+#etc.
+```
