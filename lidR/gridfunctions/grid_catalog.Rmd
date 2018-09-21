@@ -1,0 +1,59 @@
+## grid_catalog
+
+Apply a grid function over a catalog
+
+#### Description 
+
+* This function applies over an entire catalog any user-defined function that returns a lasmetrics object. 
+* Used internaly by ``grid_metrics``, ``grid_terrain``, ``grid_canopy`` and other ``grid_...`` functions when
+the input is a LAScatalog, it ensures continuous rasterization of the dataset and performs pre- and post-processes. 
+* This function can be seen as a straightforward ’grid-specific’ version of ``catalog_apply``, which is even more generic.
+
+#### Usage
+<pre><code>
+grid_catalog(catalog, grid_func, res, select = "*", filter = "",
+start = c(0, 0), ...)
+</code>></pre>
+
+#### Arguments 
+
+* ``catalog``: A LAScatalog
+* ``grid_func``: A function that returns a lasmetrics object. This function must follow a specific template (see Details and Examples) 
+* ``res``: numeric. Resolution of the grid
+* ``select``: character. The ’select’ parameter from ``readLAS``.
+* ``filter``: character. The ’filter’ parameter from ``readLAS``.
+* ``start``: numeric. The ’start’ parameter from ``grid_metrics``
+* ``...`` Any other parameter required by grid_func
+
+#### Details 
+
+* The user-defined function ``grid_func`` must respect a template. Like in ``grid_metrics``, grid_terrain or
+grid_canopy, the user-defined function must have a parameter called x that will receive a LAS object
+and a parameter res that will receive the resolution of the grid. The parameter start is optional.
+
+#### Value 
+
+* Returns a data.table containing the metrics for each cell. 
+* The table has the class "lasmetrics" enabling easy plotting.
+
+#### Examples   
+```{r}
+# This example computes the mean elevation of points above 5 m over an entire
+# catalog, after removing all points in lakes into a shapefile.
+LASfile <- system.file("extdata", "Megaplot.laz", package="lidR")
+shapefile_dir <- system.file("extdata", package = "lidR")2
+```
+```{r}
+ctg = catalog(LASfile)
+tiling_size(ctg) <- 160
+lakes = rgdal::readOGR(shapefile_dir, "lake_polygons_UTM17")
+my_``grid_metrics`` = function(x, res, spdf)
+{
+lasclassify(x, spdf, "inpoly")
+x = lasfilter(x, !inpoly)
+``grid_metrics``(x, mean(Z), res)
+}
+mean = grid_catalog(ctg, my_``grid_metrics``, 20,
+select = "xyz", filter = "-drop_z_below 5",
+spdf = lakes)
+```
