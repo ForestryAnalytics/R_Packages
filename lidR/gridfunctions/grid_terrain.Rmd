@@ -1,0 +1,70 @@
+## ``grid_terrain``
+Digital Terrain Model
+
+#### Description 
+* Interpolates ground points and creates a rasterized digital terrain model. 
+* The interpolation can be done using 3 methods: "knnidw", "delaunay" or "kriging" (see Details). 
+* The algorithm uses the points classified as "ground" to compute the interpolation.
+* Depending on the interpolation method, the edges of the dataset can be more, or less poorly interpolated. 
+* A buffer around the region of interest is always recommended to avoid edge effects.
+
+### Usage
+<pre><code>
+grid_terrain(x, res = 1, method, k = 10L, p = 2,
+model = gstat::vgm(0.59, "Sph", 874), keep_lowest = FALSE)
+</code></pre>
+#### Arguments 
+
+* ``x`` An object of class LAS or a catalog (see section "Use with a LAScatalog")
+* ``res``: numeric. resolution.
+* ``method``: character. can be "knnidw", "delaunay" or "kriging" (see Details).
+* k numeric. number of k-nearest neighbours when the selected method is either
+"knnidw" or "kriging"
+* p numeric. Power for inverse-distance weighting. Default 2.
+model a variogram model computed with vgm when the selected method is "kriging".
+- If null, it performs an ordinary or weighted least squares prediction.
+* keep_lowest logical. This function forces the original lowest ground point of each pixel (if it
+exists) to be chosen instead of the interpolated values. 
+
+
+#### Details 
+
+* knnidw Interpolation is done using a k-nearest neighbour (KNN) approach with an inverse-distance
+weighting (IDW). This is a fast but basic method for spatial data interpolation.
+delaunay Interpolation based on Delaunay triangulation. 
+* It makes a linear interpolation within
+each triangle. There are usually few cells outside the convex hull, determined by the ground
+points at the very edge of the dataset that cannot be interpolated with a triangulation. Extrap-
+olation is done using knnidw.
+* kriging Interpolation is done by universal kriging using the krige function. This method combines
+the KNN approach with the kriging approach. For each point of interest the terrain is kriged
+using the k-nearest neighbour ground points. 
+* This method is more difficult to manipulate but
+it is also the most advanced method for interpolating spatial data.
+
+#### Value 
+
+A lasmetrics data.table.
+
+#### Use with a LAScatalog
+When the parameter x is a LAScatalog the function processes the entire dataset in a continuous way
+using a multicore process. The user can modify the processing options using the available options.
+lidR supports .lax files. Computation speed will be significantly improved with a spatial index.
+
+#### Examples   
+```{r}
+LASfile <- system.file("extdata", "Topography.laz", package="lidR")
+lidar = ``readLAS``(LASfile)
+plot(lidar)
+dtm1 = grid_terrain(lidar, method = "knnidw", k = 6, p = 2)
+dtm2 = grid_terrain(lidar, method = "delaunay")
+dtm3 = grid_terrain(lidar, method = "kriging", k = 10)
+## Not run:
+plot(dtm1)
+plot(dtm2)
+plot(dtm3)
+plot3d(dtm1)
+plot3d(dtm2)
+plot3d(dtm3)
+## End(Not run)
+```
