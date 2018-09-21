@@ -1,0 +1,34 @@
+## ``catalog_reshape``
+
+Reshape (retile) a catalog
+
+#### Description 
+
+This function is supersed by catalog_retile that can do the same and much more.
+
+#### Usage 
+<pre><code>
+catalog_reshape(ctg, size, path, prefix, ext = c("las", "laz"))
+</code></pre>
+
+#### Arguments 
+* ctg A LAScatalog object
+* size scalar. The size of the new tiles.
+* path string. The folder where the new files should be saved.
+* prefix character. The initial part of the name of the written files.
+* ext character. The format of the written files. Can be ".las" or ".laz".
+
+#### Value
+A new catalog object
+
+
+#### Examples 
+```{r}
+## Not run:
+ctg = catalog("path/to/catalog")
+# Create a new set of .las files 500 by 500 wide in the folder
+# path/to/new/catalog/ and iteratively named Forest_1.las, Forest_2.las
+# Forest_3.las, and so on.
+newctg = catalog_reshape(ctg, 500, "path/to/new/catalog", "Forest_")
+## End(Not run)
+```
