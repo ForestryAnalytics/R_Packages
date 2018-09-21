@@ -1,0 +1,49 @@
+catalog_options
+Options Settings for the catalog tools (deprecated)
+
+#### Description 
+
+Allow the user to set and examine a variety of global options that affect the way in which lidR
+processes an entire catalog. This function is deprecated. See catalog instead.
+
+#### Usage 
+
+catalog_options(...)
+catalog_reset()
+
+#### Arguments 
+
+...
+Option names to retrieve option values or [key]=[value] pairs to set options.
+Supported options
+The following options are supported:
+*  progress (logical) Display progress bar. Default is TRUE.
+*  buffer (numeric) - When applying a function to an entire catalog sequentially processing
+sub-areas (clusters) some algorithms (such as grid_terrain) require a buffer around the area to
+avoid edge effects. Default is 15 m.
+*  multicore (numeric) - For parallel processes, fix the number of cores to use. Default is the
+number of cores you have.
+*  tiling_size (numeric) - To process an entire catalog, the algorithm splits the dataset into
+several square sub-areas (clusters) to process them sequentially. This is the size of each square
+cluster. Default is 1000 (1 km^2).
+*  by_file (logical) - This option overwrites the option tiling_size. Instead of processing the
+catalog by arbitrary split areas, it forces processing by file. Buffering is still available.
+*  return_virtual_raster (logical) - Functions which return raster-like data such as grid_metrics,
+grid_terrain and other grid_* functions may return huge amounts of data for large catalogs
+or high resolution data (typically grid_terrain with a resolution of 1 meter). Switching this
+option to TRUE enables storage of the data on the hard disk and returns a lightweight virtual
+raster mosaic.
+*  memory_limit_warning (numeric) - When applying a function to an entire catalog, an inter-
+nal function tries to estimate the size of the output before running the algorithm in an attempt
+to prevent memory overflow. This value (in bytes) is the threshold before a warning is given.
+Default is 5e8 (500 Mb). Set to Inf to disable.
+
+#### Examples 
+
+## Not run:
+catalog_options(multicore = 2)
+catalog_options(buffer = 40)
+catalog_options()
+# Reset default options
+catalog_reset()
+## End(Not run)
