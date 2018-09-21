@@ -1,0 +1,42 @@
+## grid_density
+
+Map the pulse or point density
+
+#### Description 
+
+Creates a map of the point density. If a "pulseID" field is found, return also a map of the pulse
+density.
+
+#### Usage
+<pre><code>
+grid_density(x, res = 4, filter = "")
+</code></pre>
+
+#### Arguments 
+
+* ``x`` An object of class LAS or a catalog (see section "Use with a LAScatalog")
+* ``res``: numeric. The size of a grid cell in LiDAR data coordinates units. 
+ - Default is 4 = 16 square meters.
+* filter character. Streaming filter while reading the files (see ``readLAS``). 
+ - If x is a LAScatalog the function ``readLAS`` is called internally. 
+ - The user cannot manipulate the lidar data directly but can use streaming filters instead.
+
+#### Value 
+
+* Returns a data.table of class lasmetrics which enables easier plotting and RasterLayer casting.
+
+#### Use with a LAScatalog
+* When the parameter x is a LAScatalog the function processes the entire dataset in a continuous way
+using a multicore process. 
+* The user can modify the processing options using the available options. lidR support .lax files. 
+* Computation speed will be significantly improved with a spatial index.`
+
+#### Examples   
+```{r}
+LASfile <- system.file("extdata", "Megaplot.laz", package="lidR")
+lidar = ``readLAS``(LASfile)
+d = grid_density(lidar, 5)
+plot(d)
+d = grid_density(lidar, 10)
+plot(d)
+```
