@@ -1,0 +1,27 @@
+## ``mmf`` Morgan-Mercer-Flodin growth model
+
+#### Description
+Computes the Morgan-Mercer-Flodin growth model
+\[y(t) = (w0 + tm) + tm \]
+
+### Usage 
+<pre><code>
+mmf(t, alpha, w0, gamma, m)
+mmf.inverse(x, alpha, w0, gamma, m)
+</code></pre>
+### Arguments 
+*``t``: time
+*``x``: size
+*``alpha``: upper asymptote
+w0 the value at t = 0
+gamma parameter that controls the point of inflection
+m growth rate
+### References
+A. Khamiz, Z. Ismail, and A. T. Muhammad, "Nonlinear growth models for modeling oil palm yield
+growth," Journal of Mathematics and Statistics, vol. 1, no. 3, p. 225, 2005.
+### Examples
+```{r}
+growth <- mmf(0:10, 10, 0.5, 4, 1)
+# Calculate inverse function
+time <- mmf.inverse(growth, 10, 0.5, 4, 1)
+```
