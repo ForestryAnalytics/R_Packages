@@ -1,0 +1,28 @@
+## leuschner 
+Leuschner harvest schedule yield data
+### Description
+These data are used to present and study forest regulation using mathematical programming and R.
+Usage
+data(leuschner)
+### Format
+A data frame with 48 observations on the following 4 variables.
+
+* ``stand``: index variable identifying the type of forested area
+* ``period``: cutting period of the forest harvest schedule
+* ``age``: at harvest at cutting period midpoint of planning period
+* ``vol``: the stand volume at age, in thousands of cubic feet per acre
+
+### Examples
+```{r}
+data(leuschner)
+print( leuschner )
+```
+
+### Details
+* This table contains example yields for an 84,000 acre (33993.93 ha) Douglas-fir forest. 
+* The yields span over six (6) planning periods and eight (8) age classes from age 25 to 95 years of age.
+* The data were originally published in Leuschner (1990).
+### References
+* Leuschner, William A. 1990. Forest Regulation, Harvest Scheduling, and Planning Techniques.
+John Wiley and Sons, Inc.
+* Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
