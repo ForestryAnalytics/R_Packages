@@ -1,0 +1,29 @@
+
+## ``negativeExponential`` Negative exponential growth model
+
+#### Description
+Computes the negative exponential growth model
+\[y(t) = (1 ?? exp(??kt))\]
+
+### Examples
+```{r}
+growth <- negativeExponential(0:10, 1, 0.3)
+# Calculate inverse function
+time <- negativeExponential.inverse(growth, 10, 0.3)
+```
+
+### Usage 
+<pre><code>
+negativeExponential(t, alpha, k)
+negativeExponential.inverse(x, alpha, k)
+</code><pre>
+### Arguments 
+*``t``: time
+*``x``: size
+*``alpha``: upper asymptote
+*``k``: growth rate
+
+
+### References
+* D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
+in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
