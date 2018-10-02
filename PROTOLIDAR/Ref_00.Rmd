@@ -1,0 +1,32 @@
+## Package ‘PROTOLIDAR’
+
+* February 19, 2015
+* Type Package
+* Title PRocess TOol LIdar DAta in R
+* Version 0.1
+* Date 2012-11-21
+* Author Monica Fernanda Rinaldi
+* Maintainer Monica Fernanda Rinaldi <monica.rinaldi@gmail.com>
+
+#### Description 
+ PROTOLIDAR package contains functions for analyze the
+LIDAR scan of plants (grapevine) and make 3D maps in GRASS GIS.
+License GPL
+LazyLoad yes
+Repository CRAN
+Date/Publication 2013-01-09 19:35:43
+NeedsCompilation no
+R topics documented:
+PROTOLIDAR-package . . . . . . . . . .
+Extract_plant_3D_function . . . . . . . . .
+Extract_plant_grapevine_function . . . . .
+Height_canopy_function . . . . . . . . . .
+LAI_function . . . . . . . . . . . . . . . .
+LIDAR_data . . . . . . . . . . . . . . . . .
+LWA_lidar_function . . . . . . . . . . . .
+Number_lidar_points_into_canopy_function
+Replicate_plants_function . . . . . . . . .
+Rotate_function . . . . . . . . . . . . . . .
+TRV_lidar_function . . . . . . . . . . . . .
+Width_canopy_function . . . . . . . . . . .
+
