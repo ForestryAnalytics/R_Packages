@@ -1,0 +1,29 @@
+
+## ``vonBertalanffy`` von Bertalanffy growth model
+
+#### Description
+Computes the von Bertalanffy growth model
+\[y(t) = ((1 ?? m) ??   exp(??kt))(1=(1 ?? m))\]
+
+### Usage 
+<pre><code>
+vonBertalanffy(t, alpha, beta, k, m)
+vonBertalanffy.inverse(x, alpha, beta, k, m)
+</code></pre>
+### Arguments 
+*``t``: time
+*``x``: size
+*``alpha``: upper asymptote
+*``beta``: growth range
+*``k``: growth rate
+*``m``: slope of growth
+
+### Examples
+```{r}
+growth <- vonBertalanffy(0:10, 10, 0.5, 0.3, 0.5)
+# Calculate inverse function
+time <- vonBertalanffy.inverse(growth, 10, 0.5, 0.3, 0.5)
+```
+### References
+* D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
+in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
