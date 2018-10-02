@@ -1,0 +1,28 @@
+
+## ``richard`` Richard growth model
+
+### Description
+Computes the Richard growth model and its inverse
+\[y(t) = (1 + exp(??kt))(1=m)\]
+### Usage 
+<pre><code>
+richard(t, alpha, beta, k, m)
+richard.inverse(x, alpha, beta, k, m)
+</code></pre>
+### Arguments 
+*``t``: time
+*``x``: size
+*``alpha``: upper asymptote
+*``beta``: growth range
+*``k``: growth rate
+*``m``: slope of growth
+
+### Examples
+```{r}
+growth <- richard(0:10, 10, 0.5, 0.3, 0.5)
+time <- richard.inverse(growth, 10, 0.5, 0.3, 0.5)
+```
+
+### References
+* D. Fekedulegn, M. Mac Siurtain, and J. Colbert, "Parameter estimation of nonlinear growth models
+in forestry," Silva Fennica, vol. 33, no. 4, pp. 327-336, 1999.
