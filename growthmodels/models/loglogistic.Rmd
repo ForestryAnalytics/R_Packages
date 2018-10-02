@@ -1,0 +1,27 @@
+## ``loglogistic`` Log-logistic growth model
+
+#### Description: Computes the Log-logistic growth model
+\[y(t) = 1 + exp(??klog(t)\]
+
+### Usage 
+<pre><code>
+loglogistic(t, alpha, beta, k)
+loglogistic.inverse(x, alpha, beta, k)
+</code></pre>
+### Arguments 
+*``t``: time
+*``x``: size
+*``alpha``: upper asymptote
+*``beta``: growth range
+*``k``: growth rate
+
+### Examples
+```{r}
+growth <- loglogistic(0:10, 10, 0.5, 0.3)
+# Calculate inverse function
+time <- loglogistic.inverse(growth, 10, 0.5, 0.3)
+```
+
+### References
+A. Khamiz, Z. Ismail, and A. T. Muhammad, "Nonlinear growth models for modeling oil palm yield
+growth," Journal of Mathematics and Statistics, vol. 1, no. 3, p. 225, 2005.
