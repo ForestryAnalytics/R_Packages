@@ -1,0 +1,30 @@
+## ``schnute`` Schnute growth model
+
+#### Description
+Computes the Schnute growth model
+\[y(t) = [r0 + exp(kt)]m\]
+
+### Usage 
+<pre><code>
+schnute(t, r0, beta, k, m)
+schnute.inverse(x, r0, beta, k, m)
+</code></pre>
+
+### Examples
+```{r}
+growth <- schnute(0:10, 10, 5, .5, .5)
+# Calculate inverse function
+time <- schnute.inverse(growth, 10, 5, .5, .5)
+```
+
+### Arguments 
+*``t``: time
+*``x``: size
+*``r0``: reference value
+*``beta``: growth displacement
+*``k``: growth rate
+* ``m``: slope of growth
+
+### References
+* A. Khamiz, Z. Ismail, and A. T. Muhammad, "Nonlinear growth models for modeling oil palm yield
+growth," Journal of Mathematics and Statistics, vol. 1, no. 3, p. 225, 2005.
