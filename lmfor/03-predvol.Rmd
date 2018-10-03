@@ -1,23 +1,40 @@
-predvol: Individual tree volume functions for Finland
-=======================================================
-Predict individual tree volumes using the functions of Laasasenaho(1982). The volume prediction can be based on tree diameter or tree diameter and height. The functions applying upper stem diameter have not (yet) been implemented.
+---
+title: "Forestry Analytics with R"
+author: "KevinOBrien"
+date: "3 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lmfor)
+```
+
+## ``predvol``: Individual tree volume functions for Finland
+
+* Predict individual tree volumes using the functions of Laasasenaho(1982). 
+* The volume prediction can be based on tree diameter or tree diameter and height. 
+* The functions applying upper stem diameter have not (yet) been implemented.
 
 #### Usage
 
 <pre><code>
 predvol(species,d,h=0,model=1)
-</code><pre>
+</code></pre>
 
 #### Arguments
 
-* ``species``: 
-    The vector of tree species. 1:Pine, 2:Spruce, 3: Silver birch. 4: Downy birch. Other codes than 1-4 are accepted but return NA as the volume prediction. 
-* ``d``:
-    The vector of tree diameters at breast height (cm) 
-* ``h``:
-    The vector of tree heights. Used only if model=2. 
-* ``model``:
-    The model used. If model is 1, the prediction is based on tree diameter only. If model=2, then diameter and height are used. 
+* ``species``:  The vector of tree species. 
+   -  1: Pine, 
+   -  2: Spruce, 
+   -  3: Silver birch. 
+   -  4: Downy birch. 
+   -  Other codes than 1-4 are accepted but return NA as the volume prediction. 
+* ``d``: The vector of tree diameters at breast height (cm) 
+* ``h``: The vector of tree heights. Used only if model=2. 
+* ``model``: The model used. 
+   - If ``model=1``, the prediction is based on tree diameter only. 
+   - If ``model=2``, then diameter and height are used. 
 
 #### Examples
 
@@ -43,8 +60,5 @@ predvol(species,d,model=1)
 
 * A vector of tree volumes (in liters).
 
-
-
 #### References
 
-Laasasenaho, Jouko 1982. Taper curve and volume functions for pine, spruce and birch. Comm. Inst. For. Fenn 108: 1-74.
