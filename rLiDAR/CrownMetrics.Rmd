@@ -1,0 +1,99 @@
+## ``CrownMetrics``: LiDAR-derived individual tree crown metrics
+
+#### Description 
+
+Compute individual tree crown metrics from lidar data
+
+#### Usage 
+<pre><code>
+CrownMetrics(xyziId)
+</code></pre>
+
+####Arguments 
+
+xyziId
+A 5-column matrix with the x, y, z coordinates, intensity and the tree id classifi-
+cation for the LiDAR point cloud.
+
+### Details
+ List of the individual tree crown metrics:
+* .... TotalReturns: Total number of returns
+* .... ETOP - UTM Easting coordinate of the tree top
+* .... NTOP - UTM Northing coordinate of the tree top
+* .... EMIN - Minimum UTM Easting coordinate
+* .... NMIN - Minimum UTM Northing coordinate
+* .... EMAX - Maximum UTM Easting coordinate
+* .... NMAX - Maxmium UTM Northing coordinate
+* .... EWIDTH - Tree crown width 01
+* .... NWIDTH - Tree crown width 02
+* .... HMAX - Maximum Height
+* .... HMEAN - Mean height
+* .... HSD - Standard deviation of height
+* .... HCV - Coefficient of variation of height
+* .... HMOD - Mode of height
+* .... H5TH - 5th percentile of height
+* .... H10TH - 10th percentile of height
+* .... H20TH - 20th percentile of height
+* .... H25TH - 25th percentile of height
+* .... H30TH - 30th percentile of height
+* .... H40TH - 40th percentile of height
+* .... H50TH - 50th percentile of height
+* .... H60TH - 60th percentile of height
+* .... H70TH - 70th percentile of height
+* .... H75TH - 75th percentile of height
+* .... H80TH - 80th percentile of height
+* .... H90TH - 90th percentile of height
+* .... H95TH - 95th percentile of height
+* .... H99TH - 99th percentile of height
+* .... IMAX - Maximum intensity
+* .... IMEAN - Mean intensity
+* .... ISD - Standard deviation of intensityCrownMetrics
+* .... ICV - Coefficient of variation of intensity
+* .... IMOD - Mode of intensity
+* .... I5TH - 5th percentile of intensity
+* .... I10TH - 10th percentile of intensity
+* .... I20TH - 20th percentile of intensity
+* .... I25TH - 25th percentile of intensity
+* .... I30TH - 30th percentile of intensity
+* .... I40TH - 40th percentile of intensity
+* .... I50TH - 50th percentile of intensity
+* .... I60TH - 60th percentile of intensity
+* .... I70TH - 70th percentile of intensity
+* .... I75TH - 75th percentile of intensity
+* .... I80TH - 80th percentile of intensity
+* .... I90TH - 90th percentile of intensity
+* .... I95TH - 95th percentile of intensity
+* .... I99TH - 99th percentile of intensity
+
+####Value 
+
+Returns A matrix of the LiDAR-based metrics for the individual tree detected.
+Author(s)
+Carlos Alberto Silva
+
+#### Examples 
+ ```{r} 
+
+#=======================================================================#
+# Individual tree detection using K-means cluster
+#=======================================================================#
+# Importing LAS file:
+LASfile <- system.file("extdata", "LASexample1.las", package="rLiDAR")
+# Reading LAS file
+LAS<-readLAS(LASfile,short=TRUE)
+# Setting the xyz coordinates and subsetting the data
+xyzi<-subset(LAS[,1:4],LAS[,3] >= 1.37)
+# Finding clusters (trees)
+clLAS<-kmeans(xyzi[,1:2], 32)
+# Set the tree id vector
+Id<-as.factor(clLAS$cluster)
+910
+FindTreesCHM
+# Combining xyzi and tree id
+xyziId<-cbind(xyzi,Id)
+#=======================================================================#
+# Computing individual tree LiDAR metrics
+#=======================================================================#
+TreesMetrics<-CrownMetrics(xyziId)
+head(TreesMetrics)
+```
