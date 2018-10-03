@@ -1,28 +1,50 @@
+---
+title: "YTGen Study"
+author: "KevinOBrien"
+date: "3 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FAwR)
+```
 
 ## ``get.col.report`` 
 Obtains column information about the GLPK problem object.
+
 ### Description
+
 This function returns a data.frame object that contains several useful column attributes about a linear
 programming GLPK object.
 
 ### Usage
+
 <pre><code>
 get.col.report( lp )
 </code></pre>
 
 ### Arguments
+
 ``lp`` A GLPK object.
 
 ### Details
+
 The function generates a data.frame object that contains information from a GLPK object.
 
 ### Value
+
 A data.frame that contains several elements returned from GLPK wrapper functions that return
 attributes from a column from an GLPK object.
-Author(s)
+
+### Author(s)
 Jeff D. Hamann <jeff.hamann@forestinformatics.com>
+
 ### References
-Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
-The GNU GLPK home page at http://www.gnu.org/software/glpk/glpk.html
+
+* Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
+* The GNU GLPK home page at http://www.gnu.org/software/glpk/glpk.html
+
 ### See Also
-get.row.report
+
+
