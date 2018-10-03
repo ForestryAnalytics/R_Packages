@@ -1,0 +1,66 @@
+## CHMsmoothing
+
+LiDAR-derived Canopy Height Model (CHM) smoothing
+
+####Description 
+
+LiDAR-derived Canopy Height Model (CHM) smoothing is used to eliminate spurious local max-
+ima caused by tree branches.
+
+####Usage 
+<pre><code>
+CHMsmoothing(chm, filter, ws, sigma)
+</code></pre>
+
+####Arguments 
+
+* chm A LiDAR-derived Canopy Height Model (CHM) RasterLayer or SpatialGrid-
+DataFrame file.
+* filter Filter type: mean, median, maximum or Gaussian. Default is mean.
+* ws The dimension of a window size, e.g. 3,5, 7 and so on. Default is 5.
+* sigma Used only when filter parameter is equal to Gaussian, e.g. 0.5, 1.0, 1.5 and so
+on. Default is 0.67.
+
+####Value 
+
+Returns a CHM-smoothed raster.
+
+
+
+#### Examples 
+ ```{r} 
+
+#=======================================================================#
+# Importing the LiDAR-derived CHM file
+data(chm) # or set a CHM. e.g. chm<-raster("CHM_stand.asc")
+#=======================================================================#
+# Example 01: Smoothing the CHM using a Gaussian filter
+#=======================================================================#
+# Set the ws:
+ws<-3 # dimension 3x3
+# Set the filter type
+filter<-"Gaussian"4
+chullLiDAR2D
+# Set the sigma 
+####Value 
+
+sigma<-0.6
+# Smoothing CHM
+sCHM<-CHMsmoothing(chm, filter, ws, sigma)
+#=======================================================================#
+# Example 02: Smoothing the CHM using a mean filter
+#=======================================================================#
+# Set the ws:
+ws<-5 # dimension 5x5
+# Set the filter type
+filter<-"mean"
+# Smoothing and plotting LiDAR-derived CHM
+sCHM<-CHMsmoothing(chm, filter, ws)
+
+
+
+```
+#### Author(s)
+Carlos Alberto Silva.
+See Also
+focal in the raster package.
