@@ -1,5 +1,17 @@
-recweib: Recovery of Weibull parameters of tree diameter distribution using measured stand characteristics
-===========================================================================================================
+---
+title: "Forestry Analytics with R"
+author: "KevinOBrien"
+date: "3 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lmfor)
+```
+
+## ``recweib``: Recovery of Weibull parameters of tree diameter distribution using measured stand characteristics
+
 The function finds such parameters shape and scale of the Weibull diameter distribution that yield the given basal area, number of stems and weighted/unweighted mean/median diameter.
 
 
@@ -8,31 +20,30 @@ The function finds such parameters shape and scale of the Weibull diameter distr
 recweib(G, N, D, Dtype, init=NA, trace=FALSE)
 func.recweib(lshape, G, N, D, Dtype, trace=FALSE)
 </code></pre>
-
 #### Arguments
-
 * ``G`` : The basal area in square metres per hectare, scalar.
 * ``N`` : The number of stems per ha, scalar.
-* ``D`` : Either A: The arithmetic mean diameter, B: The basal-area weighted mean diameter, C: median diameter or D: The basal-area weighted median diameter of the stand, cm.
+* ``D`` : Either 
+* --- A: The arithmetic mean diameter, 
+* --- B: The basal-area weighted mean diameter, 
+* --- C: median diameter 
+* --- D: The basal-area weighted median diameter of the stand, cm.
 * ``Dtype`` : One of characters "A", "B", "C", "D", indicating which type of mean diameter was given in argument D.
 * ``init`` : The initial guess for the shape parameter (scalar). 
-    If not given, a simple model (see Siipilehto and Mehtatalo 2013, appendix) is used to compute the initial guess.
+* --- If not given, a simple model (see Siipilehto and Mehtatalo 2013, appendix) is used to compute the initial guess.
 * ``trace`` : if TRUE, some output on the convergence of the algorithm is printed on the screen.
 * ``lshape`` : logarithmic shape parameter, (log(shape+0.01))
-
 #### Details
-
-The recovery is based on the solution of the equation 
-DQMW(shape,scale(D,shape))-DQM = 0, 
-where ``DQMW(shape, scale(D,shape))`` expresses the DQM of The Weibull distribution for the given 
+* The recovery is based on the solution of the equation 
+$$DQMW(shape,scale(D,shape))-DQM = 0,$$ 
+where ``DQMW(shape, scale(D,shape))`` expresses the DQM of the Weibull distribution for the given 
 value of the shape parameter and using the scale parameter that corresponds to the given combination 
-of the shape parameter and the mean/median diameter given in D. The function which is set to zero is implemented in func.recweib. The Gauss-Newton method implemented in NRnum is used for solving the equation.
-
+of the shape parameter and the mean/median diameter given in D. 
+* The function which is set to zero is implemented in ``func.recweib``. 
+* The Gauss-Newton method implemented in ``NRnum`` is used for solving the equation.
 
 #### See Also
-
 The mean diameters for options A, B, C and D are computed by functions documented at ``scaleDMean``.
-
 #### Examples
 ```{r}
 # Demonstration with 3 example stands.
@@ -48,7 +59,6 @@ recweib(G_ha,N_ha,DG,"B") # 1.19316  8.799652
 recweib(G_ha,N_ha,DM,"C") # 1.601795 10.18257
 recweib(G_ha,N_ha,DGM,"D") # 1.095979 8.280063
 ```
-
 ```{r]
 # Example 2. Even aged stand in Finland (see Siipilehto & Mehtatalo, Fig 2):
 G_ha<-9.6
@@ -62,7 +72,6 @@ recweib(G_ha,N_ha,DG,"B") # 4.463991 12.05912
 recweib(G_ha,N_ha,DM,"C")  # 4.410773 12.05949
 recweib(G_ha,N_ha,DGM,"D") # 4.448272 12.05924
 ```
-
 ```{r}
 # Example 3. Assumed peaked even aged stand (see Siipilehto & Mehtatalo, Fig 1):
 G_ha<-10.0
@@ -78,4 +87,3 @@ recweib(G_ha,N_ha,DGM,"D") # 24.45228 10.10607
 ```
 #### References
 
-Siipilehto, J. and Mehtatalo, L. 2013. Parameter recovery vs. parameter prediction for the Weibull distribution validated for Scots pine stands in Finland. Silva Fennica 47(4), article id 1057.
