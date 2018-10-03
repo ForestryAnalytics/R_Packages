@@ -1,3 +1,15 @@
+---
+title: "Forestry Analytics with R"
+author: "KevinOBrien"
+date: "3 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FAwR)
+```
+
 ## ``sp.sums.2``
 
 ``sp.sums.2`` generates species summaries from a dataframe that contains stem
@@ -9,6 +21,7 @@ columns named by ``log.grades``, where ``log.grades`` corresponds to the minimum
 defined by ``log.breaks``.
 
 ### Usage
+
 <pre><code>
 sp.sums.2( x,
  log.breaks=c(2,5,12,18,32,999),
@@ -16,25 +29,31 @@ sp.sums.2( x,
 </code></pre>
 
 ### Arguments
+
 * ``x``: The dataframe containing the original stem measurements.
 * ``log.breaks`` The vector defining the minimum diameters for the log grades defined by ``log.grades``.
 * ``log.grades`` The vector defining the text labels for the ``log.breaks``.
 
 ### Details
+
 The function generates summaries, by species, for common statistics used in growth and yield
 simulations. It performs the same function as the ``sp.sums`` function in the ***Rconifers*** library.
 
 ### Value
+
 A dataframe that contains the original stem measurements with the log volumes appended for each
 species.
 
 ### References
+
 * Robinson, A.P., and J.D. Hamann. 2010. Forest Analytics with R: an Introduction. Springer.
 
-### Examples
+
 ```{r}
-# test <- data.frame(a = c(1,2), b = c(3,4))
-# show.cols.with.na(test)
-# is.na(test$a[2]) <- TRUE
-# show.cols.with.na(test)
+ test <- data.frame(a = c(1,2), b = c(3,4))
+ show.cols.with.na(test)
+```
+```{r}
+ is.na(test$a[2]) <- TRUE
+ show.cols.with.na(test)
 ```
