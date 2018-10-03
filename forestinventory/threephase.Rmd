@@ -12,24 +12,27 @@ in the design-based sense. The estimation method is available for simple and clu
 includes the special case where the first phase is based on an exhaustive sample (i.e. a census).
 Small-area applications are supported for synthetic estimation as well as two varieties of bias-
 corrected estimators: the traditional small-area estimator and an asymptotically equivalent version
-derived under * Mandallaz’s extended model approach.threephase
-15
-Usage
+derived under * Mandallaz’s extended model approach.
+
+### Usage
+<pre><code>
 threephase(formula.s0, formula.s1, data, phase_id, cluster = NA,
 small_area = list(sa.col = NA, areas = NA, unbiased = TRUE),
 boundary_weights = NA, exhaustive = NA, progressbar = FALSE,
 psmall = FALSE)
-Arguments
-formula.s0 an object of class "formula" as would be used in the function lm that contains a
+</code></pre>
+
+### Arguments
+* formula.s0 an object of class "formula" as would be used in the function lm that contains a
 reduced set of auxiliary variables available for all zero phase plots
-formula.s1 an object of class "formula" as would be used in the function lm that contains
+* formula.s1 an object of class "formula" as would be used in the function lm that contains
 the predictors from formula.s0 as well as further ancilliary predictors available
 for all first phase plots (i.e. formula.s0 is nested in formula.s1)
 data a data frame containing all variables contained in formula and a column in-
 dexing phase membership. Additional columns designating small-area mem-
 bership, cluster ID and boundary weights should also be contained in the data
 frame if they are requested in the function.
-phase_id an object of class "list" containing three elements:
+* phase_id an object of class "list" containing three elements:
 *  phase.col: the column name in data that specifies the phase membership
 of each observation
 *  s1.id: the indicator identifying the "second phase only" plots for that col-
