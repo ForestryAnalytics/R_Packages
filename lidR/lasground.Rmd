@@ -1,10 +1,20 @@
-lasgrounds
-===========
+---
+title: "lasgrounds: Implements algorithms for segmentation of ground points. "
+author: "Kevin O'Brien"
+
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lidR)
+```
 
 Implements algorithms for segmentation of ground points. 
-The function updates the field Classification of the LAS input object. 
-The points classified as 'ground' are assigned a value of 2 according to las specifications 
-(See the ASPRS documentation for the LAS file format). 
+
+* The function updates the field Classification of the LAS input object. 
+* The points classified as 'ground' are assigned a value of 2 according to las specifications 
+* (See the ASPRS documentation for the LAS file format). 
 
 ### Usage
 <pre><code>
@@ -12,3 +22,46 @@ lasground(las, algorithm, ...)
 
 lasground_pmf(las, ws, th, last_returns = TRUE)
 </code></pre>
+
+#### Arguments
+
+* ``las``: a LAS object.
+ 
+* ``algorithm``: character. The name of an algorithm. Currently "pmf" is supported.
+ 
+* ``...``: parameters for the algorithms. These depend on the algorithm used.
+ 
+* ``ws`` : numeric. Sequence of windows sizes to be used in filtering ground returns. The values must be positive and in the same units as the point cloud (usually meters, occasionally feet).
+ 
+* ``th`` : numeric. Sequence of threshold heights above the parameterized ground surface to be considered a ground return. The values must be positive and in the same units as the point cloud.
+ 
+* ``last_returns``: logical. The algorithm will use only the last returns (including the first returns in the cases of single return) to run the algorithm. If FALSE all the returns are used. If the fields 'ReturnNumber' or 'NumberOfReturns' are not specified 'last_returns' is turned to FALSE automatically.
+ 
+
+
+#### Examples
+```{r}
+ 
+LASfile <- system.file("extdata", "Topography.laz", package="lidR")
+las = readLAS(LASfile, select = "xyzRN")
+```
+```{r}
+ws = seq(3,12, 3)
+th = seq(0.1, 1.5, length.out = length(ws))
+```
+```{r}
+lasground(las, "pmf", ws, th)
+```
+```{r}
+plot(las, color = "Classification")
+```
+ 
+#### Value
+Nothing. The original LAS object is updated by reference. In the 'Classification' column a value of 2 denotes 'ground' according to LAS specifications. 
+ 
+ 
+#### Progressive morphological filter (PMF)
+This method is an implementation of the Zhang et al. (2003) algorithm (see reference). Note that this is not a strict implementation of Zhang et al. This algorithm works at the point cloud level without any rasterization process. The morphological operator is applied on the point cloud, not on a raster. Also, Zhang et al. proposed some formulas (eq. 4, 5 and 7) to compute the sequence of windows sizes and thresholds. Here, these parameters are free and specified by the user. The function util_makeZhangParam enables computation of the parameters according to the original paper. 
+
+#### References
+
