@@ -23,92 +23,73 @@ psmall = FALSE)
 </code></pre>
 
 ### Arguments
-* formula.s0 an object of class "formula" as would be used in the function lm that contains a
+* ``formula.s0``: an object of class "formula" as would be used in the function lm that contains a
 reduced set of auxiliary variables available for all zero phase plots
-* formula.s1 an object of class "formula" as would be used in the function lm that contains
+* ``formula.s1``: an object of class "formula" as would be used in the function lm that contains
 the predictors from formula.s0 as well as further ancilliary predictors available
-for all first phase plots (i.e. formula.s0 is nested in formula.s1)
-data a data frame containing all variables contained in formula and a column in-
-dexing phase membership. Additional columns designating small-area mem-
-bership, cluster ID and boundary weights should also be contained in the data
+for all first phase plots (i.e. ``formula.s0`` is nested in ``formula.s1``)
+* ``data``: a data frame containing all variables contained in formula and a column indexing phase membership. 
+ - Additional columns designating small-area membership, cluster ID and boundary weights should also be contained in the data
 frame if they are requested in the function.
-* phase_id an object of class "list" containing three elements:
-*  phase.col: the column name in data that specifies the phase membership
+* ``phase_id``: an object of class "list" containing three elements:
+* ``phase.col``: the column name in data that specifies the phase membership
 of each observation
-*  s1.id: the indicator identifying the "second phase only" plots for that col-
+* ``s1.id``: the indicator identifying the "second phase only" plots for that col-
 umn (must be of type "numeric")
-*  terrgrid.id: the indicator identifying the terrestrial (a.k.a. "ground truth")
+*  ``terrgrid.id``: the indicator identifying the terrestrial (a.k.a. "ground truth")
 phase for that column (must be of type "numeric")
-cluster (Optional) Specifies the column name in data containing the cluster ID. Only
+* ``cluster`` (Optional) Specifies the column name in data containing the cluster ID. Only
 used in case of cluster sampling.
-small_area (Optional) a list that if containing three elements:
-*  sa.col: the column name in data containing domain identification
-*  areas: vector of desired small-area domain identifiers
-*  unbiased: an object of type "logical" that when FALSE designates that
-the estimator is allowed to be biased (i.e. the synthetic estimator) and when
-TRUE forces it to be design-unbiased. See ’
-#### Details’.
-Note: If small_area is left unchanged then twophase defaults to global esti-
-mation.
-boundary_weights
-(Optional) Specifies the column name in data containing the weights for bound-
-ary adjustment. See ’
-#### Details’
-exhaustive
-(Optional) For global estimation, a vector of true auxiliary means corresponding
-to an exhaustive first phase. The vector must be input in the same order that
-lm processes a formula object and include the intercept term. For small area
-estimation, exhaustive is a data.frame containing column names (colnames)
+* ``small_area``: (Optional) a list that if containing three elements:
+* ``sa.col``: the column name in data containing domain identification
+* ``areas``: vector of desired small-area domain identifiers
+* ``unbiased``: an object of type "logical" that when FALSE designates that
+the estimator is allowed to be biased (i.e. the synthetic estimator) and when TRUE forces it to be design-unbiased. See Details.
+Note: If small_area is left unchanged then twophase defaults to global estimation.
+* boundary_weights: (Optional) Specifies the column name in data containing the weights for bound-
+ary adjustment. See Details.
+* exhaustive (Optional) For global estimation, a vector of true auxiliary means corresponding
+to an exhaustive first phase. The vector must be input in the same order that lm processes a formula object and include the intercept term. For small area estimation, exhaustive is a data.frame containing column names (colnames)
 for every variable appearing in the parameter formula including the variable
 "Intercept".Rownames (row.names) have to be used and must correspond to the
-names of the small areas. See ’
-#### Details’.16
-threephase
-progressbar (Optional) an object a type "logical" that when TRUE prints the progress of
+names of the small areas. See Details.
+* progressbar (Optional) an object a type "logical" that when TRUE prints the progress of
 the calculation in the console (recommended for large amount of small areas).
-Defaults to FALSE.
+* Defaults to FALSE.
 psmall (Optional) an object a type "logical" used for small area estimations that only
-works when unbiased in the parameter small_area is set to TRUE. See ’De-
-tails’.
+works when unbiased in the parameter small_area is set to TRUE. 
 
 #### Details
-s1.id identifies "second phase only" plots because the terrestrial phase is known to be part of the
+* s1.id identifies "second phase only" plots because the terrestrial phase is known to be part of the
 second phase by the construction of the subsampling.
-If estimations for multiple small-area domains should be computed, the domains have to be defined
-within a character vector using c(). Using small_area(..., unbiased=FALSE) calculates
-design-based estimates with the synthetic estimator and may be design-biased if the model is bi-
-ased in that small area. The default, small_area(..., unbiased=TRUE), allows for a residual
+* If estimations for multiple small-area domains should be computed, the domains have to be defined within a character vector using c(). Using small_area(..., unbiased=FALSE) calculates design-based estimates with the synthetic estimator and may be design-biased if the model is biased in that small area. The default, small_area(..., unbiased=TRUE), allows for a residual
 correction by one of two asymptotically equivalent methods to create design-unbiased estimates:
-*  * Mandallaz’s extended model approach calculates the residual correction by extending the
-model formula with an indicator variable in the small area. It is the default method psmall=FALSE.
+*  Mandallaz’s extended model approach calculates the residual correction by extending the
+model formula with an indicator variable in the small area. It is the default method ``psmall=FALSE``.
 *  the traditional small area estimator calculates the residual correction by taking the synthetic
-estimator and adding the mean residual observed in the small area. It is activated when
-psmall=TRUE.
+estimator and adding the mean residual observed in the small area. It is activated when ``psmall=TRUE``.
 Missing values (NA) in the auxiliary variables (i.e. at least one auxiliary variable cannot be observed
-at an inventory location) are automatically removed from the dataset before the estimations are
+at a* n inventory location) are automatically removed from the dataset before the estimations are
 computed. Note that missingness in the auxiliary variables is only allowed if we assume that they
 are missing at random, since the unbiasedness of the estimates is based on the sampling design.
 The boundary weight adjustment is pertinent for auxiliary information derived from remote sensing
 and is equal to the percentage of forested area (e.g. as defined by a forest mask) in the interpretation
 area.
-Exhaustive estimation refers to when the true means of certain auxiliary variables are known at an
+* Exhaustive estimation refers to when the true means of certain auxiliary variables are known at an
 exhaustive zero phase (i.e. a census). For global estimation, the vector must be input in the same
 order that lm processes a formula object including the intercept term whose true mean will always
 be one. For small area estimation, exhaustive is a data.frame containing column names for every
 variable appearing in the parameter formula including the variable "Intercept". The observations of
 the data.frame must represent the true auxiliary means in the same order as was presented in areas
-from the parameter small_area. See ’
- 
-#### Examples 
-```{r}’.
-Value
+from the parameter small_area. See Examples 
+
+####  Value
 threephase returns an object of class "threephase".
 An object of class "threephase" returns a list of the following components:
 input a list containing the function’s inputs
 estimation a data frame containing the following components:
 *  area: the domain (only present if argument areas has been used)
-*  estimate: the point estimatethreephase
-17
+*  estimate: the point estimatet
 *  ext_variance: the external variance of the point estimate that doesn’t
 account for fitting the model from the current inventory
 *  g_variance: the internal (g-weight) variance that accounts for fitting the
@@ -141,7 +122,7 @@ the call
 resid_full the full model residuals at either the plot level or cluster level depending on the
 call
 warn.messages logical indicating if warning messages were issued
-Note
+#### Note
 In the special case of cluster sampling, the reported sample sizes in estimation are the number of
 clusters. The samplesize-object also provides the respective number of single plot units for cluster
 sampling. The reported r.squared_reduced and r.squared_full describe the model fit of the
@@ -180,6 +161,7 @@ stade
 stade + couver + melange
 ```
 
+#### GLOBAL ESTIMATION 
 ```{r}
 
 # ------------------------------------------------#
@@ -205,6 +187,7 @@ boundary_weights = "boundary_weights"))
 #----
 ```
 
+#### Design-based estimation with exhaustive auxiliary information
 ```{r}
 ## 2) -- Design-based estimation with exhaustive auxiliary information
 #----
@@ -218,6 +201,7 @@ phase_id = list(phase.col = "phase_id_3p", s1.id = 1, terrgrid.id = 2),
 cluster = "cluster", exhaustive = c(1, 0.10, 0.7, 0.10)))
 ```
 
+#### Small Area Estimation
 ```{r}
 # ----------------------------------------------------#
 # ----------- SMALL AREA ESTIMATION ------------------#
@@ -290,8 +274,10 @@ stade600 = 0.321)
 rownames(truemeans.G.clust) <- c("1")
 ```
 
+#### Mandallaz's extended small area estimator
+
 ```{r}
-# 2.1) * Mandallaz's extended small area estimator:
+# 2.1) Mandallaz's extended small area estimator:
 summary(threephase(formula.s0,
 formula.s1,
 data = grisons,
@@ -318,6 +304,8 @@ small_area = list(sa.col = "smallarea", areas = c("A", "B", "C", "D"),
 unbiased = TRUE),
 exhaustive = truemeans.G,
 psmall = TRUE))
+```
+```{r}
 summary(threephase(formula.clust.s0,
 formula.clust.s1,
 data = zberg,
@@ -331,16 +319,19 @@ psmall = TRUE))
 ```{r}
 # 2.3) synthetic small area estimator:
 summary(threephase(formula.s0,
-formula.s1,
-data = grisons,
-phase_id = list(phase.col="phase_id_3p", s1.id = 1, terrgrid.id = 2),
-small_area = list(sa.col = "smallarea", areas = c("A", "B", "C", "D"),
-unbiased = FALSE),
-exhaustive = truemeans.G))
+  formula.s1,
+  data = grisons,
+  phase_id = list(phase.col="phase_id_3p", s1.id = 1, terrgrid.id = 2),
+  small_area = list(sa.col = "smallarea", areas = c("A", "B", "C", "D"),
+  unbiased = FALSE),
+  exhaustive = truemeans.G))
+```
+```{r}
 summary(threephase(formula.clust.s0,
-formula.clust.s1,
-data = zberg,
-phase_id = list(phase.col = "phase_id_3p", s1.id = 1, terrgrid.id = 2),
-cluster = "cluster",
-small_area = list(sa.col = "ismallold", areas = c("1"), unbiased = FALSE),
-exhaustive = truemeans.G.clust))
+ formula.clust.s1,
+ data = zberg,
+ phase_id = list(phase.col = "phase_id_3p", s1.id = 1, terrgrid.id = 2),
+ cluster = "cluster",
+ small_area = list(sa.col = "ismallold", areas = c("1"), unbiased = FALSE),
+ exhaustive = truemeans.G.clust))
+```
