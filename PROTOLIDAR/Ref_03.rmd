@@ -12,9 +12,9 @@ data(LIDAR_data)
 #### Format 
 
 A data frame with 10108 observations on the following 3 variables.
-V1 a numeric vector that represents x value or width
-V2 a numeric vector that represents y value or height
-V3 a numeric vector that represents z value or front view
+* V1 a numeric vector that represents x value or width
+* V2 a numeric vector that represents y value or height
+* V3 a numeric vector that represents z value or front view
 
 #### Details 
 
@@ -25,7 +25,8 @@ the transmission and the reception of the pulsed near-infrared laser beam is use
 distance between the scanner and the reflecting object surface. The laser beam is deflected by a
 rotating mirror turning at 4500 rpm, which results in a fan shaped scan pattern where the maximum
 scanning angle is 180 degree.
-Source
+
+#### Source
 LIDAR scan in BBCH 65 stage.
 
 #### References 
@@ -81,66 +82,3 @@ LWA <- 2* height_canopy * (ground_area/row_spacing)
 return(LWA)
 }
 LWA_lidar_function(height_canopy,ground_area,row_spacing)12
-Number_lidar_points_into_canopy_function
-Number_lidar_points_into_canopy_function
-Number of LIDAR points into the canopy.
-
-#### Description 
-
-This function describe the number of points measured with LIDAR scan into the canopy.
-
-#### Usage 
-
-Number_lidar_points_into_canopy_function(data_3D, distance_left, distance_right, min_canopy, max_can
-
-#### Arguments 
-
-* ``data_3D``:  ``data_3D`` is the output from Extract_plant_grapevine_function.
-* ``distance_left``:  the left distancethe left distance of the plant, generally here we can write the half of the dis-
-tance between plants, but is better the real distance from the center of the plant.
-Measured in meters.
-* ``distance_right``:  the right distance of the plant, generally here we can write the half of the dis-
-tance between plants, but is better the real distance from the center of the plant.
-Measured in meters.
-min_canopy the minimum height of the canopy.
-max_canopy the maximum height of the canopy.
-
-#### Authors(s) 
-
-Monica Fernanda Rinaldi
-
-#### Examples 
-
-## Should be DIRECTLY executable !! ----
-## For example:
-data (LIDAR_data)
-x <- LIDAR_data[,1]
-y <- LIDAR_data[,2]
-z <- LIDAR_data[,3]
-zdistance <- 190 # total LIDAR scan distance measured in cm.
-miny <- 0 # minimum height of the plant measured in cm.
-maxy <- 2000 # maximum height of the plant measured in cm.
-minx <- 450 # minimum width from where LIDAR starts to measure (cm).
-maxx <- 1470# maximum width from where LIDAR starts to measure (cm).
-minz <- 0 # the beginning of the LIDAR scan measured in cm.
-maxz <- 186 # the end of the LIDAR scan measured in cm (length of interest).
-out <- Extract_plant_grapevine_function(x,y,z,zdistance,miny,maxy,minx,maxx,minz,maxz)
-z_min <- 1.1
-z_max <- 1.13
-y_min <- 0.4Replicate_plants_function
-13
-y_max <- 0.5
-* ``distance_left``:  the left distance<- -0.6
-distance_right <- 0.51
-data_3D <- Extract_plant_3D_function(out,z_min,z_max,y_min,y_max,distance_left,distance_right)
-min_canopy <- 0.4
-max_canopy <- 2
-## The function is currently defined as
-Number_LIDAR_points_into_canopy_function <- function (data_3D,distance_left,distance_right,min_canopy,max_canop
-x_plant <- y_plant <- z_plant <- NULL
-canopy <- subset(data_3D, data_3D$z_plant >= * ``distance_left``:  the left distance& data_3D$z_plant <= distance_right & data_3D$y_plan
-N_points <- length(canopy[,1])
-return (N_points)
-}
-Number_LIDAR_points_into_canopy_function(data_3D,distance_left,distance_right,min_canopy,max_canopy)
-Replicate_plants_function
