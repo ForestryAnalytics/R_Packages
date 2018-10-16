@@ -2,28 +2,67 @@
 LASmetrics
 LiDAR-derived metrics
 
-####Description 
+#### Description 
 
 Compute LiDAR metrics that describe statistically the Lidar dataset
 
-####Usage 
-
+#### Usage 
+<pre><code>
 LASmetrics(LASfile, minht, above)
+</code></pre>
 
-####Arguments 
+#### Arguments 
 
-LASfile A LAS standard LiDAR data file
-minht Use only returns above specified height break, e.g. 1.30 m. Default is 1.37 m.
+* ``LASfile``: A LAS standard LiDAR data file
+* ``minht``: Use only returns above specified height break, e.g. 1.30 m. Default is 1.37 m.
 above Compute covers metrics using specified height break, e.g. 2.5 m. Default is 2
 m.
 
-####Value 
+#### Examples 
+ ```{r} 
+
+#=======================================================================#
+# Example 01: Computing LiDAR metrics for a single LAS file
+#=======================================================================#
+# Import the LAS data file
+LASfile <- system.file("extdata", "LASexample1.las", package="rLiDAR")
+# Set the minht and above parameters
+minht<-1.37 # meters or feet
+above<-2.00 # meters or feet
+# LiDAR metrics computation
+LiDARmetrics<-LASmetrics(LASfile, minht, above)
+```
+
+```{r}
+#==========================================================================#
+# Example 02: Computing Lidar metrics for multiple LAS files within a folder
+#==========================================================================#
+# Set folder where LAS source files reside
+folder=dirname(LASfile)
+# Get list of LAS files residing in the folder
+LASlist <- list.files(folder, pattern="*.las", full.names=TRUE)
+# Set the "minht" and "above" parameters
+minht<-1.37 # meters or feet
+above<-2.00 # meters or feet
+# Creat an empty dataframe in whic to store the LiDAR metrics
+getMetrics<-data.frame()
+# Set a loop to compute the LiDAR metrics
+for ( i in LASlist) {
+getMetrics<-rbind(getMetrics, LASmetrics(i, minht, above))}
+# Table of the Lidar metrics
+LiDARmetrics<-cbind(Files=c(basename(LASlist)), getMetrics)
+head(LiDARmetrics)
+```
+
+#### Value 
 
 Returns A matrix with the LiDAR-derived vegetation height and canopy cover metrics (see cloud-
 metrics, in McGaughey, 2014)
-Author(s)
+
+#### Author(s)
 Carlos Alberto Silva
-See Also
+
+#### See Also
 McGaughey, R. 2014. FUSION/LDV: Software for lidar data analysis and visualization. Version
 3.41. Seattle, WA: U.S. Department of Agriculture, Forest Service, Pacific Northwest Research
 Station.
@@ -116,41 +155,5 @@ Station.
 * .... First returns above mode
 * .... All returns above mean
 * .... All returns above mode
-1516
-LiDARForestStand
 
-#### Examples 
- ```{r} 
 
-#=======================================================================#
-# Example 01: Computing LiDAR metrics for a single LAS file
-#=======================================================================#
-# Import the LAS data file
-LASfile <- system.file("extdata", "LASexample1.las", package="rLiDAR")
-# Set the minht and above parameters
-minht<-1.37 # meters or feet
-above<-2.00 # meters or feet
-# LiDAR metrics computation
-LiDARmetrics<-LASmetrics(LASfile, minht, above)
-```
-
-```{r}
-#==========================================================================#
-# Example 02: Computing Lidar metrics for multiple LAS files within a folder
-#==========================================================================#
-# Set folder where LAS source files reside
-folder=dirname(LASfile)
-# Get list of LAS files residing in the folder
-LASlist <- list.files(folder, pattern="*.las", full.names=TRUE)
-# Set the "minht" and "above" parameters
-minht<-1.37 # meters or feet
-above<-2.00 # meters or feet
-# Creat an empty dataframe in whic to store the LiDAR metrics
-getMetrics<-data.frame()
-# Set a loop to compute the LiDAR metrics
-for ( i in LASlist) {
-getMetrics<-rbind(getMetrics, LASmetrics(i, minht, above))}
-# Table of the Lidar metrics
-LiDARmetrics<-cbind(Files=c(basename(LASlist)), getMetrics)
-head(LiDARmetrics)
-```
