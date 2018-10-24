@@ -1,0 +1,92 @@
+wind.data
+Wind data example
+#### Description
+
+This is an example of wind data obtained with wind.dl function for the Iberian Peninsula coorde-
+nates on 12/February/2015 at 00:00 (UTC)
+Format
+A list with one data.frame with 651 observations on the following 7 variables:
+list("time (UTC)") a numeric with selected time of wind data
+list("latitude (degrees_north)") a numeric with latitude values
+list("longitude (degrees_east)") a numeric with longitude values
+list("ugrd10m (m s-1)") a numeric with U component of wind data
+list("vgrd10m (m s-1)") a numeric with V component of wind data
+list("dir") a numeric with direction of wind data
+list("speed") a numeric with speed of wind data8
+wind.dl
+#### Details 
+ 
+This data set is the result of:
+wind.data <- wind.dl(2015,2,12,0,-10,5,35,45)
+Source
+http://allthiswasfield.blogspot.com.es/2016/12/rwind-r-package-released.html
+
+#### References 
+ 
+http://oos.soest.hawaii.edu/erddap/info/NCEP_Global_Best/index.html
+#### Examples
+ ```{r}
+data(wind.data)
+str(wind.data)
+head(wind.data[[1]])
+wind.dl
+Wind-data download
+#### Description
+
+wind.dl downloads wind data from the Global Forecast System (GFS) of the USA’s National Weather
+Service (NWS) (https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-
+system-gfs). Wind data are taken from NOAA/NCEP Global Forecast System (GFS) Atmospheric
+Model colection. Geospatial resolution is 0.5 degrees (approximately 50 km), and wind is calculated
+for Earth surface, at 10 m. More metadata information: http://oos.soest.hawaii.edu/erddap/info/NCEP_Global_Best/index.htm
+Usage
+wind.dl(yyyy, mm, dd, tt, lon1, lon2, lat1, lat2, type = "read-data",
+trace = 1)
+read.rWind(file)
+Arguments
+yyyy Selected year.
+mm Selected month.
+dd Selected day.
+tt Selected time. There are currently several options at the GFS database: 00:00 -
+03:00 - 06:00 - 09:00 - 12:00 - 15:00 - 18:00 - 21:00 (UTC).
+lon1 Western longitudewind.dl
+9
+lon2 Eastern longitude
+lat1 Southern latitude
+lat2 Northern latitude
+type Output type. "read-data" is selected by default, creating an R object. If you
+choose "csv", wind.dl create a a CSV file in your working directory named
+"wind_yyyy_mm_dd_tt.csv".
+trace if trace = 1 (by default) track downloaded files
+file file name of the saved ".csv" files.
+#### Details 
+ 
+The output type is determined by type="csv" or type="read-data". If type="csv" is selected, the
+function creates a "wind_yyyy_mm_dd_tt.csv" file that is downloaded at the work directory. If
+type="read-data" is selected, an R object (data.frame) is created.
+#### Value
+
+"rWind" and "data.frame" class object or .csv file with U and V vector components and wind direc-
+tion and speed for each coordenate in the study area defined by lon1/lon2 and lat1/lat2.
+Note
+Longitude coordenates are provided by GFS dataset in 0/360 notation and transformed internaly
+into -180/180.
+
+#### Author(s) 
+ 
+Javier Fernández-López (jflopez@rjb.csic.es)
+
+#### References 
+ 
+http://www.digital-geography.com/cloud-gis-getting-weather-data/#.WDOWmbV1DCL
+http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.graph
+See Also
+wind.dl_2, wind2raster
+#### Examples
+ ```{r}
+# Download wind for Iberian Peninsula region at 2015, February 12, 00:00
+## Not run:
+wind.dl(2015,2,12,0,-10,5,35,45)
+## End(Not run)
+```
+
+wind.dl_2
