@@ -1,0 +1,295 @@
+lros
+lros
+Line-based input for Simard Rate of Spread and Direction
+Description
+lros is used to calculate the rate of spread and direction given one set of three point-based obser-
+vations of fire arrival time. The function requires that the user specify the time that the fire crossed
+each point, along with the measured lengths between each pair of observational points, and a ref-
+erence bearing (one specified side of the triangle). This function allows quick input of a dataframe
+specifying one or many triangles.
+Usage
+lros(input)
+Arguments
+input
+A dataframe containing input variables of time fire front crossed points 1, 2,
+3, and latitude/longitude for those same points. Variable names have to be the
+same as in the following list, but they are case insensitive. The order in which
+the input variables are entered is not important.
+T1 (required)
+T2 (required)
+T3 (required)
+LengthT1T2 (required)
+LengthT2T3 (required)
+LengthT1T3 (required)
+BearingT1T2
+BearingT1T3 (required)
+(required)
+Time that the fire front crossed point 1. Time entered in fractional
+format. Output ROS will depend on the level of precision entered
+(minute, second, decisecond)
+Time that the fire front crossed point 2. Time entered in fractional
+format. Output ROS will depend on the level of precision entered
+(minute, second, decisecond)
+Time that the fire front crossed point 3. Time entered in fractional
+format. Output ROS will depend on the level of precision entered
+(minute, second, decisecond)
+Length between each pair of observation points T1 and T2 (subscripts
+denote time-ordered pairs). (meters)
+Length between each pair of observation points T2 and T3 (subscripts
+denote time-ordered pairs). (meters)
+Length between each pair of observation points T1 and T3 (subscripts
+denote time-ordered pairs). (meters)
+Reference bearing. For reference, North = 0, West = -90, East = 90 (degrees)
+Reference bearing. For reference, North = 0, West = -90, East = 90 (degrees)
+Details
+lros Allows R users to calculate the rate of spread and direction of a fire across a triangle, given
+three time measurements and details about the orientation and distance between observational
+points. The algorithm is based on the description from Simard et al. (1984). See pros for more
+information.lros
+37
+The functions require the user to arrange the input dataframe so that each triangle of interest is
+identified based on a new row in the dataframe. The input format forces the user to identify the
+triangles, one triangle per row of input dataframe. Very complex arrangements of field plot layouts
+are possible, and the current version of these functions do not attempt to determine each triangle of
+interest automatically.
+Value
+lros returns a dataframe which includes the rate of spread and spread direction. Output units
+depend on the user’s inputs for distance (typically meters) and time (seconds or minutes).
+Author(s)
+Tom Schiks, Xianli Wang, Alan Cantin
+References
+1. Simard, A.J., Eenigenburg, J.E., Adams, K.B., Nissen, R.L., Deacon, and Deacon, A.G. 1984. A
+general procedure for sampling and analyzing wildland fire spread.
+2. Byram, G.M. 1959. Combustion of forest fuels. In: Davis, K.P. Forest Fire Control and Use.
+McGraw-Hill, New York.
+3. Curry, J.R., and Fons, W.L. 1938. Rate of spread of surface fires in the Ponderosa Pine Type of
+California. Journal of Agricultural Research 57(4): 239-267.
+4. Simard, A.J., Deacon, A.G., and Adams, K.B. 1982. Nondirectional sampling wildland fire
+spread. Fire Technology: 221-228.
+See Also
+pros,
+Examples
+library(cffdrs)
+# manual single entry, but converted to a data frame
+lros.in1 <- data.frame(t(c(0, 24.5, 50, 22.6, 120, 20.0, 90, 35)))
+colnames(lros.in1)<-c("T1","LengthT1T2", "T2", "LengthT1T3", "T3",
+"LengthT2T3", "bearingT1T2", "bearingT1T3")
+lros.out1 <- lros(lros.in1)
+lros.out1
+# multiple entries using a dataframe
+# load the test dataframe for lros
+data("test_lros")
+lros(test_lros)38
+pros
+pros
+Point-based input for Simard Rate of Spread and Direction
+Description
+pros is used to calculate the rate of spread and direction given one set of three point-based obser-
+vations of fire arrival time. The function requires that the user specify the time that the fire crossed
+each point, along with the latitude and longitude of each observational point. This function allows
+quick input of a dataframe specifying one or many triangles.
+Usage
+pros(input)
+Arguments
+input
+A dataframe containing input variables of Time fire front crossed points 1, 2,
+3, and latitude/longitude for those same points. Variable names have to be the
+same as in the following list, but they are case insensitive. The order in which
+the input variables are entered is not important.
+T1 (required)
+T2 (required)
+T3 (required)
+Long1
+Long2
+Long3
+Lat1
+Lat2
+Lat3 (required)
+(required)
+(required)
+(required)
+(required)
+(required)
+Time that the fire front crossed point 1. Time entered in fractional
+format. Output ROS will depend on the level of precision entered
+(minute, second, decisecond)
+Time that the fire front crossed point 2. Time entered in fractional
+format. Output ROS will depend on the level of precision entered
+(minute, second, decisecond)
+Time that the fire front crossed point 3. Time entered in fractional
+format. Output ROS will depend on the level of precision entered
+(minute, second, decisecond)
+Longitude for datalogger 1. (decimal degrees).
+Longitude for datalogger 2. (decimal degrees).
+Longitude for datalogger 3. (decimal degrees).
+Latitude for datalogger 1. (decimal degrees).
+Latitude for datalogger 2. (decimal degrees).
+Latitude for datalogger 3. (decimal degrees).
+Details
+pros allows R users to calculate the rate of spread and direction of a fire across a triangle, given three
+time measurements and details about the orientation and distance between observational points. The
+algorithm is based on the description from Simard et al. (1984).
+Rate of spread and direction of spread are primary variables of interest when observing wildfire
+growth over time. Observations might be recorded during normal fire management operations (e.g.,
+by a Fire Behaviour Analyst), during prescribed fire treatments, and during experimental researchpros
+39
+burns. Rate of spread is especially important for estimating Byram’s fireline intensity, fireline in-
+tensity = heat constant of fuel × weight of fuel consumed × forward rate of spread (Byram 1959).
+Rate of spread is difficult to measure and highly variable in the field. Many techniques were pro-
+posed over the years, but most were based on observations collected from a pre-placed reference
+grid and stopwatch (Curry and Fons 1938; Simard et al. 1982). Early approaches required that ob-
+servers be in visual contact with the reference grid, but later, thermocouples and dataloggers were
+employed to measure the onset of the heat pulse at each point.
+Simard et al. (1982) proposed calculations for spread based on an equilateral triangle layout. Simard
+et al. (1984) proposed calculations for spread based on any type of triangle. Both articles also
+discussed field sampling design and layout, with special attention to the size of the triangles (large
+enough that the fire traverses the triangle in one to two minutes) and even using triangles of varying
+size within one field plot (but no triangle larger than one fourth of the site’s total area).
+The underlying algorithms use trigonometry to solve for rate of spread and direction of spread. One
+important assumption is that the spread rate and direction is uniform across one triangular plot, and
+that the fire front is spreading as a straight line; Simard et al. (1982, 1984) acknowledge that these
+assumption are likely broken to some degree during fire spread events.
+The functions require the user to arrange the input dataframe so that each triangle of interest is
+identified based on a new row in the dataframe. The input format forces the user to identify the
+triangles, one triangle per row of input dataframe. Very complex arrangements of field plot layouts
+are possible, and the current version of these functions do not attempt to determine each triangle of
+interest automatically.
+Value
+pros returns a dataframe which includes the rate of spread and spread direction. Output units
+depend on the user’s inputs for distance (typically meters) and time (seconds or minutes).
+Author(s)
+Tom Schiks, Xianli Wang, Alan Cantin
+References
+1. Simard, A.J., Eenigenburg, J.E., Adams, K.B., Nissen, R.L., Deacon, and Deacon, A.G. 1984. A
+general procedure for sampling and analyzing wildland fire spread.
+2. Byram, G.M. 1959. Combustion of forest fuels. In: Davis, K.P. Forest Fire Control and Use.
+McGraw-Hill, New York.
+3. Curry, J.R., and Fons, W.L. 1938. Rate of spread of surface fires in the Ponderosa Pine Type of
+California. Journal of Agricultural Research 57(4): 239-267.
+4. Simard, A.J., Deacon, A.G., and Adams, K.B. 1982. Nondirectional sampling wildland fire
+spread. Fire Technology: 221-228.
+See Also
+lros,40
+sdmc
+Examples
+library(cffdrs)
+# manual single entry
+pros.in1 <- data.frame(t(c(2, -79.701027, 43.808872, 50, -79.699650, 43.808833
+, 120, -79.700387, 43.809816)))
+colnames(pros.in1)<-c("T1", "LONG1", "LAT1", "T2", "LONG2", "LAT2", "T3",
+"LONG3", "LAT3")
+pros.out1 <- pros(pros.in1)
+# multiple entries using a dataframe
+# load the test dataframe for pros
+data("test_pros")
+pros(test_pros)
+sdmc
+Sheltered Duff Moisture Code
+Description
+sdmc is used to calculate sheltered DMC (sDMC, Wotton et al., 2005) based on daily noon weather
+observations of temperature, relative humidity, wind speed, 24-hour rainfall, and a previous day’s
+calculated or estimated value of sDMC. This function calculates sDMC for either one weather
+station or for multiple weather stations over the duration of the daily weather data set, typically
+over a fire season.
+Usage
+sdmc(input,sdmc_old=NULL,batch=TRUE)
+Arguments
+input
+A data.frame containing input variables of daily noon weather observations.
+Variable names have to be the same as in the following list, but they are case
+insensitive. The order in which the input variables are entered is not important
+either.
+temp
+rh
+ws
+prec
+mon
+day
+sdmc_old
+(required)
+(required)
+(required)
+(required)
+(recommended)
+(optional)
+Temperature (centigrade)
+Relative humidity (%)
+10-m height wind speed (km/h)
+1-hour rainfall (mm)
+Month of the observations (integer 1-12)
+Day of the observations (integer)
+Previous day’s value of SDMC. At the start of calculations, when there is no
+calculated previous day’s SDMC value to use, the user must specify an esti-
+mate of this value. Where sdmc_old=NULL, the function will calculate the initial
+SDMC values based on the initial DMC. The sdmc_old argument can acceptsdmc
+41
+a single initial value for multiple weather stations, and also accept a vector of
+initial values for multiple weather stations.
+batch
+Whether the computation is iterative or single step, default is TRUE. When
+batch=TRUE, the function will calculate daily SDMC for one weather station
+over a period of time iteratively. If multiple weather stations are processed, an
+additional "id" column is required in the input to label different stations, and the
+data needs to be sorted by date/time and "id". If batch=FALSE, the function cal-
+culates only one time step base on either the previous day’s SDMC or the initial
+start value.
+Details
+The Duff Moisture Code (DMC) component of the Canadian Forest Fire Weather Index (FWI)
+System tracks moisture content of the forest floor away from the sheltering influences of overstory
+trees. This sheltered Duff Moisture Code (sDMC) was developed to track moisture in the upper
+5 cm of the organic layer in the rain sheltered areas near (<0.5 m) the boles of overstory trees
+(Wotton et al. 2005), an area where lightning strikes usually ignite the forest floor when they run
+to ground. The sDMC is very similar in structure (and identical in data requirements) to the DMC.
+The sDMC, like all the FWI System moisture codes, is a bookkeeping system that tracks gain and
+loss of moisture from day-to-day; thus an estimate of the previous day’s sDMC value is needed to
+provide a starting point for each day’s moisture calculation. Like the other moisture codes in the
+FWI System the sDMC is converted from a moisture content value to an outputted CODE value
+which increases in value with decreasing moisture content.
+Value
+sdmc returns either a single value or a vector of SDMC values.
+Author(s)
+Xianli Wang, Mike Wotton, Alan Cantin, and Mike Flannigan
+References
+Wotton, B.M., B.J. Stocks, and D.L. Martell. 2005. An index for tracking sheltered forest floor
+moisture within the Canadian Forest Fire Weather Index System. International Journal of Wildland
+Fire, 14, 169-182.
+See Also
+fwi
+Examples
+library(cffdrs)
+data("test_sdmc")
+#order the data:
+test_sdmc<-test_sdmc[with(test_sdmc,order(yr,mon,day)),]
+# (1)Default of sdmc, calculate sdmc for a chronical period
+# of time.42
+test_fbp
+# Because sdmc_old is better to be calculated, we normally
+# ignore this option:
+test_sdmc$SDMC<-sdmc(test_sdmc)
+# (2) multiple weather stations:
+# Batch process with multiple stations (2 stations) assuming
+# they are from the same month:
+test_sdmc$mon<-7
+test_sdmc$day<-rep(1:24,2)
+test_sdmc$id<-rep(1:2,each=24)
+# Sort the data by date and weather station id:
+test_sdmc<-test_sdmc[with(test_sdmc,order(yr,mon,day,id)),]
+# Apply the function
+test_sdmc$SDMC_mult_stn<-sdmc(test_sdmc,batch=TRUE)
+# Assuming each record is from a different weather station, and
+# calculate only one time step:
+foo<-sdmc(test_sdmc,batch=FALSE)
+test_fbp
+Fire Behaviour Prediction Sample Data Set
+Description
+This data set is a set of input data for each of the test cases in the publication supplied below.
+Usage
+test_fbp
+Format
+A data frame containing 24 columns, 21 rows, including 1 header line
+Source
+http://cfs.nrcan.gc.ca/pubwarehouse/pdfs/31414.pdf
+References
+1. Wotton, B.M., Alexander, M.E., Taylor, S.W. 2009. Updates and revisions to the 1992 Canadian
+forest fire behavior prediction system. Nat. Resour. Can., Can. For. Serv., Great Lakes For. Cent.,
+Sault Ste. Marie, Ontario, Canada. Information Report GLC-X-10, 45p.test_fbpRaster
