@@ -1,0 +1,28 @@
+## ff
+
+Factor form for the given volume
+
+#### Description
+
+This function provide correction for basic volume estimation using cylinder formulation v =
+Factor form is given by taking ratio between real volume and apparent volume.
+
+1
+DBH 2
+πH.
+42
+FI
+
+#### Usage
+ff(volume, dbh, height)
+
+#### Arguments
+* volume volume of a log, can be the output of volume
+* dbh diameter at breast height (1.3 meters from floor)
+* height commercial height, length of stem or whatever length of log you used in your estimations of cylinder volume
+
+#### Value
+form factor ranging form 0-1 (numeric value)
+
+#### References
+http://wiki.awf.forst.uni-goettingen.de/wiki/index.php/Stem_shape
