@@ -52,12 +52,14 @@ identified based on a new row in the dataframe. The input format forces the user
 triangles, one triangle per row of input dataframe. Very complex arrangements of field plot layouts
 are possible, and the current version of these functions do not attempt to determine each triangle of
 interest automatically.
-Value
+
+#### Value
 lros returns a dataframe which includes the rate of spread and spread direction. Output units
 depend on the user’s inputs for distance (typically meters) and time (seconds or minutes).
 Author(s)
 Tom Schiks, Xianli Wang, Alan Cantin
-References
+
+#### References
 1. Simard, A.J., Eenigenburg, J.E., Adams, K.B., Nissen, R.L., Deacon, and Deacon, A.G. 1984. A
 general procedure for sampling and analyzing wildland fire spread.
 2. Byram, G.M. 1959. Combustion of forest fuels. In: Davis, K.P. Forest Fire Control and Use.
@@ -68,7 +70,8 @@ California. Journal of Agricultural Research 57(4): 239-267.
 spread. Fire Technology: 221-228.
 See Also
 pros,
-Examples
+
+#### Examples
 library(cffdrs)
 # manual single entry, but converted to a data frame
 lros.in1 <- data.frame(t(c(0, 24.5, 50, 22.6, 120, 20.0, 90, 35)))
@@ -83,14 +86,17 @@ lros(test_lros)38
 pros
 pros
 Point-based input for Simard Rate of Spread and Direction
-Description
+
+#### Description
 pros is used to calculate the rate of spread and direction given one set of three point-based obser-
 vations of fire arrival time. The function requires that the user specify the time that the fire crossed
 each point, along with the latitude and longitude of each observational point. This function allows
 quick input of a dataframe specifying one or many triangles.
-Usage
+
+#### Usage
 pros(input)
-Arguments
+
+#### Arguments
 input
 A dataframe containing input variables of Time fire front crossed points 1, 2,
 3, and latitude/longitude for those same points. Variable names have to be the
@@ -140,6 +146,7 @@ posed over the years, but most were based on observations collected from a pre-p
 grid and stopwatch (Curry and Fons 1938; Simard et al. 1982). Early approaches required that ob-
 servers be in visual contact with the reference grid, but later, thermocouples and dataloggers were
 employed to measure the onset of the heat pulse at each point.
+
 Simard et al. (1982) proposed calculations for spread based on an equilateral triangle layout. Simard
 et al. (1984) proposed calculations for spread based on any type of triangle. Both articles also
 discussed field sampling design and layout, with special attention to the size of the triangles (large
@@ -154,12 +161,14 @@ identified based on a new row in the dataframe. The input format forces the user
 triangles, one triangle per row of input dataframe. Very complex arrangements of field plot layouts
 are possible, and the current version of these functions do not attempt to determine each triangle of
 interest automatically.
-Value
+
+#### Value
 pros returns a dataframe which includes the rate of spread and spread direction. Output units
 depend on the user’s inputs for distance (typically meters) and time (seconds or minutes).
 Author(s)
 Tom Schiks, Xianli Wang, Alan Cantin
-References
+
+#### References
 1. Simard, A.J., Eenigenburg, J.E., Adams, K.B., Nissen, R.L., Deacon, and Deacon, A.G. 1984. A
 general procedure for sampling and analyzing wildland fire spread.
 2. Byram, G.M. 1959. Combustion of forest fuels. In: Davis, K.P. Forest Fire Control and Use.
@@ -183,17 +192,20 @@ pros.out1 <- pros(pros.in1)
 # load the test dataframe for pros
 data("test_pros")
 pros(test_pros)
-sdmc
+
+## sdmc
 Sheltered Duff Moisture Code
-Description
+
+#### Description
 sdmc is used to calculate sheltered DMC (sDMC, Wotton et al., 2005) based on daily noon weather
 observations of temperature, relative humidity, wind speed, 24-hour rainfall, and a previous day’s
 calculated or estimated value of sDMC. This function calculates sDMC for either one weather
 station or for multiple weather stations over the duration of the daily weather data set, typically
 over a fire season.
-Usage
+
+#### Usage
 sdmc(input,sdmc_old=NULL,batch=TRUE)
-Arguments
+##### Arguments
 input
 A data.frame containing input variables of daily noon weather observations.
 Variable names have to be the same as in the following list, but they are case
