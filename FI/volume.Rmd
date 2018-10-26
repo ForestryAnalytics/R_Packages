@@ -1,0 +1,54 @@
+## volume
+Estimates the stem volume
+
+##### Description
+volume uses one of the following methods (Smalian, Newton, Huber) to approximate real stem
+volume. Users should remember they’re just approximations and sample size provide more accurate
+results them using different methods.
+
+#### Usage
+volume(trees, method = "smalian")
+Arguments
+trees a data frame or matrix in format described in dataset inventory (more help
+inventory)
+method method used for estimation of the stem volume
+
+##### Value
+a named vector of volumes, names are defined as same as in first column
+
+#### Note
+Newton and Huber methods have small modifications for working just with two mensures (lower
+and upper diameter). Both of them use mean instead of real middle diameter.
+
+##### References
+http://wiki.awf.forst.uni-goettingen.de/wiki/index.php/Stem_volume
+See Also
+ff sf
+
+#### Examples
+
+example_data <- data.frame(tree_number = 1,
+dhb = 5,
+total_height = 20,
+comercial_height = 15,
+section_height = c(0,5,15),
+section_diameter = 5
+)volume
+volume(example_data)
+#
+#
+# A little more complex and common example
+data(inventory)
+volume_output <- volume(inventory)
+summary(volume_output)
+hist(volume_output)
+5Index
+∗Topic datasets
+inventory, 3
+ff, 1, 4
+FI, 2
+FI-package (FI), 2
+inventory, 3, 4
+sf, 3, 4
+volume, 2, 3, 4
+6
