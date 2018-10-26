@@ -1,0 +1,14 @@
+test_fwi
+Fire Weather Index Sample Input Data Set
+Description
+This data set is the sample input data that was used in original FWI program calibration.
+Usage
+test_fwi
+Format
+A data frame containing 9 columns and 49 rows, with 1 header line
+Source
+http://cfs.nrcan.gc.ca/pubwarehouse/pdfs/19973.pdf
+References
+1. Van Wagner, CE. and T.L. Pickett. 1985. Equations and FORTRAN program for the Canadian
+Forest Fire Weather Index System. Can. For. Serv., Ottawa, Ont. For. Tech. Rep. 33. 18 p.44
+test_lros
