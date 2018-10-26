@@ -1,0 +1,23 @@
+## sf: Stacking factor
+
+
+#### Description
+Ratio between solid cubic meters of wood per stere cubic meter of stacked up wood.
+
+#### Usage
+<pre><code>
+sf(volume, height, length, depth)
+</code></pre>
+
+#### Arguments
+* volume real volume of the logs
+* height height of the stack (in meters)
+* length length of the stack (in meters)
+* depth depth of the stack (in meters)
+
+#### Value
+stacking factor ranging from 0-14
+volume
+
+#### References
+www.eucalyptus.com.br/capitulos/ENG07.pdf
