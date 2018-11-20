@@ -1,0 +1,25 @@
+
+species_aggreg Get the aggregation state of species
+#### Description
+Get the aggregation state of species according to the Payandeh, Hazen and Morista methods.
+#### Usage
+species_aggreg(df, species, plot, NI_label = "")
+#### Arguments 
+*``df``: A data frame.
+species Quoted name of the scientific names variable, or any variable used to differentiate
+the different species found in data.
+* `` plot``:  Quoted name of the plot variable. used to differentiate the plots trees, and calculate
+the number of sampled plots.
+NI_label Label used for Species not identified. This parameter works along with species.
+The level supplied here will not be considered in the classification. Default "".
+Value
+a data frame with the aggregation classification.
+Author(s)
+Eric Bastos Gorgens <e.gorgens@gmail.com>
+#### References
+Souza, A. L. and Soares, C. P. B. (2013) Florestas Nativas: estrutura, dinamica e manejo. Vicosa:
+UFV.
+#### Examples
+library(forestmangr)
+data(exfm20)
+species_aggreg(exfm20, "scientific.name", "transect")
