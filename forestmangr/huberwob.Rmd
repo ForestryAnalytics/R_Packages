@@ -1,0 +1,45 @@
+huberwob Calculate the volume without bark of trees using the Huber method
+#### Description
+Function used to calculate the volume without bark of trees using the Huber method. This function
+has integration without dplyr, so it can be used inside a pipe, along with the group_by function.
+#### Usage
+huberwob(df, di, section_length, bt, tree, .groups = NA,
+di_mm_to_cm = FALSE, bt_mm_to_cm = FALSE)
+36 huberwob
+#### Arguments 
+*``df``: A data frame.
+* ``di``: Quoted name of the section diameter variable, in centimeters.
+* section_length Quoted name of the section length variable, in meters
+* bt Quoted name of the bark thickness variable, in centimeters.
+* tree Quoted name of the tree variable. used to differentiate the trees’ sections. If this argument is NA, the defined groups in the data frame will be used. Default: NA.
+* ``.groups``: Optional argument. Quoted name(s) of additional grouping variables that can be added to differentiate subdivisions of the data. If this argument is NA, the defined
+groups in the data frame will be used. Default: NA.
+* di_mm_to_cm Boolean argument that, if TRUE, converts the di argument from milliliters to centimeters. Default: FALSE.
+* bt_mm_to_cm Boolean argument that, if TRUE, converts the bt argument from milliliters to centimeters. Default: FALSE.
+
+#### Value
+Data frame with volume values by section.
+
+#### Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+#### References
+Campos, J. C. C. and Leite, H. G. (2017) Mensuracao Florestal: Perguntas e Respostas. 5a. Vicosa:
+UFV.
+See Also
+Complementary functions: huberwb, For calculation of volume with bark using the Huber method,
+smalianwb, for calculation of volume with bark using the Smalian method, smalianwob, for calculation
+of volume without bark the Smalian method.
+#### Examples
+```{r}
+library(forestmangr)
+data("exfm8")
+head(exfm8)
+# Calculate the volume without bark using the Huber method:
+huberwob(exfm8,"di_wb", "sec_length", "bark_t", "TREE")
+# Using pipes:
+library(dplyr)
+exfm8 %>%
+ident_model 37
+group_by(TREE) %>%
+huberwob("di_wb", "sec_length", "bark_t")
+```
