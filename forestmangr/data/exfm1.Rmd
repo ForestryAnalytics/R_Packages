@@ -1,0 +1,18 @@
+
+exfm1 Stratified random inventory pilot data
+#### Description
+In this data, each observation is a plot.
+#### Usage
+data(exfm1)
+#### Format
+A data frame with 22 observations and 4 variables:
+* ``STRATA``: stratum number
+* ``STRATA_AREA``:   area of each strata, in hectares
+PLOT_AREA area of plots, in square meters
+VWB volume with bark, in cubic meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+14 exfm10
+#### Source
+Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd
+ed. Vicosa: UFV.
