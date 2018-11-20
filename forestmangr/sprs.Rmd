@@ -1,0 +1,65 @@
+sprs Simple Random Sampling
+#### Description
+Function for processing forest inventory data using simple random sampling.
+
+#### Usage
+<pre><code>
+sprs(df, Yi, plot_area, total_area, age = NA, .groups = NA,
+alpha = 0.05, error = 10, dec_places = 4, pop = "inf",
+tidy = TRUE)
+</code></pre>
+
+#### Arguments 
+
+*``df``: A data frame.
+* Yi Quoted name of the volume variable, or other variable one desires to evaluate, in quotes.
+* `` plot_area``:  Quoted name of the plot area variable, or a numeric vector with the plot area value. The plot area value must be in square meters.
+* total_area Quoted name of the total area variable, or a numeric vector with the total area value.The total area value must be in hectares.
+* age Optional parameter. Quoted name of the age variable. Calculates the average age supplied. NA.
+* ``.groups``: Optional argument. Quoted name(s) of additional grouping variable(s) that, if supplied, will be used to run multiple surveys, one for each level. If this argument is NA, the defined groups in the data frame will be used, if they exist. Default: NA.
+* alpha Numeric value for the significance value used in the t-student estimation. Default: 0.05.
+* error Numeric value for the minimum admitted error value in the survey, in percentage. Default: 10.
+* dec_places Numeric value for the number of decimal places to be used in the output tables. Default: 4.
+* pop Character value for the type of population considered in the calculations. This can be either infinite ("inf") or finite ("fin"). Default: "inf".
+* tidy Boolean value that defines if the output tables should be tidied up or not. Default: TRUE.
+
+#### Details
+This function allows the user to processes inventory data using simple random sampling for finite or
+infinite populations. It’s possible to run multiple sampling analysis using a factor variable indicated
+in the .groups() parameter.
+
+#### References
+
+Campos, J. C. C. and Leite, H. G. (2017) Mensuracao Florestal: Perguntas e Respostas. 5a. Vicosa:
+UFV.
+Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd
+ed. Vicosa: UFV.
+See Also
+other sampling functions: strs for stratified random sampling, and ss_diffs for Systematic Sampling.
+
+#### Examples
+
+```{r}
+library(forestmangr)
+data("exfm2")
+data("exfm3")
+data("exfm4")
+# The objective is to sample an area, with an error of 20%.
+# First we run a pilot inventory, considering a 20% error and a finite population:
+sprs(exfm3, "VWB", "PLOT_AREA", "TOTAL_AREA", error = 20, pop = "fin")
+# With these results, in order to obtain the desired error, we'll need to sample new
+# plots, and run the definitive inventory. Again, we aim for a 20% error, and consider
+# the population as finite:
+sprs(exfm4, "VWB", "PLOT_AREA", "TOTAL_AREA", error = 20, pop = "fin")
+# The desired error was met
+# area values can be numeric
+sprs(exfm4, "VWB", 3000, 46.8, error = 20, pop = "fin")
+# Here we run a simple random sampling inventory for each forest subdivision,
+# using the STRATA variable as a group variable:
+sprs(exfm2, "VWB", "PLOT_AREA", "* ``STRATA_AREA``:  ",.groups = "STRATA" ,error = 20, pop = "fin")
+```
+
+Value
+A data frame with the sampling results.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
