@@ -1,0 +1,43 @@
+
+species_diversity Get the species diversity indexes
+#### Description
+Calculate the diversity of species for the following indexes: Shannon, Simpson, Equitability, Pielou
+and Jentsch.
+#### Usage
+<pre><code>
+species_diversity(df, species, plot = NA, NI_label = "",
+index = "all")
+</code></pre>
+
+#### Arguments 
+*``df``: A data frame.
+* species Quoted name of the scientific names variable, or any variable used to differentiate the different species found in data. If supplied, will be used to classify the
+species in the diameter data.
+* plot Optional parameter. Quoted name of the plot variable. used to differentiate the plots, and calculate the indexes by plot, or other subdivision variable.
+* NI_label Label used for Species not identified. This parameter works along with species. The level supplied here will not be considered in the classification. Default "".
+* ``index``: Character value for the desired index to be used. Can be either "H" for Shannon’s diversity index, "S" for Total number of species in the community, "Hmax"
+for the maximum equitability, "J" for Pielou evenness, "QM" for the mixture coefficient of Jentsch, or "all", to get all indexes. Default: "all".
+
+#### Examples
+```{r}
+library(forestmangr)
+data(exfm20)
+# By default, the function returns all indexes:
+species_diversity(exfm20, "scientific.name")
+# It's possible to use a subdivision variable, like plot, to get
+# the indexes for each subdivision:
+species_diversity(exfm20, "scientific.name", "transect")
+# To only get one specific index, use the index argument:
+species_diversity(exfm20, "scientific.name", index = "H")
+species_diversity(exfm20, "scientific.name", index = "S")
+species_diversity(exfm20, "scientific.name", index = "Hmax")
+species_diversity(exfm20, "scientific.name", index = "J")
+```
+### Value
+a data frame with the indexes, or a numeric value of the desired index specified in the index argument.
+Author(s)
+Eric Bastos Gorgens <e.gorgens@gmail.com>
+#### References
+Souza, A. L. and Soares, C. P. B. (2013) Florestas Nativas: estrutura, dinamica e manejo. Vicosa:
+UFV.
+58 sprs
