@@ -1,0 +1,40 @@
+tree_summarise Calculate the equivalent diameter of trees with more than one trunk
+#### Description
+This function uses takes the square root of the diameters squared sum, in order to estimate the
+equivalent diameter of trees. Other supplied variables are summed up, or averaged, depending on
+the variable.
+#### Usage
+tree_summarise(df, dbh, tree, th = NA, vwb = NA, vwob = NA,
+plot_area = NA, total_area = NA, .groups = NA)
+#### Arguments 
+*``df``: A data frame.
+* ``dbh``: Quoted nameof the diameter at breast height variable.
+tree Quoted name of the tree variable. used to differentiate the trees’ sections. If this
+argument is missing, the defined groups in the data frame will be used. If there
+are no groups in the data, the function will fail.
+th Optional argument. Quoted name of the total height variable, in meters. Default:
+NA.
+vwb Optional argument. Quoted name of the volume with bark variable, in cubic
+meters. Default: NA.
+vwob Optional argument. Quoted name of the volume without bark variable, in cubic
+meters. Default: NA.
+plot_area Optional argument. Quoted name of the plot area variable, or a numeric vector
+with the plot area value. The plot area value must be in square meters.
+total_area Optional argument. Quoted name of the total area variable, or a numeric vector
+with the total area value. The total area value must be in hectares. Default: NA.
+* ``.groups``: Optional argument. Quoted name(s) of grouping variables that can be added to
+differentiate subdivisions of the data. Default: NA.
+Value
+A data frame with the the equivalent diameter calculated.
+vertical_stratum 65
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+#### References
+Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd
+ed. Vicosa: UFV.
+#### Examples
+library(forestmangr)
+data("exfm18")
+head(exfm18)
+# Calculate the equivalent diameter of trees with more than one trunk:
+tree_summarise(exfm18, "DBH",tree="Tree", .groups=c("Plot", "Species") )
