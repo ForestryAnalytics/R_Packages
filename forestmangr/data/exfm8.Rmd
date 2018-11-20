@@ -1,0 +1,20 @@
+exfm8 27
+exfm8 Data of felled trees sections, measured in the Huber method
+#### Description
+In this data, each observation is a section of a tree.
+#### Usage
+data(exfm8)
+#### Format
+A data frame with 10 observations and 596 variables:
+CLONE Clone number
+* ``STRATA``: stratum number
+TREE number of trees
+LOG log number
+* ``dbh``: diameter at breast height, in meters
+* ``TH``:  total height, in meters
+hi height of sections, in meters
+di_wb diameter of sections with bark, in centimeters
+bark_t bark of thickness, in millimeters
+sec_length section length, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
