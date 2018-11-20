@@ -1,0 +1,41 @@
+
+## ``classify_site``: Classify inventory data based on site index
+
+#### Description
+Use the site variable to classify a forest management data.
+
+#### Usage
+
+<pre><code>
+classify_site(df, site, nc = 3, plot, .groups = NA)
+</code></pre>
+
+#### Arguments 
+
+* ``df``: A data frame.
+* `` site``: Quoted name for the site variable.
+* ``nc``:  number of categories used to classify the data. If 3, a additional column will be created with levels Lower, Middle and Upper, referencing the 3 categories. If not, only numbers will be used to differentiate the categories. Default: 3.
+* `` plot``:  Quoted name for the plot variable.
+* ``.groups``: Optional argument. Quoted name(s) of grouping variables used to fit multiple regressions, one for each level of the provided variable(s). Default NA.
+
+#### Examples
+
+```{r}
+library(forestmangr)
+data("exfm17")
+head(exfm17)
+# Classify data into 3 classes:
+ex_class <- classify_site(exfm17, "S", 3, "plot")
+head(ex_class ,15)
+```
+
+#### Value
+A data frame classified based on the site index.
+
+#### Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
+#### See Also
+other sampling functions: fit_clutter for fitting Clutter’s Growth and Yield, and est_clutter
+for estimating Clutter’s Growth and Yield model variables.
+
