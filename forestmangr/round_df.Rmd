@@ -1,0 +1,26 @@
+round_df Round all numeric variables of a data frame to a given digit
+#### Description
+This function allows the user to round all numeric values of a data frame, directly, even if the data
+frame contains non-numeric variables (which would throw an error in the round function).
+#### Usage
+round_df(df, digits, rf = "round")
+#### Arguments 
+*``df``: A data frame.
+digits Numeric vector for the desired number of digits.
+rf Type of round to be used. It can either be "ceiling", "floor", "trunc",
+"signif", or "round". Default "round".
+Value
+A data frame, with all the numeric variables rounded up to the number given to digits.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+#### Examples
+```{r}
+library(forestmangr)
+# Round all numeric variables
+round_df(iris)
+# Round all numeric variables using the floor function
+round_df(iris, rf="floor")
+# Do not run
+# trying this with the the base function throws an error:
+# round(iris)
+```
