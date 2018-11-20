@@ -1,0 +1,23 @@
+exfm21 Inventory data of an eucalyptus forest in Brazil
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm21)
+exfm3 23
+#### Format
+A data frame with 900 observations and 13 variables:
+* ``STRATA``: stratum number
+* ``STRATA_AREA``:   area of each strata, in hectares
+* ``PLOT``: plot number
+PLOT_AREA area of plots, in square meters
+* ``dbh``: diameter at breast height, in meters
+* ``TH``:  total height, in meters
+OBS quality of trees, N = normal tree, D = dominant tree, F = a failure, or dead tree
+* `` DH``: dominant height, in meters
+TH_EST estimated total height, in meters
+CSA cross sectional area, in square meters
+* ``age ``: average age of plots, in months
+VWB volume with bark, in cubic meters
+VWOB volume without bark, in cubic meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
