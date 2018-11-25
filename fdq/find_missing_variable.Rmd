@@ -1,0 +1,10 @@
+
+find_missing_variable find_missing_variable
+#### Description
+This function identifies non-existent column names in the database and informs the user
+#### Usage
+find_missing_variable(data_base, variables)
+#### Arguments
+data_base data.frame, data.table or any database
+variables vector string that contains the name(s) of columns to be checked in database
+generate_diameter_classes 11
