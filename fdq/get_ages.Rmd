@@ -1,0 +1,11 @@
+get_ages get_ages
+#### Description
+This function concatenates age values in a string for a query and returns the same
+#### Usage
+get_ages(database, age_name, age_values)
+#### Arguments
+database data.frame, data.table or any database
+age_name string with the name of field (column) containing the ages
+age_values vector with the age values you want to assemble string to made query, example:
+c(12,24,36)
+
