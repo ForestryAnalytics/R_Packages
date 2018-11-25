@@ -1,0 +1,17 @@
+
+## check_measurement_ages
+
+#### Description
+This function verifies if measurement variables have records of type DAP2 <DAP1, HT2 <HT1 in
+consecutive ages i + 1 and i tt is necessary that the base is already paired to perform such analysis,
+to know more about pairing consult the Fgmutils package
+
+#### Usage
+<pre><code>
+check_measurement_ages(data_base, measurement_variable1,measurement_variable2)
+</code></pre>
+
+#### Arguments
+* data_base data.frame, data.table or any database
+* measurement_variable1 : string field containing the measurement variables at age 1
+* measurement_variable2 : string field containing the measurement variables at age 2
