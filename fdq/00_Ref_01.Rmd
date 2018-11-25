@@ -1,0 +1,264 @@
+Package ‘fdq’
+November 19, 2018
+Type Package
+Title Forest Data Quality
+Date 2018-11-19
+Version 0.11
+Maintainer Caíque de Oliveira de Souza <forestgrowthsoftware@gmail.com>
+#### Description Forest data quality is a package that contains methods of
+analysis of forest databases, the purpose of the analyzes is to evaluate
+the quality of the data present in the databases focusing on the dimensions
+of consistency, pountuality and completeness. Databases can range from forest
+inventory data to growth model data. The package has methods to work with large
+volumes of data quickly, in addition in certain analyzes it is possible to generate
+the graphs for a better understanding of the analysis and reporting of the analyzed analysis.
+License GPL-3
+Encoding UTF-8
+LazyData true
+Suggests testthat
+Depends R(>= 3.0), Fgmutils
+Imports data.table, sqldf, randomcoloR, ggplot2, plyr, utils, stats
+RoxygenNote 6.1.1
+NeedsCompilation no
+Author Caíque de Oliveira de Souza [aut, cre],
+Clayton Vieira Fraga Filho [ctb, dtc],
+Miquéias Fernandes [ctb]
+Repository CRAN
+Date/Publication 2018-11-19 17:10:03 UTC
+R topics documented:
+check.integer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+check_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1
+2 check.integer
+check_clones_different_parcel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+check_dead_state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+check_existing_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+check_existing_place . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+check_existing_plots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+check_measurements_state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+check_measurement_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+check_parcel_different_spacing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+check_size_age_parcel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+check_undefined_spacing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+check_variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+check_zero_measurement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+find_missing_age . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+find_missing_place . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+find_missing_variable . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+generate_diameter_classes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+generate_initial_diameter_class . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+generate_new_color . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+generate_number_hectare . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+getColors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+get_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+get_max . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+get_min . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+get_place . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+mount_query . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+sort_columns_crescent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+Index 17
+check.integer Ckeck Integer
+#### Description
+checks if a variable is integer
+#### Usage
+check.integer(x)
+#### Arguments
+x any variable
+Value
+TRUE if "x" is integer, FALSE if "x" not is interger
+check_ages 3
+Examples
+x = 5
+check.integer(x)
+check_ages check_ages
+#### Description
+This analysis verifies age differences on a paired basis, if the rounded ages are in months the check
+is if the difference is 12 months, if it is in year the consecutive ages should only present difference
+of 1 year, doubts about how to pair your base consult The Fgmutils package
+#### Usage
+check_ages(data_base, rounded_age1, rounded_age2, months = FALSE)
+#### Arguments
+data_base data.frame data.table
+rounded_age1 string name of column rounde age one
+rounded_age2 string name of column rounde age two
+months TRUE for age in months or FALSE for age in years
+check_clones_different_parcel
+check_clones_different_pacel
+#### Description
+This function checks if the clones of a tree have different plots
+#### Usage
+check_clones_different_parcel(database, parcel_name, clone_name,
+variables_to_group)
+#### Arguments
+database data.frame, data.table or any database
+parcel_name string name of the field containing the parcels
+clone_name string name of the field containing the clones
+variables_to_group
+string(s) variable (s) that you want to group the result of the analysis
+4 check_existing_ages
+check_dead_state check_dead_state
+#### Description
+This function checks if the base state field is equal to dead (M) and there is some kind of measurement
+#### Usage
+check_dead_state(data_base, state, measurement_variables)
+#### Arguments
+data_base data.frame data.table or any database
+state string field name representing state column in database
+measurement_variables
+string vector that contains a set of measurement variables to be analyzed, this
+variables are names of columns in database
+
+
+check_existing_plots check_existing_plots
+#### Description
+This function checks if a particular set of parcels exists in a database column
+#### Usage
+check_existing_plots(database, plots_name, plots_to_check)
+#### Arguments
+database data.frame, data.table or any database
+plots_name string column name representing parcels in the base
+plots_to_check value(s) to be checked, example: c(356,122)
+6 check_measurement_ages
+check_measurements_state
+check_measurements_state
+#### Description
+This function checks if there is a measurement variable with value equal to 0 and if the respective
+states are different from M, F, A
+#### Usage
+check_measurements_state(data_base, measurement_variables, state)
+#### Arguments
+data_base data.frame, data.table or any database
+measurement_variables
+set of variables to be analyzed, this set can be a vector of string with names of
+colunms
+state string name of the field that represents the state in database
+
+
+check_size_age_parcel check_size_age_parcel
+#### Description
+This function checks if the age field is more than one age, returning TRUE to for yes and FALSE
+for no
+#### Usage
+check_size_age_parcel(database, age_name)
+#### Arguments
+database data.frame, data.table or any database
+age_name string containing the name of the column that represents age
+8 check_variables
+check_undefined_spacing
+check_undefined_spacing
+#### Description
+This function checks if there is any record with undefined spacing (0 or NA)
+#### Usage
+check_undefined_spacing(data_base, spacings)
+#### Arguments
+data_base data.frame, data.table or any database
+spacings string vector containing the name of the variable (s) than represent spacings in
+database
+check_variables check_variables
+#### Description
+This function checks if the entered column exists within the base
+#### Usage
+check_variables(database, variables)
+#### Arguments
+database data.frame, data.table or any database
+variables vector of strings with names of columns
+Value
+TRUE for all variables in database, or FALSE for variables not present in columns
+Examples
+test <- data.frame("tree","diametrer","N")
+check_variables(test,c("tree","diameter"))
+
+
+generate_initial_diameter_class
+generate_initial_diameter_class
+#### Description
+This function generates the initial class field to aid in the process of diametric increasing
+#### Usage
+generate_initial_diameter_class(database, plot_name, age_name)
+#### Arguments
+database data.frame, data.table or any database
+plot_name string with the name of field representing plots in database
+age_name string with the name of field representing rounded age
+
+
+generate_number_hectare
+generate_number_hectare
+#### Description
+This function generates the NHa, field that represents the number of surviving trees per hectare
+#### Usage
+generate_number_hectare(database, area_name, n_name, nha_name = "NHa")
+#### Arguments
+database data.frame, data.table or any database
+area_name string with the name of field containing area in database
+n_name string with the name of field containing numbers of trees in database
+nha_name string with name you want for the field number of trees per hectare
+getColors 13
+getColors getColors
+#### Description
+This function generates a new random color for each diameter class in the base
+#### Usage
+getColors(database, diameter_classe_name)
+#### Arguments
+database data.frame, data.table or any database
+diameter_classe_name
+string with the name of field (column) containing the diameter classes
+
+get_place get_place
+#### Description
+This function returns a database from a particular site or location present in the original database
+#### Usage
+get_place(database, place_name, place_value)
+#### Arguments
+database data.frame, data.table or any database
+place_name string with the name of the column that represents the place
+place_value vector with values of that you want to filter the sites/places of the database
+mount_query mount_query
+#### Description
+This auxiliary function checks that need to group fields of certain measurements
+#### Usage
+mount_query(database, select_names, group_names, option)
+#### Arguments
+database data.frame, data.table or any database
+select_names string vector with the name(s) of the column(s) you want to include in the selection
+group_names string vector with the name(s) of the column(s) you want to group the results
+option options to make the query, can be 1,2,3 each one for one use in the analysis
+functions
+16 sort_columns_crescent
+sort_columns_crescent sort_columns_crescent
+#### Description
+Sorts the database incrementally based on the selected column
+#### Usage
+sort_columns_crescent(database, column)
+#### Arguments
+database data.frame, data.table or any database
+column string with the name of the column you want sort the database
+Index
+check.integer, 2
+check_ages, 3
+check_clones_different_parcel, 3
+check_dead_state, 4
+check_existing_ages, 4
+check_existing_place, 5
+check_existing_plots, 5
+check_measurement_ages, 6
+check_measurements_state, 6
+check_parcel_different_spacing, 7
+check_size_age_parcel, 7
+check_undefined_spacing, 8
+check_variables, 8
+check_zero_measurement, 9
+find_missing_age, 9
+find_missing_place, 10
+find_missing_variable, 10
+generate_diameter_classes, 11
+generate_initial_diameter_class, 11
+generate_new_color, 12
+generate_number_hectare, 12
+get_ages, 13
+get_max, 14
+get_min, 14
+get_place, 15
+getColors, 13
+mount_query, 15
+sort_columns_crescent, 16
+17
