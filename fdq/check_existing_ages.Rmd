@@ -1,0 +1,10 @@
+check_existing_ages check_existing_ages
+#### Description
+This function checks if a given set of ages exists in a database column
+#### Usage
+check_existing_ages(database, ages_name, ages_to_check)
+#### Arguments
+database data.frame data.table or any database
+ages_name string name of the column representing ages
+ages_to_check string name/vector of the column (s) representing ages to be checked
+check_existing_place 5
