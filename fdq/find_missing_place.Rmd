@@ -1,0 +1,11 @@
+
+find_missing_place find_missing_place
+#### Description
+This function identifies values of sites or locations in the database and notifies them to the user
+#### Usage
+find_missing_place(database, place_name, places_to_check)
+#### Arguments
+database data.frame, data.table or any database
+place_name string that contains the field name representing site or place in database
+places_to_check
+vector containing the values of places/sites to be checked like c(21,33,48)
