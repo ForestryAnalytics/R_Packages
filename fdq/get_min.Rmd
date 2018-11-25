@@ -1,0 +1,11 @@
+
+get_min get_min
+#### Description
+This function returns the minimum value of one or more fields of measurement variables
+#### Usage
+get_min(database, variables)
+#### Arguments
+database data.frame, data.table or any database
+variables string vector with name(s) of the column (s) you want to know the minimum
+value
+get_place 15
