@@ -1,0 +1,14 @@
+
+get_max get_max
+
+#### Description
+This function returns the maximum value of one or more fields of measurement variables
+
+#### Usage
+<pre><code>
+get_max(database, variables)
+</code></pre>
+
+#### Arguments
+* database data.frame, data.table or any database
+* variables string vector with name(s) of the column (s) you want to know the maximum value
