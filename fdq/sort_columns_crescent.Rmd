@@ -1,0 +1,9 @@
+
+sort_columns_crescent sort_columns_crescent
+#### Description
+Sorts the database incrementally based on the selected column
+#### Usage
+sort_columns_crescent(database, column)
+#### Arguments
+database data.frame, data.table or any database
+column string with the name of the column you want sort the database
