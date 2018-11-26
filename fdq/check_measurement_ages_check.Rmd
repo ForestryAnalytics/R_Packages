@@ -1,0 +1,14 @@
+6 check_measurement_ages
+check_measurements_state
+check_measurements_state
+#### Description
+This function checks if there is a measurement variable with value equal to 0 and if the respective
+states are different from M, F, A
+#### Usage
+<pre><code>
+check_measurements_state(data_base, measurement_variables, state)
+</code></pre>
+#### Arguments
+* data_base data.frame, data.table or any database
+* measurement_variables set of variables to be analyzed, this set can be a vector of string with names of
+* colunms state string name of the field that represents the state in database
