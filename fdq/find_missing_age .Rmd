@@ -1,11 +1,15 @@
 
-find_missing_age find_missing_age
+## find_missing_age find_missing_age
+
 #### Description
 This function identifies the missing age values in the database and notifies them to the user.
+
 #### Usage
+<pre><code>
 find_missing_age(database, age_name, ages_to_check)
+</code></pre>
+
 #### Arguments
-database data.frame, data.table or any database
-age_name string that contains the field name that represents age in database
-ages_to_check vector containing the values of ages to be checked like c(12,23,48)
-10 find_missing_variable
+* database data.frame, data.table or any database
+* age_name string that contains the field name that represents age in database
+* ages_to_check vector containing the values of ages to be checked like c(12,23,48)
