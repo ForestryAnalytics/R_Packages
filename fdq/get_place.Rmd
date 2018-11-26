@@ -1,0 +1,10 @@
+
+get_place get_place
+#### Description
+This function returns a database from a particular site or location present in the original database
+#### Usage
+get_place(database, place_name, place_value)
+#### Arguments
+database data.frame, data.table or any database
+place_name string with the name of the column that represents the place
+place_value vector with values of that you want to filter the sites/places of the database
