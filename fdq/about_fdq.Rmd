@@ -1,0 +1,58 @@
+Package ‘fdq’
+November 19, 2018
+Type Package
+Title Forest Data Quality
+Date 2018-11-19
+Version 0.11
+Maintainer Caíque de Oliveira de Souza <forestgrowthsoftware@gmail.com>
+#### Description Forest data quality is a package that contains methods of
+analysis of forest databases, the purpose of the analyzes is to evaluate
+the quality of the data present in the databases focusing on the dimensions
+of consistency, pountuality and completeness. Databases can range from forest
+inventory data to growth model data. The package has methods to work with large
+volumes of data quickly, in addition in certain analyzes it is possible to generate
+the graphs for a better understanding of the analysis and reporting of the analyzed analysis.
+License GPL-3
+Encoding UTF-8
+LazyData true
+Suggests testthat
+Depends R(>= 3.0), Fgmutils
+Imports data.table, sqldf, randomcoloR, ggplot2, plyr, utils, stats
+RoxygenNote 6.1.1
+NeedsCompilation no
+Author Caíque de Oliveira de Souza [aut, cre],
+Clayton Vieira Fraga Filho [ctb, dtc],
+Miquéias Fernandes [ctb]
+Repository CRAN
+Date/Publication 2018-11-19 17:10:03 UTC
+R topics documented:
+check.integer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+check_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1
+2 check.integer
+check_clones_different_parcel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+check_dead_state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+check_existing_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+check_existing_place . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+check_existing_plots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+check_measurements_state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+check_measurement_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+check_parcel_different_spacing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+check_size_age_parcel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+check_undefined_spacing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+check_variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+check_zero_measurement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+find_missing_age . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+find_missing_place . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+find_missing_variable . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+generate_diameter_classes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+generate_initial_diameter_class . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+generate_new_color . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+generate_number_hectare . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+getColors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+get_ages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+get_max . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+get_min . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+get_place . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+mount_query . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+sort_columns_crescent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
