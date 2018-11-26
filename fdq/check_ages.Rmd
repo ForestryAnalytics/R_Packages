@@ -1,0 +1,13 @@
+check_ages check_ages
+#### Description
+This analysis verifies age differences on a paired basis, if the rounded ages are in months the check
+is if the difference is 12 months, if it is in year the consecutive ages should only present difference
+of 1 year, doubts about how to pair your base consult The Fgmutils package
+#### Usage
+check_ages(data_base, rounded_age1, rounded_age2, months = FALSE)
+#### Arguments
+data_base data.frame data.table
+rounded_age1 string name of column rounde age one
+rounded_age2 string name of column rounde age two
+months TRUE for age in months or FALSE for age in years
+check_clones_different_parcel
