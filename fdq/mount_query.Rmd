@@ -1,0 +1,13 @@
+
+mount_query mount_query
+#### Description
+This auxiliary function checks that need to group fields of certain measurements
+#### Usage
+mount_query(database, select_names, group_names, option)
+#### Arguments
+database data.frame, data.table or any database
+select_names string vector with the name(s) of the column(s) you want to include in the selection
+group_names string vector with the name(s) of the column(s) you want to group the results
+option options to make the query, can be 1,2,3 each one for one use in the analysis
+functions
+16 sort_columns_crescent
