@@ -1,0 +1,24 @@
+
+
+
+
+check_size_age_parcel check_size_age_parcel
+#### Description
+This function checks if the age field is more than one age, returning TRUE to for yes and FALSE
+for no
+#### Usage
+check_size_age_parcel(database, age_name)
+#### Arguments
+database data.frame, data.table or any database
+age_name string containing the name of the column that represents age
+8 check_variables
+check_undefined_spacing
+check_undefined_spacing
+#### Description
+This function checks if there is any record with undefined spacing (0 or NA)
+#### Usage
+check_undefined_spacing(data_base, spacings)
+#### Arguments
+data_base data.frame, data.table or any database
+spacings string vector containing the name of the variable (s) than represent spacings in
+database
