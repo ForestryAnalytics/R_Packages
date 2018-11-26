@@ -1,0 +1,12 @@
+
+check_clones_different_pacel
+#### Description
+This function checks if the clones of a tree have different plots
+#### Usage
+check_clones_different_parcel(database, parcel_name, clone_name,
+variables_to_group)
+#### Arguments
+* database data.frame, data.table or any database
+* parcel_name string name of the field containing the parcels
+* clone_name string name of the field containing the clones
+* variables_to_group string(s) variable (s) that you want to group the result of the analysis
