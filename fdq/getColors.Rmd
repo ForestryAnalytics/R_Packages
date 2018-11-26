@@ -1,0 +1,10 @@
+
+getColors getColors
+#### Description
+This function generates a new random color for each diameter class in the base
+#### Usage
+getColors(database, diameter_classe_name)
+#### Arguments
+database data.frame, data.table or any database
+diameter_classe_name
+string with the name of field (column) containing the diameter classes
