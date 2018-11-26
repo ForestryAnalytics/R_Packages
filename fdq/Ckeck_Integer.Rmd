@@ -1,0 +1,13 @@
+check.integer Ckeck Integer
+#### Description
+checks if a variable is integer
+#### Usage
+check.integer(x)
+#### Arguments
+x any variable
+Value
+TRUE if "x" is integer, FALSE if "x" not is interger
+check_ages 3
+Examples
+x = 5
+check.integer(x)
