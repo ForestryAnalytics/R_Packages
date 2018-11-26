@@ -1,0 +1,14 @@
+
+generate_number_hectare
+generate_number_hectare
+#### Description
+This function generates the NHa, field that represents the number of surviving trees per hectare
+#### Usage
+<pre><code>
+generate_number_hectare(database, area_name, n_name, nha_name = "NHa")
+</code></pre<
+#### Arguments
+* database data.frame, data.table or any database
+* area_name string with the name of field containing area in database
+* n_name string with the name of field containing numbers of trees in database
+* nha_name string with name you want for the field number of trees per hectare
