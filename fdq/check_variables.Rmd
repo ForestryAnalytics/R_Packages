@@ -1,0 +1,18 @@
+check_variables check_variables
+#### Description
+This function checks if the entered column exists within the base
+#### Usage
+<pre><code>
+check_variables(database, variables)
+</code></pre>
+
+#### Arguments
+* database data.frame, data.table or any database
+* variables vector of strings with names of columns
+
+#### Value
+TRUE for all variables in database, or FALSE for variables not present in columns
+
+#### Examples
+test <- data.frame("tree","diametrer","N")
+check_variables(test,c("tree","diameter"))
