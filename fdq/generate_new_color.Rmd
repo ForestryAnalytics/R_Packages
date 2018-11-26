@@ -1,0 +1,11 @@
+## generate_new_color generate_new_color
+
+#### Description
+This function generates a new random color without repeating the ones that were entered in the last field as parameter
+
+#### Usage
+generate_new_color(colors)
+
+#### Arguments
+* colors vector of strings containing existing colors, exemple: c("#6140bc" "#e75bf7"
+"#d15102" "#6a0b9e" "#e8ad4e")
