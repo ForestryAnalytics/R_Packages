@@ -1,0 +1,11 @@
+check_dead_state check_dead_state
+#### Description
+This function checks if the base state field is equal to dead (M) and there is some kind of measurement
+#### Usage
+check_dead_state(data_base, state, measurement_variables)
+#### Arguments
+data_base data.frame data.table or any database
+state string field name representing state column in database
+measurement_variables
+string vector that contains a set of measurement variables to be analyzed, this
+variables are names of columns in database
