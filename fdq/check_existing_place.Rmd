@@ -1,11 +1,13 @@
 
 check_existing_place check_existing_place
+
 #### Description
 This function checks whether a particular set of sites or locations exists in a database column
+
 #### Usage
 check_existing_place(database, place_name, places_to_check)
+
 #### Arguments
-database data.frame, data.table or any database
-place_name string name of the column representing site or place
-places_to_check
-value(s) to be checked, example: c(12,21,33)
+* database data.frame, data.table or any database
+* place_name string name of the column representing site or place
+* places_to_check value(s) to be checked, example: c(12,21,33)
