@@ -1,0 +1,17 @@
+
+
+generate_initial_diameter_class
+## generate_initial_diameter_class
+
+#### Description
+This function generates the initial class field to aid in the process of diametric increasing
+#### Usage
+<pre><code>
+generate_initial_diameter_class(database, plot_name, age_name)
+</code></pre>
+
+#### Arguments
+* database data.frame, data.table or any database
+* plot_name string with the name of field representing plots in database
+* age_name string with the name of field representing rounded age
+
