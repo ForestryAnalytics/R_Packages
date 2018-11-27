@@ -1,8 +1,0 @@
-test_hffmc
-Hourly Fine Fuel Moisture Code Sample Input Data Set
-Description
-Sample dataset for use with the hffmc function.
-Usage
-test_hffmc
-Format
-A data frame containing 8 columns and 481 rows, including 1 header line

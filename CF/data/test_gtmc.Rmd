@@ -1,9 +1,0 @@
-test_gfmc
-Grass Fuel Moisture Code Sample Input Data Set
-Description
-This data set is the sample input data that was used in original FWI program calibration.
-Usage
-test_gfmc
-Format
-A data frame containing 9 columns and 199 rows, with 1 header line
-
