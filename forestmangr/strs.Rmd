@@ -1,17 +1,26 @@
+---
+title: "``strs``: Stratified Random Sampling"
+output: html_document
+---
 
-strs Stratified Random Sampling
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
+
 #### Description
 Function for processing forest inventory data using stratified random sampling.
 #### Usage
 <pre><code>
-strs(df, Yi, plot_area, * ``STRATA_AREA``:  , strata, .groups = NA, age = NA,
+strs(df, Yi, plot_area,STRATA_AREA:  , strata, .groups = NA, age = NA,
 alpha = 0.05, error = 10, dec_places = 4, pop = "inf",
 tidy = TRUE)
 </code></pre>
 
 #### Arguments 
-*``df``: A data frame.
-* Yi Quoted name of the volume variable, or other variable one desires to evaluate, in quotes.
+* ``df``: A data frame.
+* ``Yi``: Quoted name of the volume variable, or other variable one desires to evaluate, in quotes.
 * `` plot_area``:  Quoted name of the plot area variable, or a numeric vector with the plot area
 value. The plot area value must be in square meters.
 * ``STRATA_AREA``:   Quoted name of the strata area variable, or a numeric vector with the plot strata
@@ -19,10 +28,8 @@ values. If there are more than 1 area values, it’s possible to use a vector wi
 area values, like so:c(14.4, 16.4, 14.2). The strata area values must be in hectares.
 * strata Quoted name of the subdivision variable(s), also known as strata. If this argument is not supplied, the defined groups in the data frame will be used, if they
 exist.
-* ``.groups``: Optional argument. Quoted name(s) of additional grouping variable(s) that, if supplied, will be used to run multiple surveys, one for each level. If this argument
-is NA, the defined groups in the data frame will be used, if they exist. Default: NA.
-age Optional parameter. Quoted name of the age variable. Calculates the average
-age supplied. NA.
+* ``.groups``: Optional argument. Quoted name(s) of additional grouping variable(s) that, if supplied, will be used to run multiple surveys, one for each level. If this argument is NA, the defined groups in the data frame will be used, if they exist. Default: NA.
+* age Optional parameter. Quoted name of the age variable. Calculates the average age supplied. NA.
 * alpha Numeric value for the significance value used in the t-student estimation. Default: 0.05.
 * error Numeric value for the minimum admitted error value in the survey, in percentage. Default: 10.
 * dec_places Numeric value for the number of decimal places to be used in the output tables. Default: 4.
@@ -30,25 +37,32 @@ age supplied. NA.
 * tidy Boolean value that defines if the output tables should be tidied up or not. Default: TRUE.
 
 #### Examples
+```{r}
 library(forestmangr)
 data("exfm1")
 data("exfm2")
 data("exfm6")
 # The objective is to sample an area, with an error of 5%.
 # First we run a pilot inventory, considering a 5% error and a finite population:
-strs(exfm1, "VWB", "PLOT_AREA", "* ``STRATA_AREA``:  ", strata = "STRATA", error = 5, pop = "fin")
-# With these results, in order to meet the desired error of 5%, we'll need to sample 59 more plots,
-# 14 in stratum 1, 21 in stratum 2, and 24 in stratum 3.
-# After sampling the necessary plots, we now run a definitive inventory,
-# considering an 5% error and a finite population:
-strs(exfm2, "VWB", "PLOT_AREA", "* ``STRATA_AREA``:  ", strata = "STRATA", error = 5, pop = "fin")
+strs(exfm1, "VWB", "PLOT_AREA", "STRATA_AREA", strata = "STRATA", error = 5, pop = "fin")
+```
+
+With these results, in order to meet the desired error of 5%, we'll need to sample 59 more plots, 14 in stratum 1, 21 in stratum 2, and 24 in stratum 3.
+After sampling the necessary plots, we now run a definitive inventory, considering an 5% error and a finite population:
+
+```{r}
+
+strs(exfm2, "VWB", "PLOT_AREA", "STRATA_AREA", strata = "STRATA", error = 5, pop = "fin")
 # The desired error value was met.
-64 tree_summarise
+```
+```{r}
 # Area values can be numeric:
 strs(exfm2, "VWB", 1000, c(14.4, 16.4,14.2), strata = "STRATA", error = 5, pop = "fin")
+```
+```{r}
 # Optional variable age, and one stratified sampled inventory for each map:
-strs(exfm6, "VWB", "PLOT_AREA", "* ``STRATA_AREA``:  ", strata ="STRATA", .groups = "MAP", age = "AGE")
-
+strs(exfm6, "VWB", "PLOT_AREA", "STRATA_AREA", strata ="STRATA", .groups = "MAP", age = "AGE")
+```
 #### Details
 This function allows the user to processes inventory data using stratified random sampling for n forest subdivisions (strata), for finite or infinite populations. It’s possible to run multiple sampling
 analysis using a factor variable indicated in the .groups() parameter.
@@ -58,11 +72,11 @@ A list containing two data frames, one with informations for each strata, and on
 
 #### Author(s)
 Sollano Rabelo Braga <sollanorb@gmail.com>
+
 #### References
-Campos, J. C. C. and Leite, H. G. (2017) Mensuracao Florestal: Perguntas e Respostas. 5a. Vicosa:
-UFV.
-Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd
-ed. Vicosa: UFV.
-See Also
+* Campos, J. C. C. and Leite, H. G. (2017) Mensuracao Florestal: Perguntas e Respostas. 5a. Vicosa: UFV.
+* Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd ed. Vicosa: UFV.
+
+#### See Also
 other sampling functions: sprs for Simple Random Sampling, and ss_diffs for Systematic Sampling.
 

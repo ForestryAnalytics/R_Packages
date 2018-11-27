@@ -1,5 +1,15 @@
+---
+title: "``resid_plot ``Calculate residual values and create plots"
+output: html_document
+---
 
-resid_plot Calculate residual values and create plots
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
+
+
 #### Description
 Function for creating plots and tables for residual values from observed and estimated values.
 #### Usage
@@ -9,20 +19,22 @@ color = NA, nrow = NA, ncol = NA, lim_y = NA,
 xlab = "Observed values", clab = NA, font = "serif",
 legend_pos = "bottom", gray_scale = TRUE, res_table = FALSE)
 </code></pre>
+
 #### Arguments 
-*``df``: A data frame.
+
+* ``df``: A data frame.
 * ``obs``: Quoted name of the observed values variable.
-* ... Quoted name(s) for the estimated values variable(s). Multiple variables must be separated by comma.
+* ``...``: Quoted name(s) for the estimated values variable(s). Multiple variables must be separated by comma.
 * type Character object for the type of plot created, The available plots are: "scatterplot", "histogram", "histogram_curve" and "versus". Default: "scatterplot".
-* point_size Numeric value for the point size in scatter plots. Default: 3.
-* color Quoted name of a variable. If supplied, this variable will be used to classify the data by color. Default: NA.
-* nrow Numeric value for number of rows in the plot matrix. If not supplied, the plots will be automatically sorted. Default: NA.
-* ncol Numeric value for number of columns in the plot matrix. If not supplied, the plots will be automatically sorted. Default: NA.
+* ``point_size``: Numeric value for the point size in scatter plots. Default: 3.
+* ``color``: Quoted name of a variable. If supplied, this variable will be used to classify the data by color. Default: NA.
+* ``nrow``: Numeric value for number of rows in the plot matrix. If not supplied, the plots will be automatically sorted. Default: NA.
+* ``ncol``: Numeric value for number of columns in the plot matrix. If not supplied, the plots will be automatically sorted. Default: NA.
 * lim_y Numeric value for the y axis upper and lower limit. If NA, the biggest residual value is used. Default: NA.
-* xlab Character value for the x label used in some plots. Default: "Observed values".
+* ``xlab``: Character value for the x label used in some plots. Default: "Observed values".
 * clab Character value for the color label used, if a color variable is supplied. If not supplied, the color variable name will be used. Default: NA.
 * font Type of font used in the plot. Default: "serif".
-* legend_pos Position of legend, when a color variable is supplied. This can either be "left", "right", "top" or "bottom". Default: "bottom".
+* ``legend_pos``: Position of legend, when a color variable is supplied. This can either be "left", "right", "top" or "bottom". Default: "bottom".
 * gray_scale If TRUE, the plot will be rendered in a gray scale. Default: "TRUE".
 * res_table If TRUE, the function will return a data frame with observed, estimated, and residual values. Default: FALSE.
 
@@ -34,22 +46,37 @@ data("exfm11")
 head(exfm11)
 # Specifying the observed and estimated variables, we get a scatter plot for the percentage residuals:
 resid_plot(exfm11, "TH", "TH_EST1")
+```
+
+```{r}
 # It's possible to get other types of plots, with the type argument:
 resid_plot(exfm11, "TH", "TH_EST1", type = "histogram")
 resid_plot(exfm11, "TH", "TH_EST1", type = "histogram_curve")
 resid_plot(exfm11, "TH", "TH_EST1", type = "versus")
+```
+
+```{r}
 # It's possible to add a factor variable as color in the plots:
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", color="STRATA")
 # A colored plot is also available:
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", color="STRATA", gray_scale=FALSE)
 # It's possible to change xlabels and color labels:
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", color="STRATA", xlab="Total Height (m)", clab="Strata")
+```
+
+```{r}
 # If there are more estimated values variables, they can also be used in the comparison:
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2")
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", "TH_EST3")
+```
+
+```{r}
 # It's possible to rearrange the plots with ncol and nrow:
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", "TH_EST3", ncol=1)
 resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", "TH_EST3", nrow=2)
+```
+
+```{r}
 # It's possible to get the residuals table used to generate these plots, with res_table=TRUE:
 head( resid_plot(exfm11, "TH", "TH_EST1", "TH_EST2", res_table = TRUE) )
 ```

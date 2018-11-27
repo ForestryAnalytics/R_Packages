@@ -1,3 +1,12 @@
+---
+title: "``show.cols.with.na`` "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FAwR)
+```
 
 ## ``show.cols.with.na``
 show.cols.with.na Identifies variables in a dataframe that have missing values, along

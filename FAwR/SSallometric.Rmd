@@ -1,7 +1,5 @@
 ---
-title: "YTGen Study"
-author: "KevinOBrien"
-date: "3 October 2018"
+title: "``SSallometric`` "
 output: html_document
 ---
 
@@ -9,12 +7,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(FAwR)
 ```
-##``SSallometric`` 
+## ``SSallometric`` 
 
 Self-starting version of the allometric function $y = a x^b$.
 
 ### Description
-This function is used for fitting the allometric function to bivaraite data. The function is of the form
+This function is used for fitting the allometric function to bivariate data. The function is of the form
 $$y = \alpha x ^{\beta},$$ where traditionally x and y are different dimensions of a sampling unit, such as
 diameter and volume of a tree.
 

@@ -1,7 +1,5 @@
 ---
-title: "YTGen Study"
-author: "KevinOBrien"
-date: "3 October 2018"
+title: "``get.col.report`` "
 output: html_document
 ---
 

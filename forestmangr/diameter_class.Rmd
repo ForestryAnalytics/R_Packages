@@ -1,6 +1,16 @@
+---
+title: "``diameter_class``:  Divide data into diameter classes, and get number of observations"
+output: html_document
+---
 
-diameter_class Divide data into diameter classes, and get number of observations
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
+
 #### Description
+
 This function can be used to divide data into diameter classes, get the number of observations,
 number of observations per ha, and check number of species individuals, volume and G in each
 diameter class. It’s also possible to spread the diameter classes as columns.
@@ -15,7 +25,7 @@ G_to_cc = FALSE, cctc_ha = TRUE, keep_unused_classes = FALSE)
 
 #### Arguments 
 
-*``df``: A data frame.
+* ``df``: A data frame.
 * ``dbh``: Quoted nameof the diameter at breast height variable, in cm.
 plot Optional parameter.Quoted name of the plot variable. used to differentiate the
 plots trees, and calculate the number of sampled plots. Default NA.
@@ -28,42 +38,58 @@ Default: 5.
 diameter_class 9
 * ``volume``:  Optional parameter. Quoted name of the volume variable. If supplied, will be used classify the volume variable in the different diameter classes. Also, if cc_to_column is TRUE, the center of class columns will be filled with volume
 values, instead of number of individuals. Default NA.
-NI_label Label used for Species not identified. This parameter works along with species.
+* ``NI_label``: Label used for Species not identified. This parameter works along with species.
 The level supplied here will not be considered in the classification. Default
 "NI".
-cc_to_column If TRUE, will spread the center class column as multiple columns, one for each class. The value that fills these columns, by default is the number of individuals
+* ``cc_to_column`` If TRUE, will spread the center class column as multiple columns, one for each class. The value that fills these columns, by default is the number of individuals
 found in each class, but this can be changed by using other #### Arguments . Default FALSE.
-G_to_cc If TRUE, and cc_to_column is also TRUE, will fill the center of class columns with basal area values, instead of number of individuals. Default FALSE.
-cctc_ha If TRUE, will calculate values per hectare for number of individuals per class, basal area per class and volume per class (if supplied). These values will also be
+* ``G_to_cc`` If TRUE, and cc_to_column is also TRUE, will fill the center of class columns with basal area values, instead of number of individuals. Default FALSE.
+* ``cctc_ha`` If TRUE, will calculate values per hectare for number of individuals per class, basal area per class and volume per class (if supplied). These values will also be
 used to fill the center of class columns, if cc_to_column is TRUE. Default TRUE.
-keep_unused_classes
-Some diameter classes may end up empty, depending on the maximum value of diameter and the class interval used. If this is TRUE, those classes will not be
+* ``keep_unused_classes``: Some diameter classes may end up empty, depending on the maximum value of diameter and the class interval used. If this is TRUE, those classes will not be
 removed from the final data frame. Default FALSE.
-Value
-A data frame containing the supplied data divided into diameter classes.
-Author(s)
-Sollano Rabelo Braga <sollanorb@gmail.com>
+
+
 
 #### Examples
 ```{r}
 library(forestmangr)
 data("exfm20")
 head(exfm20)
+```
+
+```{r}
 # n
 # Number of individuals per ha per diameter class
 diameter_class(df = exfm20, dbh = "dbh", ci = 10, dbhmin = 10, volume = "vol")
 # Number of individuals per ha per diameter class per species
 diameter_class(exfm20,"dbh", "transect", 10000, 10, 10, "scientific.name")
+```
+
+```{r}
+
 # Number of individuals per ha per diameter class, with each diameter class as a column
 diameter_class(exfm20,"dbh", "transect", 10000, 10, 10, "scientific.name", cc_to_column=TRUE)
+```
+
+```{r}
 # G
 # Basal area per ha per diameter class, with each diameter class as a column
-diameter_class(exfm20,"dbh", "transect",10000,10,10,"scientific.name",
-cc_to_column=TRUE,G_to_cc=FALSE)
-10 dom_height
+diameter_class(exfm20,"dbh", "transect",10000,10,10,"scientific.name", cc_to_column=TRUE,G_to_cc=FALSE)
+```
+
+```{r}
 # Volume
 # Volume per ha per diameter class
 diameter_class(exfm20,"dbh", "transect", 10000, 10, 10, "scientific.name",volume = "vol")
+```
+
+```{r}
 # Volume per ha per diameter class, with each diameter class as a column
 diameter_class(exfm20,"dbh","transect",10000,10,10,"scientific.name","vol",cc_to_column=TRUE)
 ```
+
+#### Value
+A data frame containing the supplied data divided into diameter classes.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>

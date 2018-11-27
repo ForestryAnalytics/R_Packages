@@ -1,3 +1,12 @@
+---
+title: "``ht.fvs.ni.m`` "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FAwR)
+```
 
 ## ``get.row.report``
 get.row.report Obtains row information about the GLPK problem object
