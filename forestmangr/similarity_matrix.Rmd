@@ -1,5 +1,13 @@
+---
+title: "``similarity_matrix``  Get the similarity matrix of an area"
+output: html_document
+---
 
-similarity_matrix Get the similarity matrix of an area
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
 
 #### Description
 Calculates the Jaccard similarity index and Sorensen similarity index.
@@ -19,21 +27,13 @@ species in the diameter data.
 * index Character value for the desired index to be used. Can be either Jaccard, for a matrix based on the Jaccard index of similarity, "Sorensen", for a matrix based the Sorensen index of similarity, or "all", for a list with matrices for
 both indexes. Default: "Sorensen".
 
-#### Value
-a matrix object with a similarity matrix, or a list with two similarity matrices, one for each index,
-according to the index argument.
-Author(s)
-Eric Bastos Gorgens <e.gorgens@gmail.com>
-#### References
-Souza, A. L. and Soares, C. P. B. (2013) Florestas Nativas: estrutura, dinamica e manejo. Vicosa:
-UFV.
+
 #### Examples
 ```{r}
 library(forestmangr)
 data(exfm20)
 # To get the similarity matrix of an area, we simply need to provide
 # the species variable name, and a subdivision variable name, like
-smalianwb 53
 # transect. By default we get a a matrix based on the Sorensen index:
 similarity_matrix(exfm20, "scientific.name", "transect")
 # To get the similarity matrix of Jaccard, use the index argument:
@@ -45,3 +45,11 @@ ex_pair <- exfm20[exfm20$transect %in% c("T01", "T02") , ]
 ex_pair
 similarity_matrix(ex_pair, "scientific.name", "transect", index = "all")
 ```
+#### Value
+a matrix object with a similarity matrix, or a list with two similarity matrices, one for each index,
+according to the index argument.
+Author(s)
+Eric Bastos Gorgens <e.gorgens@gmail.com>
+#### References
+Souza, A. L. and Soares, C. P. B. (2013) Florestas Nativas: estrutura, dinamica e manejo. Vicosa:
+UFV.

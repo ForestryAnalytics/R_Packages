@@ -1,4 +1,13 @@
-Graybill_F Graybill <i>F</i> Test
+---
+title: "``Graybill_F``  Graybill <i>F</i> Test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
 
 #### Description
 Hypothesis test as described by Graybill (1976).
@@ -17,6 +26,7 @@ Graybill_F(df, Y1, Yj, output = 1, signif = 0.05)
 * signif Numeric value for the significance level used in the test. Default: 0.05.
 
 #### Examples
+```{r}
 library(forestmangr)
 data("exfm11")
 head(exfm11)
@@ -24,12 +34,19 @@ head(exfm11)
 # standard value. We'll compare it to height estimated using different hypsometric equations.
 # These are variables "TH_EST1" and "TH_EST2":
 Graybill_F( exfm11,"TH", "TH_EST1")
+```
+
+```{r}
 # TH_EST1 is statistically different from "TH".
 # It's possible to alter the test's significance level using the signif argument:
 Graybill_F( exfm11,"TH", "TH_EST1", signif = 0.01)
+```
+
+```{r}
 # Different output options are available through the output argument:
 Graybill_F( exfm11,"TH", "TH_EST2", output=2)
 Graybill_F( exfm11,"TH", "TH_EST2", output=3)
+```
 
 #### Details
 This test is used to compare two variables, usually a proposed method, and a standard variable. This test is popular among forestry engineers, specially because, since it considers all data in it’s analysis,

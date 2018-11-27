@@ -1,4 +1,13 @@
-smalianwb Calculate the volume with bark of trees using the Smalian method
+---
+title: "``smalianwb``  Calculate the volume with bark of trees using the Smalian method"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
 #### Description
 Function used to calculate the volume with bark of trees using the Smalian method. This function
 has integration with dplyr, so it can be used inside a pipe, along with the group_by function.
@@ -12,11 +21,11 @@ hi_cm_to_m = FALSE)
 #### Arguments 
 *``df``: A data frame.
 * ``di``: Quoted name of the section diameter variable, in centimeters.
-* hi Quoted name of the section height variable, in meters
-* tree Quoted name of the tree variable. used to differentiate the trees’ sections. If this argument is NA, the defined groups in the data frame will be used
+* ``hi``: Quoted name of the section height variable, in meters
+* ``tree``: Quoted name of the tree variable. used to differentiate the trees sections. If this argument is NA, the defined groups in the data frame will be used
 * ``.groups``: Optional argument. Quoted name(s) of additional grouping variables that can be added to differentiate subdivisions of the data. If this argument is not supplied, the defined groups in the data frame will be used. Default: NA.
-* di_mm_to_cm Boolean argument that, if TRUE, converts the di argument from milliliters to centimeters. Default: FALSE.
-* hi_cm_to_m Boolean argument that, if TRUE, converts the hi argument from centimeters to meters. Default: FALSE.
+* ``di_mm_to_cm``: Boolean argument that, if TRUE, converts the di argument from milliliters to centimeters. Default: FALSE.
+* ``hi_cm_to_m``: Boolean argument that, if TRUE, converts the hi argument from centimeters to meters. Default: FALSE.
 
 
 #### Examples

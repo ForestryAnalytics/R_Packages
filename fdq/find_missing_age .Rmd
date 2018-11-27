@@ -1,5 +1,14 @@
+---
+title: "fdq : ``find_missing_age``"
+author: "Kevin O'Brien"
+date: "27 November 2018"
+output: html_document
+---
 
-## find_missing_age find_missing_age
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fdq)
+```
 
 #### Description
 This function identifies the missing age values in the database and notifies them to the user.
@@ -10,6 +19,6 @@ find_missing_age(database, age_name, ages_to_check)
 </code></pre>
 
 #### Arguments
-* database data.frame, data.table or any database
-* age_name string that contains the field name that represents age in database
-* ages_to_check vector containing the values of ages to be checked like c(12,23,48)
+* ``database``: data.frame, data.table or any database.
+* ``age_name``: string that contains the field name that represents age in database.
+* ``ages_to_check``: vector containing the values of ages to be checked like ``c(12,23,48)``.

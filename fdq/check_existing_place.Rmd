@@ -1,3 +1,14 @@
+---
+title: "fdq : ``check_existing_place``"
+author: "Kevin O'Brien"
+date: "27 November 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fdq)
+```
 
 check_existing_place check_existing_place
 

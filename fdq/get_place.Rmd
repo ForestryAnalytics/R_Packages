@@ -1,10 +1,24 @@
+---
+title: "fdq : ``get_place``"
+author: "Kevin O'Brien"
+date: "27 November 2018"
+output: html_document
+---
 
-get_place get_place
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fdq)
+```
+
+
+get_place 
 #### Description
 This function returns a database from a particular site or location present in the original database
 #### Usage
+<pre><code>
 get_place(database, place_name, place_value)
+</code></pre>
 #### Arguments
-database data.frame, data.table or any database
-place_name string with the name of the column that represents the place
-place_value vector with values of that you want to filter the sites/places of the database
+* ``database``: data.frame, data.table or any database
+* ``place_name``: string with the name of the column that represents the place
+* ``place_value``: vector with values of that you want to filter the sites/places of the database

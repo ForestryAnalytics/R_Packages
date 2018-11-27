@@ -1,17 +1,26 @@
-check_parcel_different_spacing
-check_parcel_different_spacing
+---
+title: "fdq : ``check_parcel_different_spacing``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fdq)
+```
+
 #### Description
-This function checks for partitions with different spacing at i and i + 1 ages, it is necessary that the
-base be paired including the field representing the spacing, doubts about how to pair its base see the
-Fgmutils package
+This function checks for partitions with different spacing at i and i + 1 ages, it is necessary that the base be paired including the field representing the spacing, doubts about how to pair its base see the ***Fgmutils*** package
+
 #### Usage
+<pre><code>
 check_parcel_different_spacing(database, parcel_name, spacing_age1,
 spacing_age2, variables_to_group)
+</code></pre>
+
 #### Arguments
-database data.frame, data.table or any database
-parcel_name string containing the field name parcels in database
-spacing_age1 string containing the name of the field spacing in the first age
-spacing_age2 string containing the name of the field spacing in the second age
-variables_to_group
-variable (s) that you want to group the result of the analysis, this can be a vector
-os strings or strign name to group
+* ``database``: data.frame, data.table or any database
+* ``parcel_name``: string containing the field name parcels in database
+* ``spacing_age1``: string containing the name of the field spacing in the first age
+* ``spacing_age2``: string containing the name of the field spacing in the second age
+* ``variables_to_group``: variable (s) that you want to group the result of the analysis, this can be a vector
+or strings or strign name to group

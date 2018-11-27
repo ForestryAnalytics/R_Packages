@@ -1,5 +1,14 @@
+---
+title: "``species_diversity``  Get the species diversity indexes"
+output: html_document
+---
 
-species_diversity Get the species diversity indexes
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
+
 #### Description
 Calculate the diversity of species for the following indexes: Shannon, Simpson, Equitability, Pielou
 and Jentsch.

@@ -1,4 +1,14 @@
-huberwob Calculate the volume without bark of trees using the Huber method
+---
+title: "``huberwob `` Calculate the volume without bark of trees using the Huber method"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
+
 #### Description
 Function used to calculate the volume without bark of trees using the Huber method. This function
 has integration without dplyr, so it can be used inside a pipe, along with the group_by function.
@@ -20,6 +30,24 @@ groups in the data frame will be used. Default: NA.
 #### Value
 Data frame with volume values by section.
 
+
+#### Examples
+```{r}
+library(forestmangr)
+data("exfm8")
+head(exfm8)
+# Calculate the volume without bark using the Huber method:
+huberwob(exfm8,"di_wb", "sec_length", "bark_t", "TREE")
+```
+
+```{r}
+# Using pipes:
+library(dplyr)
+exfm8 %>%
+group_by(TREE) %>%
+huberwob("di_wb", "sec_length", "bark_t")
+```
+
 #### Author(s)
 Sollano Rabelo Braga <sollanorb@gmail.com>
 #### References
@@ -29,17 +57,3 @@ See Also
 Complementary functions: huberwb, For calculation of volume with bark using the Huber method,
 smalianwb, for calculation of volume with bark using the Smalian method, smalianwob, for calculation
 of volume without bark the Smalian method.
-#### Examples
-```{r}
-library(forestmangr)
-data("exfm8")
-head(exfm8)
-# Calculate the volume without bark using the Huber method:
-huberwob(exfm8,"di_wb", "sec_length", "bark_t", "TREE")
-# Using pipes:
-library(dplyr)
-exfm8 %>%
-ident_model 37
-group_by(TREE) %>%
-huberwob("di_wb", "sec_length", "bark_t")
-```

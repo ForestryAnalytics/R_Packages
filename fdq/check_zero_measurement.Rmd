@@ -1,18 +1,26 @@
-check_zero_measurement 9
-check_zero_measurement
+---
+title: "fdq : ``check_zero_measurement``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fdq)
+```
+
 check_zero_measurement
 #### Description
 This analysis verifies which measurement variables have values equal to 0 and then checks if there
 are variables in the states that the user reported
+
 #### Usage
+<pre><code>
 check_zero_measurement(data_base, measurement_variables, state_name,
 states_to_check)
+</code></pre>
+
 #### Arguments
-data_base data.frame, data.table or any database
-measurement_variables
-string vector containing name of the field(s) it represents measurement variable(
-s) to be analyzed
-state_name string vector containing the name of the variable than represents state in database
-states_to_check
-string vector containing the name of the the states to be checked, the user can
-inform this names in a string vector like ("F","N")
+* ``data_base``: data.frame, data.table or any database.
+* ``measurement_variables``: string vector containing name of the field(s) it represents measurement variable(s) to be analyzed.
+* ``state_name``: string vector containing the name of the variable than represents state in database
+* ``states_to_check``: string vector containing the name of the the states to be checked, the user can inform this names in a string vector like ``("F","N")``.

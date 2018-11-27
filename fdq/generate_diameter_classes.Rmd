@@ -1,14 +1,26 @@
+---
+title: "fdq : ``generate_diameter_classes``"
+output: html_document
+---
 
-generate_diameter_classes
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fdq)
+```
+
+
+
 generate_diameter_classes
 #### Description
 This function identifies non-existent column names in the database and informs the user
 #### Usage
+<pre><code>
 generate_diameter_classes(database, diameter_names, amplitude,
 name_of_diameter_class)
+</code></pre>
+
 #### Arguments
-database data.frame, data.table or any database
-diameter_names string with name of the field that contains the diameters of database
-amplitude desired amplitude for class creation, example: 1,2,4,6,7
-name_of_diameter_class
-string with name you want for the field class of diameter
+* ``database``: data.frame, data.table or any database
+* ``diameter_names``: string with name of the field that contains the diameters of database
+* ``amplitude``: desired amplitude for class creation, example: 1,2,4,6,7
+* ``name_of_diameter_class``: string with name you want for the field class of diameter

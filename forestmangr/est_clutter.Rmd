@@ -1,3 +1,14 @@
+---
+title: "about_fdq"
+author: "Kevin O'Brien"
+date: "27 November 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
 
 est_clutter Estimate future and present basal area, volume, TCA, CMI and MMI
 values of the Clutter Growth and Yield Model
@@ -43,20 +54,34 @@ for classifying data according to site.
 library(forestmangr)
 data("exfm17")
 head(exfm17)
-exfm1 13
 clutter <- fit_clutter(exfm17, "age", "DH", "B", "V", "S", "plot")
 clutter
+```
+
+```{r}
 # Classify data into 3 classes:
 ex_class <- classify_site(exfm17, "S", 3, "plot")
 head(ex_class ,15)
+```
+
+```{r}
 # Estimate basal area using the average basal area as the initial basal area,
 # volume, Mean Monthly Increment (MMI) and Current Monthly Increment (CMI)
 # values using Clutter's model:
 est_clutter(ex_class,20:125, "B","S","category_",clutter,"average")
+```
+
+```{r}
 # For a more detailed output, including a plot, use output="all":
 est_clutter(ex_class,20:125, "B","S","category_",clutter, output="all")
+```
+
+```{r}
 # Estimate basal area using an estimated basal area as the initial basal area:
 est_clutter(ex_class,20:125,"B","S","category_",clutter,"model")
+```
+
+```{r}
 # age can be a variable:
 est_clutter(ex_class,"age","B","S","category_", clutter,"model")
 ```
