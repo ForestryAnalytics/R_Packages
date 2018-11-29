@@ -7,18 +7,19 @@ volume. Users should remember they’re just approximations and sample size prov
 results them using different methods.
 
 #### Usage
+<pre><code>
 volume(trees, method = "smalian")
-Arguments
-trees a data frame or matrix in format described in dataset inventory (more help
-inventory)
-method method used for estimation of the stem volume
+</code></pre>
+
+#### Arguments
+* trees a data frame or matrix in format described in dataset inventory (more help inventory)
+* method method used for estimation of the stem volume
 
 ##### Value
 a named vector of volumes, names are defined as same as in first column
 
 #### Note
-Newton and Huber methods have small modifications for working just with two mensures (lower
-and upper diameter). Both of them use mean instead of real middle diameter.
+Newton and Huber methods have small modifications for working just with two mensures (lower and upper diameter). Both of them use mean instead of real middle diameter.
 
 ##### References
 http://wiki.awf.forst.uni-goettingen.de/wiki/index.php/Stem_volume
@@ -42,13 +43,4 @@ data(inventory)
 volume_output <- volume(inventory)
 summary(volume_output)
 hist(volume_output)
-5Index
-∗Topic datasets
-inventory, 3
-ff, 1, 4
-FI, 2
-FI-package (FI), 2
-inventory, 3, 4
-sf, 3, 4
-volume, 2, 3, 4
-6
+
