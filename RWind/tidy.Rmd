@@ -1,0 +1,30 @@
+tidy Transforming a rWind_series object into a data.frame
+#### Description
+
+The output of tidy is always a data.frame. It is therefore suited for further manipulation by packages
+like dplyr, reshape2, ggplot2 and ggvis.
+
+#### Usage
+<pre><code>
+tidy(x, ...)
+## S3 method for class 'rWind_series'
+tidy(x, ...)
+</code></pre>
+#### Arguments
+* ``x``: An object to be converted into a tidy data.frame
+* ``...``: extra arguments
+
+#### Examples
+```{r}
+data(wind.series)
+df <- tidy(wind.series)
+head(df)
+## Not run:
+# use the tidyverse
+library(dplyr)
+mean_speed <- tidy(wind.series) %>% group_by(lat, lon) %>%
+summarise(speed=mean(speed))
+wind_average2 <- wind.mean(wind.series)
+all.equal(wind_average2$speed, mean_speed$speed)
+## End(Not run)
+```
