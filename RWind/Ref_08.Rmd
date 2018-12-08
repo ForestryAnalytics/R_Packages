@@ -1,0 +1,32 @@
+wind2raster
+Wind-data to raster file
+#### Description
+
+wind2raster crates a raster stack (gridded) with 2 layers: wind speed and wind direction for an
+object of rWind. Latitude and logitude values are used to locate raster file and to create raster using
+rasterFromXYZ function from raster package. If the input file is a list of wind data created by
+wind.dl, a list of raster stacks will be returned14
+wind2raster
+Usage
+wind2raster(x)
+Arguments
+x
+an "rWind list" obtained by wind.fit
+#### Details 
+ 
+WGS84 datum (non-projected) CRS is selected by default to build the raster file.
+#### Value
+
+A raster stack or a list of raster stacks representing wind direction and speed.
+
+#### Author(s) 
+ 
+Javier Fernández-López (jflopez@rjb.csic.es)
+See Also
+wind.dl
+#### Examples
+ ```{r}
+data(wind.data)
+# Create raster stack from the downloaded data with wind directon and speed
+# layers
+wind2raster(wind.data)
