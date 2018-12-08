@@ -1,0 +1,19 @@
+rWind-package
+
+Download, edit and include wind data in ecological and evolutionary analysis
+#### Description
+
+rWind contain tools for downloading, editing and transforming wind data from Global Forecast
+System (GFS). It also allows to use wind data to compute the minimum cost path from wind speed
+and direction to perform connectivity analysis.
+#### Details 
+ 
+The complete list of functions can be displayed with library(help = rWind). For more informa-
+tion, please check: http://allthiswasfield.blogspot.com.es/
+
+#### Author(s) 
+ 
+Javier Fernández-López
+Klaus Schliep
+Maintainer: Javier Fernández-López <jflopez.bio@gmail.com>
+arrowDir
