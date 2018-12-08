@@ -1,0 +1,38 @@
+
+uv2ds Transform U and V components in direction and speed and vice versa
+
+#### Description
+
+Transform U and V components in direction and speed and vice versa
+
+#### Usage
+<pre><code>
+uv2ds(u, v)
+ds2uv(d, s)
+</code></pre>
+
+#### Arguments
+u U component.
+v U component.
+d direction (degrees).
+s speed (m/s).
+
+#### Value
+
+"uv2ds" returns a matrix with direction and speed values
+"ds2uv" returns a matrix with U and V values
+
+Note
+Multiple U and V values can be procesed.
+
+#### Author(s) 
+ 
+Javier Fernández-López (jflopez@rjb.csic.es)
+See Also
+wind.mean, wind2raster
+
+#### Examples
+```{r}
+( ds <- uv2ds(c(1,1,3,1), c(1,1.7,3,1)) )
+ds2uv(ds[,1], ds[,2])
+```
