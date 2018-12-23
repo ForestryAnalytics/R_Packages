@@ -1,10 +1,16 @@
 
-check_existing_plots check_existing_plots
+check_existing_plots
+
 #### Description
 This function checks if a particular set of parcels exists in a database column
+
 #### Usage
+
+<pre><code>
 check_existing_plots(database, plots_name, plots_to_check)
+</code></pre>
+
 #### Arguments
-* database data.frame, data.table or any database
-* plots_name string column name representing parcels in the base
-* plots_to_check value(s) to be checked, example: c(356,122)
+* database : data.frame, data.table or any database
+* plots_name : string column name representing parcels in the base
+* plots_to_check :  value(s) to be checked, example: c(356,122)
