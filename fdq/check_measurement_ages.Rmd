@@ -2,9 +2,7 @@
 ## check_measurement_ages
 
 #### Description
-This function verifies if measurement variables have records of type DAP2 <DAP1, HT2 <HT1 in
-consecutive ages i + 1 and i tt is necessary that the base is already paired to perform such analysis,
-to know more about pairing consult the Fgmutils package
+This function verifies if measurement variables have records of type DAP2 <DAP1, HT2 <HT1 in consecutive ages i + 1 and i tt is necessary that the base is already paired to perform such analysis, to know more about pairing consult the Fgmutils package
 
 #### Usage
 <pre><code>
