@@ -1,7 +1,5 @@
 ---
 title: "Forestry Analytics with R"
-author: "KevinOBrien"
-date: "3 October 2018"
 output: html_document
 ---
 
@@ -59,6 +57,4 @@ predvol(species,d,model=1)
 #### Value
 
 * A vector of tree volumes (in liters).
-
-#### References
 
