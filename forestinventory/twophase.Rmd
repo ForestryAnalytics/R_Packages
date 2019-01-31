@@ -5,50 +5,38 @@ twophase
 twophase
 
 #### Description
-twophase is used to calculate estimations based on double sampling under the model-assisted Monte
-Carlo approach. A first phase of auxiliary information (e.g. taken from remote sensing data) is used
-to generate model predictions based on multiple linear regression using the method of ordinary
-least squares. A subsample of the first phase comprises the second phase which contains terrestrial22
-twophase
-observations (i.e. the local densities of the ground truth) that is used to correct for bias in the design-
-based sense. The estimation method is available for simple and cluster sampling and includes
-the special case where the first phase is based on an exhaustive sample (i.e. a census). Small-
-area applications are supported for synthetic estimation as well as two varieties of bias-corrected
-estimators: the traditional small-area estimator and an asymptotically equivalent version derived
-under * Mandallaz’s extended model approach.
+* twophase is used to calculate estimations based on double sampling under the model-assisted Monte Carlo approach. A first phase of auxiliary information (e.g. taken from remote sensing data) is used to generate model predictions based on multiple linear regression using the method of ordinary least squares. 
+* A subsample of the first phase comprises the second phase which contains terrestrial observations (i.e. the local densities of the ground truth) that is used to correct for bias in the design-based sense. 
+* The estimation method is available for simple and cluster sampling and includes the special case where the first phase is based on an exhaustive sample (i.e. a census). Small-area applications are supported for synthetic estimation as well as two varieties of bias-corrected estimators: the traditional small-area estimator and an asymptotically equivalent version derived
+under Mandallaz’s extended model approach.
 
 ### Usage
+<pre><code>
 twophase(formula, data, phase_id, cluster = NA, small_area = list(sa.col =
 NA, areas = NA, unbiased = TRUE), boundary_weights = NA, exhaustive = NA,
 progressbar = FALSE, psmall = FALSE)
+</code></pre>
 
 ### Arguments
-formula an object of class "formula" as would be used in the function lm
-data a data frame containing all variables contained in formula and a column in-
-dexing phase membership. Additional columns designating small-area mem-
-bership, cluster ID and boundary weights should also be contained in the data
-frame if they are requested in the function.
-phase_id an object of class "list" containing two elements:
-*  phase.col: the column name in data that specifies the phase membership
-of each observation
+* formula an object of class "formula" as would be used in the function lm
+* data a data frame containing all variables contained in formula and a column indexing phase membership. Additional columns designating small-area membership, cluster ID and boundary weights should also be contained in the data
+* frame if they are requested in the function.
+* phase_id an object of class "list" containing two elements:
+*  phase.col: the column name in data that specifies the phase membership of each observation
 *  terrgrid.id: the indicator identifying the terrestrial (a.k.a. "ground truth")
 phase for that column (must be of type "numeric")
-cluster (Optional) Specifies the column name in data containing the cluster ID. Only
-used in case of cluster sampling.
-small_area (Optional) a list that if containing three elements:
+* cluster (Optional) Specifies the column name in data containing the cluster ID. Only used in case of cluster sampling.
+* small_area (Optional) a list that if containing three elements:
 *  sa.col: the column name in data containing domain identification
 *  areas: vector of desired small-area domain identifiers
 *  unbiased: an object of type "logical" that when FALSE designates that
 the estimator is allowed to be biased (i.e. the synthetic estimator) and when
-TRUE forces it to be design-unbiased. See ’
-
-#### Details.
+TRUE forces it to be design-unbiased. See "Details".
 Note: If small_area is left unchanged then twophase defaults to global esti-
 mation.
 boundary_weights
 (Optional) Specifies the column name in data containing the weights for bound-
-ary adjustment. See ’
-#### Details’
+ary adjustment. See "Details".
 exhaustive
 (Optional) For global estimation, a vector of true auxiliary means corresponding
 to an exhaustive first phase. The vector must be input in the same order that
@@ -56,15 +44,12 @@ lm processes a formula object and include the intercept term. For small area
 estimation, exhaustive is a data.frame containing column names (colnames)
 for every variable appearing in the parameter formula including the variable
 "Intercept".Rownames (row.names) have to be used and must correspond to the
-names of the small areas. See ’
-#### Details’.twophase
-23
+names of the small areas. See "Details".
 progressbar (Optional) an object a type "logical" that when TRUE prints the progress of
 the calculation in the console (recommended for large amount of small areas).
 Defaults to FALSE.
 psmall (Optional) an object a type "logical" used for small area estimations that only
-works when unbiased in the parameter small_area is set to TRUE. See ’De-
-tails’.
+works when unbiased in the parameter small_area is set to TRUE. See ’Details’.
 
 #### Details
 If estimations for multiple small-area domains should be computed, the domains have to be defined
@@ -74,25 +59,12 @@ ased in that small area. The default, small_area(..., unbiased=TRUE), allows for
 correction by one of two asympototically equivalent methods to create design-unbiased estimates:
 Mandallaz’s extended model approach calculates the residual correction by extending the
 model formula with an indicator variable in the small area. It is the default method psmall=FALSE.
-the traditional small area estimator calculates the residual correction by taking the synthetic
-estimator and adding the mean residual observed in the small area. It is activated when
-psmall=TRUE.
+the traditional small area estimator calculates the residual correction by taking the synthetic estimator and adding the mean residual observed in the small area. It is activated when psmall=TRUE.
 
-Missing values (NA) in the auxiliary variables (i.e. at least one auxiliary variable cannot be observed
-at an inventory location) are automatically removed from the dataset before the estimations are
-computed. Note that missingness in the auxiliary variables is only allowed if we assume that they
-are missing at random, since the unbiasedness of the estimates is based on the sampling design.
-The boundary weight adjustment is pertinent for auxiliary information derived from remote sensing
-and is equal to the percentage of forested area (e.g. as defined by a forest mask) in the interpretation
-area.
+Missing values (NA) in the auxiliary variables (i.e. at least one auxiliary variable cannot be observed at an inventory location) are automatically removed from the dataset before the estimations are computed. Note that missingness in the auxiliary variables is only allowed if we assume that they are missing at random, since the unbiasedness of the estimates is based on the sampling design.
+The boundary weight adjustment is pertinent for auxiliary information derived from remote sensing and is equal to the percentage of forested area (e.g. as defined by a forest mask) in the interpretation area.
 
-Exhaustive estimation refers to when the true means of certain auxiliary variables are known and
-an exhaustive first phase (i.e. a census). For global estimation, the vector must be input in the same
-order that lm processes a formula object including the intercept term whose true mean will always
-be one. For small area estimation, exhaustive is a data.frame containing column names for every
-variable appearing in the parameter formula including the variable "Intercept". The observations of
-the data.frame must represent the true auxiliary means in the same order as was presented in areas
-from the parameter small_area. See Examples 
+Exhaustive estimation refers to when the true means of certain auxiliary variables are known and an exhaustive first phase (i.e. a census). For global estimation, the vector must be input in the same order that lm processes a formula object including the intercept term whose true mean will always be one. For small area estimation, exhaustive is a data.frame containing column names for every variable appearing in the parameter formula including the variable "Intercept". The observations of the data.frame must represent the true auxiliary means in the same order as was presented in areas from the parameter small_area. See Examples 
 
 ### Value
 twophase returns an object of class "twophase".
@@ -111,24 +83,19 @@ model from the current inventory
 *  n1G the first phase sample size in the small area
 *  n2G the second phase (i.e. terrestrial) sample size in the small area
 *  r.squared the R squared of the linear model
-samplesizes a data.frame summarizing all samplesizes: in case of cluster sampling both,
-the number of individual plots and the nuber of clusters is reported.
-coefficients the linear model coefficients
-cov_coef the design-based covariance matrix of the model coefficients
-Z_bar_1G the estimated auxiliary means of formula based on the first phase. If the first
-phase is exhaustive, these are the true auxiliary means specified in the input-
+samplesizes a data.frame summarizing all samplesizes: in case of cluster sampling both, the number of individual plots and the nuber of clusters is reported.
+* coefficients the linear model coefficients
+* cov_coef the design-based covariance matrix of the model coefficients
+* Z_bar_1G the estimated auxiliary means of formula based on the first phase. If the first phase is exhaustive, these are the true auxiliary means specified in the input-
 argument exhaustive.
-cov_Z_bar_1G the covariance matrix of Z_bar_1G
-Rc_x_hat_G the small-area residuals at either the plot level or cluster level depending on the
-call
-Rc_x_hat the residuals at either the plot level or cluster level depending on the call
-Yx_s2G the local densities in the small area
-Mx_s2G the cluster weights in the small area
-mean_Rc_x_hat_G
-the mean residual (weighted mean in the case of cluster sampling) in the small
-area
-mean_Rc_x_hat the mean residual (weighted mean in the case of cluster sampling)
-warn.messages logical indicating if warning messages were issued
+* cov_Z_bar_1G the covariance matrix of Z_bar_1G
+* Rc_x_hat_G the small-area residuals at either the plot level or cluster level depending on the call
+* Rc_x_hat the residuals at either the plot level or cluster level depending on the call
+* Yx_s2G the local densities in the small area
+* Mx_s2G the cluster weights in the small area
+* mean_Rc_x_hat_G the mean residual (weighted mean in the case of cluster sampling) in the small area
+* mean_Rc_x_hat the mean residual (weighted mean in the case of cluster sampling)
+* warn.messages logical indicating if warning messages were issued
 
 #### Note
 In the special case of cluster sampling, the reported sample sizes in estimation are the number of
