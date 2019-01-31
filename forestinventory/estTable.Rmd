@@ -1,7 +1,5 @@
 ---
 title: "Forest Inventory with R"
-author: "KevinOBrien"
-date: "3 October 2018"
 output: html_document
 ---
 
@@ -16,9 +14,7 @@ library(forestinventory)
 estTable
 
 #### Description
-estTable can be used to compare the results of onephase to multiphase estimations (twophase,
-threephase). It restructures the estimation results into a table that can be used to plot the estimation
-results and provides the basis for further analysis.
+estTable can be used to compare the results of onephase to multiphase estimations (twophase, threephase). It restructures the estimation results into a table that can be used to plot the estimation results and provides the basis for further analysis.
 
 #### Usage
 <pre><code>
@@ -27,15 +23,10 @@ estTable(est.list, sae = FALSE, add.ci = TRUE, vartypes = c("variance",
 </code></pre>
 
 #### Arguments
-* ``est.list`` a list object containing at least one multiphase estimation object created by
-the twophase or threephase function and the respective onephase estimation
-object.
-* ``sae`` an object of type logical. Has to be set to TRUE if results of small area estima-
-tions are passed to estTable. Defaults to FALSE.
+* ``est.list`` a list object containing at least one multiphase estimation object created by the twophase or threephase function and the respective onephase estimation object.
+* ``sae`` an object of type logical. Has to be set to TRUE if results of small area estimations are passed to estTable. Defaults to FALSE.
 * ``add.ci`` logical: Should confidence intervals be added? Defaults to TRUE.
-* ``vartypes`` Specifiying the variances that should be included in the estimation table. Has to
-be specified as a character vector. The full set contains "variance", "ext_variance"
-and "g_variance".
+* ``vartypes`` Specifiying the variances that should be included in the estimation table. Has to be specified as a character vector. The full set contains "variance", "ext_variance" and "g_variance".
 
 
 #### Value
