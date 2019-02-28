@@ -1,0 +1,27 @@
+check_names Check if character vector contains variable names
+#### Description
+Function used to check if a string, or a character vector contains variable names of a given data
+frame.
+#### Usage
+check_names(df, var_names, boolean = TRUE)
+#### Arguments 
+*``df``: A data frame.
+* ``var_names ``: Character vector to be compared with the data frame names.
+boolean Boolean object used to define if the output is going to be a boolean object TRUE
+, or a string FALSE. Default: TRUE.
+
+#### Examples
+```{r}
+library(forestmangr)
+check_names(iris, "Species")
+check_names(iris, "Species", boolean = FALSE )
+check_names(iris, c("Especies", "Setal.Width") )
+check_names(iris, c("Especies", "Setal.Width"), boolean = FALSE)
+```
+
+#### Details
+Function used to check if a string, or a character vector contains variable names of a given data
+frame. This functions is mainly used to error-proof other functions of this package,
+classify_site 7
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
