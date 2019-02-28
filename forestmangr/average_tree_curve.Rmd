@@ -1,0 +1,31 @@
+average_tree_curve Generate the curve of a forest’s average tree using the Kozak taper
+model
+#### Description
+Generate a ggplot curve of a forest’s average tree using the Kozak taper model (Kozak, Munro and
+Smith, 1969).
+#### Usage
+average_tree_curve(df, d, dbh, h, th, facet = NA)
+#### Arguments 
+*``df``: A data frame.
+d Quoted name of the section diameter variable, in cm.
+* ``dbh``: Quoted nameof the diameter at breast height variable, in cm.
+h Quoted name of the section height variable, in meters.
+th Quoted name of the total height variable, in meters.
+facet Optional argument. If supplied with the Quoted name of a factor variable(s),
+this variable is used to divide the plot into facets. Default: NA.
+Value
+A ggplot object.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+#### References
+Kozak, A., Munro, D. D. and Smith, J. H. G. (1969) Taper Functions and their Application in Forest
+Inventory, The Forestry Chronicle, 45, pp. 278–283.
+4 bdq_meyer
+#### Examples
+library(forestmangr)
+data("exfm7")
+head(exfm7)
+average_tree_curve(df = exfm7, d = "di_wb", dbh = "DBH", h = "hi", th = "TH")
+average_tree_curve(df = exfm7, d = "di_wb", dbh = "DBH", h = "hi", th = "TH", facet = "STRATA")
+
+
