@@ -1,0 +1,42 @@
+exfm10 Inventory data of an eucalyptus forest Brazil with dominant height
+variable
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm10)
+#### Format
+A data frame with 900 observations and 14 variables:
+* `` MAP ``: map numbers
+PROJECT project number
+* ``STRATA``: stratum number
+* ``GENCODE``: genetic code of plots
+* ``STRATA_AREA``:   area of each strata, in hectares
+* `` PLANTING_DATE``:  date of planting
+SPACING Spacing used in the plots, in meters
+* ``PLOT``: plot number
+MEASUREMENT_DATE date of measurement
+PLOT_AREA area of plots, in square meters
+PIT pit number
+* ``dbh``: diameter at breast height, in meters
+* ``TH``:  total height, in meters
+OBS quality of trees, N = normal tree, D = dominant tree, F = a failure, or dead tree
+* `` DH``: dominant height, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+exfm11 15
+exfm11 Observed and estimated values of height of trees, using 3 different
+models
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm11)
+#### Format
+A data frame with 199 observations and 6 variables:
+* ``STRATA``: stratum number
+* ``PLOT``: plot number
+* ``TH``:  total height, in meters
+TH_EST1 total estimated height with model 1, in meters
+TH_EST2 total estimated height with model 2, in meters
+TH_EST3 total estimated height with model 3, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
