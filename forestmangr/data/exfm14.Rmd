@@ -1,0 +1,15 @@
+exfm14 17
+exfm14 Inventory data of an eucalyptus forest in Brazil, with age and dominant
+height variables
+#### Description
+In this data, each observation is a plot.
+#### Usage
+data(exfm14)
+#### Format
+A data frame with 859 observations and 4 variables:
+* ``STRATA``: stratum number
+* ``PLOT``: plot number
+* ``age ``: average age of plots, in months
+* `` DH``: dominant height, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
