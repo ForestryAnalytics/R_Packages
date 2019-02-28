@@ -1,0 +1,32 @@
+exfm4 Simple random inventory definite data
+#### Description
+In this data, each observation is a plot.
+#### Usage
+data(exfm4)
+#### Format
+A data frame with 25 observations and 3 variables:
+TOTAL_AREA total area, in hectares
+PLOT_AREA area of plots, in square meters
+VWB volume with bark, in cubic meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+#### Source
+Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd
+ed. Vicosa: UFV.
+exfm5 Systematic inventory data
+#### Description
+In this data, each observation is a plot.
+#### Usage
+data(exfm5)
+exfm6 25
+#### Format
+A data frame with 18 observations and 3 variables:
+TOTAL_AREA total area, in hectares
+PLOT_AREA area of plots, in square meters
+VWB volume with bark, in cubic meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+#### Source
+Soares, C. P. B., Paula Neto, F. and Souza, A. L. (2012) Dendrometria e Inventario Florestal. 2nd
+ed. Vicosa: UFV.
+
