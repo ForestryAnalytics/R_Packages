@@ -1,0 +1,23 @@
+exfm7 Data of felled trees sections, measured in the Smalian method
+#### Description
+In this data, each observation is a section of a tree.
+#### Usage
+data(exfm7)
+#### Format
+A data frame with 11 observations and 3393 variables:
+* `` MAP ``: map numbers
+PROJECT name of project
+SPACING Spacing used in the plots, in meters
+* ``STRATA``: stratum number
+* ``GENCODE``: genetic code of plots
+TREE number of trees
+* ``dbh``: diameter at breast height, in meters
+* ``TH``:  total height, in meters
+hi height of sections, in meters
+di_wb diameter of sections with bark, in centimeters
+bark_t bark of thickness, in millimeters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
+
+
