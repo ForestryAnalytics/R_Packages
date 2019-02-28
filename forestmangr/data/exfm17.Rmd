@@ -1,0 +1,34 @@
+exfm17 Inventory data of an eucalyptus forest in Brazil, with age and site variables
+#### Description
+In this data, each observation is a plot. The site was estimated using the Schumacher model.
+#### Usage
+data(exfm17)
+exfm18 19
+#### Format
+A data frame with 139 observations and 8 variables:
+* ``STRATA``: stratum number
+* ``PLOT``: plot number
+* ``age ``: average age of plots, in months
+* `` DH``: dominant height, in meters
+N number of individuals
+V volume of trees, in cubic meters
+B basal area, in square meters
+S site variable, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+exfm18 Experimental data on nitrogen effect in species fertilizing
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm18)
+#### Format
+A data frame with 877 observations and 6 variables:
+* ``PLOT``: plot number
+Species species scientific name
+* ``tree``:  tree number
+Trunk trunk number
+CBH circumference at breast height, in meters
+* ``dbh``: diameter at breast height, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+20 exfm19
