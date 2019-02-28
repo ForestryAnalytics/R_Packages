@@ -1,0 +1,25 @@
+exfm6 Stratified random inventory definite data 2
+#### Description
+In this data, each observation is a plot.
+#### Usage
+data(exfm6)
+#### Format
+A data frame with 10 observations and 14 variables:
+* ``GENCODE``: genetic code of plots
+* `` MAP ``: map numbers
+* ``STRATA``: stratum number
+* ``PLOT``: plot number
+* ``age ``: average age of plots, in months
+* ``STRATA_AREA``:   area of each strata, in hectares
+PLOT_AREA area of plots, in square meters
+* ``dbh``: diameter at breast height, in meters
+q quadratic diameter, in meters
+* ``TH``:  total height, in meters
+* `` DH``: dominant height, in meters
+G basal area, in square meters
+VWB volume with bark, in cubic meters
+VWOB volume without bark, in cubic meters
+26 exfm7
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
