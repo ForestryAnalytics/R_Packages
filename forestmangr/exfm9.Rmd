@@ -1,0 +1,24 @@
+exfm9 Inventory data of an eucalyptus forest in minas gerais, Brazil
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm9)
+28 fit_clutter
+#### Format
+A data frame with 900 observations and 14 variables:
+* `` MAP ``: map numbers
+PROJECT project number
+* ``STRATA``: stratum number
+* ``GENCODE``: genetic code of plots
+* ``STRATA_AREA``:   area of each strata, in hectares
+* `` PLANTING_DATE``:  date of planting
+SPACING Spacing used in the plots, in meters
+* ``PLOT``: plot number
+MEASUREMENT_DATE date of measurement
+PLOT_AREA area of plots, in square meters
+PIT pit number
+* ``dbh``: diameter at breast height, in meters
+* ``TH``:  total height, in meters
+OBS quality of trees, N = normal tree, D = dominant tree, F = a failure, or dead tree
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
