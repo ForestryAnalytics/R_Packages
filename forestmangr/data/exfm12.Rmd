@@ -1,0 +1,36 @@
+exfm12 Inventory data of an eucalyptus forest in Brazil, with age and site variables
+#### Description
+In this data, each observation is a plot. The site was estimated using the Chapman & Richards
+model.
+#### Usage
+data(exfm12)
+16 exfm13
+#### Format
+A data frame with 139 observations and 8 variables:
+* ``STRATA``: stratum number
+* ``PLOT``: plot number
+* ``age ``: average age of plots, in months
+* `` DH``: dominant height, in meters
+N number of individuals
+V volume of trees, in cubic meters
+B basal area, in square meters
+S site variable, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+exfm13 Experimental data on nitrogen effect in species fertilizing
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm13)
+#### Format
+A data frame with 36 observations and 7 variables:
+species species common name
+trat treatment number
+esp species number
+N quantity of nitrogen used, in grams
+N2 squared quantity of nitrogen used, in squared grams
+block block number
+* ``dbh``: diameter at breast height, in meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
