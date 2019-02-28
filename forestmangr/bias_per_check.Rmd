@@ -1,0 +1,35 @@
+bias_per Bias of an estimator in percentage
+#### Description
+Function for calculating the bias of an estimator.
+#### Usage
+bias_per(df, y, yhat)
+#### Arguments 
+*``df``: A data frame.
+y Quoted name of the variable representing the observed values in the data frame.
+If a data frame is not provided, y can also be a numeric vector.
+yhat Quoted name of the variable representing the estimated values in the data frame.
+If a data frame is not provided, yhat can also be a numeric vector.
+#### Details
+Function for calculating the bias of an estimator, given the observed values, and the estimated
+values.
+6 check_names
+Value
+Numeric vector with the bias value, in percentage.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+See Also
+other statistics to evaluate estimators: rmse_per for the Root mean square error of an estimator
+
+#### Examples
+```{r}
+library(forestmangr)
+data(exfm11)
+head(exfm11)
+# Bias of an estimator, given the data frame and quoted variable names:
+bias_per(exfm11, "TH", "TH_EST3")
+# Bias of an estimator, given the vectors for observed and estimated values:
+bias_per(y = exfm11$TH, yhat = exfm11$TH_EST3)
+```
+
+
+
