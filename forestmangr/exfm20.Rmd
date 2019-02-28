@@ -1,0 +1,31 @@
+exfm20 Inventory data of a natural forest in Brazil
+#### Description
+In this data, each observation is a tree.
+#### Usage
+data(exfm20)
+22 exfm21
+#### Format
+A data frame with 12295 observations and 18 variables:
+cod area code
+transect plot number
+* ``tree``:  tree number
+common.name species common name
+scientific.name species scientific name
+family species family name
+* ``dbh``: diameter at breast height, in meters
+canopy.pos canopy position
+light level of light received by the tree
+dead tells if the tree is dead or not
+Hcom commercial height, in meters
+Htot total height, in meters
+date date of measurement
+utm.east utm east position value
+utm.north utm north position value
+vol volume of trees, in cubic meters
+plot.area plot area, in square meters
+total.area total area, in hectares
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
+
+
