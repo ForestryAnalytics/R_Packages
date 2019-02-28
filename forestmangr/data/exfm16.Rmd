@@ -1,0 +1,20 @@
+exfm16 Inventory data of an eucalyptus forest in Brazil, with age variable
+#### Description
+In this data, each observation is a plot.
+#### Usage
+<pre><code>
+data(exfm16)
+</code></pre>
+
+#### Format
+A data frame with 139 observations and 8 variables:
+* ``STRATA``: stratum number
+* ``PLOT``: plot number
+* ``age ``: average age of plots, in months
+* `` DH``: dominant height, in meters
+N number of individuals
+V volume of trees, in cubic meters
+B basal area, in square meters
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
