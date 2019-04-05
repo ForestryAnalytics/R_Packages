@@ -1,3 +1,16 @@
+
+---
+title: "``DataVisualizations::agb``"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DataVisualizations)
+```
+
+
 ## agb: Aboveground Biomass Prediction Using Height And Crown Diameter
 
 Prediction of aboveground biomass (AGB) using height and crown diameter and the equations of Jucker et al. (2017).
