@@ -1,5 +1,16 @@
-itcLiDAR: Individual Tree Crowns Segmentation With LiDAR Data
-=================================================================
+---
+title: "``DataVisualizations::itcLiDAR``"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DataVisualizations)
+```
+
+## ``itcLiDAR``: Individual Tree Crowns Segmentation With LiDAR Data
+
 The ITC delineation approach finds local maxima within a rasterized canopy height model (CHM), designates 
 these as tree tops, then uses a decision tree method to grow individual crowns around the local maxima. 
 
