@@ -1,3 +1,14 @@
+---
+title: "``itcSegment::itcIMG``"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(itcSegment)
+```
+
 ## itcIMG: Individual Tree Crowns segmentation with imagery data
 
 The ITC delineation approach finds local maxima within an imagery, designates these as tree tops, then uses a decision
