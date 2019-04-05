@@ -1,5 +1,15 @@
-dbh: Diameter at breast height prediction using height and crown diameter
-==================================
+---
+title: "``itcSegment::dbh``"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(itcSegment)
+```
+
+## ``dbh:`` Diameter at breast height prediction using height and crown diameter
 
 Prediction of diameter at breast height (DBH) using height and crown diameter and the equations of Jucker et al. (2017).
 
