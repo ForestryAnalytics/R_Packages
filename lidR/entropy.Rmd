@@ -1,5 +1,12 @@
-entropy
-===========
+---
+title: "``lidR::entropy``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lidR)
+```
 
 ***A normalized Shannon vertical complexity index***. 
 
@@ -9,7 +16,7 @@ entropy
 
 It makes bins between 0 and the maximum elevation. If there are negative value the function returns NA. 
 
-```{r]
+```{r}
 library(lidR)
 
 z = runif(10000, 0, 10)
