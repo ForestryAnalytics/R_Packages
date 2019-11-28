@@ -1,10 +1,12 @@
-Package ‘ForestFit’
+Package 'ForestFit'
 November 24, 2019
 Type Package
 Title Statistical Modelling with Applications in Forestry
 Author Mahdi Teimouri
 Maintainer Mahdi Teimouri <teimouri@aut.ac.ir>
-Description
+
+#### Description
+
 Developed for the following tasks. I) Computing the probability density function, cumulative distribution
 function, random generation, and estimating the parameters of the eleven mixture models
 including mixture of Birnbaum-Saunders, BurrXII, Chen, F, Frechet, gamma, Gompertz, loglogistic,
@@ -39,1090 +41,21 @@ LazyData TRUE
 NeedsCompilation no
 Date/Publication 2019-11-24 10:50:02 UTC
 R topics documented:
-DBH . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
-dgsm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
-dmixture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
-fitbayesJSB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
-fitbayesWeibull . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
-fitgrouped . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
-fitgrowth . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
-fitgsm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
-fitmixture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-fitmixturegrouped . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-fitWeibull . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
-pgsm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
-pmixture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
-rgsm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
-rmixture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+D   2
+dg   3
+dmixtu  . . 4
+fitbayesJ  6
+fitbayesWeibu . . 7
+fitgroup  . 8
+fitgrow  . . 10
+fitg  2
+fitmixtu  . 14
+fitmixturegroup . 15
+fitWeibu  . 17
+pg   19
+pmixtu  . . 21
+rg   22
+rmixtu  . . 23
 Index 25
-DBH Trees height and diameter at breast height
-Description
-The DBH data contains the diameter at breast height (dbh), height and condition data for all trees
-centered in 108 plots of size 0.2 hectare immediately following a single prescribed burn and also
-following three 5-yr (year) interval reburns (four burns total) and a single 15-yr interval reburn
-(two burns total) and associated treatment information. The trees information were established
-from mixed ponderosa pine (Pinus ponderosa Dougl. ex Laws.) that contained scattered western
-junipers (Juniperus occidentalis Hook.). The plots were located in the Malheur National Forest on
-the southern end of the Blue Mountains near Burns, Oregon, USA.
-Usage
-data(DBH)
-Format
-A text file with 5732 observations from 17 variables related of trees characteristics such as dbh and
-height.
-dgsm 3
-Source
-B. K., Kerns, D. J., Westlind, and M. A. Day. 2017. Season and interval of burning and cattle
-exclusion in the southern blue mountains, oregon: Overstory tree height, diameter and growth.
-Forest Service Research Data Archive, https://doi.org/10.2737/RDS-2017-0041.
-References
-B. K., Kerns, D. J., Westlind, and M. A. Day. 2017. Season and interval of burning and cattle
-exclusion in the southern blue mountains, oregon: Overstory tree height, diameter and growth.
-Forest Service Research Data Archive, https://doi.org/10.2737/RDS-2017-0041.
-dgsm Computing probability density function of the gamma shape mixture
-model
-Description
-Computes probability density function (pdf) of the gamma shape mixture (GSM) model. The general
-form for the pdf of the GSM model is given by
-f(x; ) =
-XK
-j=1
-!j
-j
-􀀀(j)
-xj􀀀1 exp
-􀀀
-􀀀x
-
-;
-where  = (!1; : : : ; !K; )T is the parameter vector and known constant K is the number of
-components. The vector of mixing parameters is given by ! = (!1; : : : ; !K)T where !js sum to
-one, i.e.,
-PK
-j=1 !j = 1. Here  is the rate parameter that is equal for all components.
-Usage
-dgsm(data, omega, beta, log = FALSE)
-Arguments
-data Vector of observations.
-omega Vector of the mixing parameters.
-beta The rate parameter.
-log If TRUE, then log(pdf) is returned.
-Value
-A vector of the same length as data, giving the pdf of the GSM model.
-Author(s)
-Mahdi Teimouri
-4 dmixture
-References
-S. Venturini, F. Dominici, and G. Parmigiani, 2008. Gamma shape mixtures for heavy-tailed distributions,
-The Annals of Applied Statistics, 2(2), 756–776.
-Examples
-data<-seq(0,20,0.1)
-omega<-c(0.05, 0.1, 0.15, 0.2, 0.25, 0.25)
-beta<-2
-dgsm(data, omega, beta)
-dmixture Computing probability density function of the well-known mixture
-models
-Description
-Computes probability density function (pdf) of the mixture model. The general form for the pdf of
-the mixture model is given by
-f(x; ) =
-XK
-j=1
-!jfj(x; j);
-where  = (1; : : : ; K)T , is the whole parameter vector, j for j = 1; : : : ;K is the parameter
-space of the j-th component, i.e. j = (j ; j)T , fj(:; j) is the pdf of the j-th component, and
-known constant K is the number of components. The vector of mixing parameters is given by
-! = (!1; : : : ; !K)T where !js sum to one, i.e.,
-PK
-j=1 !j = 1. Parameters j and j are the shape
-and scale parameters of the j-th component or both are the shape parameters. In the latter case,
-the parameters  and  are called the first and second shape parameters, respectively. We note that
-the constants !js sum to one, i.e.
-PK
-j=1 !j = 1. The families considered for each component
-include Birnbaum-Saunders, Burr type XII, Chen, F, Frechet, Gamma, Gompertz, Log-normal,
-Log-logistic, Lomax, skew-normal, and Weibull with pdf given by the following.
-• Birnbaum-Saunders
-f(x; ) =
-q
-x
- +
-q
-
-x
-2x
-
- q
-x
- 􀀀
-q
-
-x
-
-!
-;
-• Burr XII
-f(x; ) = x􀀀1
-
-1 + x
-􀀀􀀀1
-;
-• Chen
-f(x; ) = x exp
-􀀀
-x
-exp
-n
-􀀀 exp
-􀀀
-x
-+ 
-o
-;
-• F
-f(x; ) =
-􀀀
-
-+
-2
-
-􀀀
-􀀀
-2
-
-􀀀
-􀀀 
-2
-
-
-
-
-2
-x
-
-2 􀀀1
-
-1 +
-
-
-x
-􀀀+
-2
-;
-dmixture 5
-• Frechet
-f(x; ) =
-
-
-x
-
-􀀀􀀀1
-exp
-n
-􀀀
-x
-
-􀀀o
-;
-• gamma
-f(x; ) =
-
-􀀀()
-􀀀1
-x􀀀1 exp
-
-􀀀
-x
-
-
-;
-• Gompertz
-f(x; ) =  exp
-􀀀
-x
-
-exp
-(
- exp
-􀀀
-x
-
-􀀀 1
-
-)
-;
-• log-logistic
-f(x; ) =
-
- x􀀀1
-x
-
-
-+ 1
-􀀀2
-;
-• log-normal
-f(x; ) =
-􀀀p
-2x
-􀀀1
-exp
-
-􀀀
-1
-2
-
-log x 􀀀 
-
-2
-;
-• Lomax
-f(x; ) =
-
-(1 + x)+1 ;
-• skew-normal
-f(x; ) = 2
-x 􀀀 
-
-
-
-
-
-x 􀀀 
-
-
-;
-• Weibull
-f(x; ) =
-
-
-x
-
-􀀀1
-exp
-n
-􀀀
-x
-
-o
-;
-where  = (; ). In the skew-normal case, (:) and (:) are the density and distribution functions
-of the standard normal distribution, respectively.
-Usage
-dmixture(data, g, K, param)
-Arguments
-data Vector of observations.
-g Name of the family including "birnbaum-saunders", "burrxii", "chen", "f",
-"Frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax",
-"skew-normal", and "weibull".
-K Number of components.
-param Vector of the !, , , and .
-Details
-For the skew-normal case, , , and  are the location, scale, and skewness parameters, respectively.
-6 fitbayesJSB
-Value
-A vector of the same length as data, giving the pdf of the mixture model of families computed at
-data.
-Author(s)
-Mahdi Teimouri
-Examples
-data<-seq(0,20,0.1)
-K<-2
-weight<-c(0.6,0.4)
-alpha<-c(1,2)
-beta<-c(2,1)
-param<-c(weight,alpha,beta)
-dmixture(data, "weibull", K, param)
-fitbayesJSB Estimating parameters of the Johnson’s SB (JSB) distribution using
-the Bayesian approach
-Description
-Suppose x = (x1; : : : ; xn)T denotes a vector of n independent observations coming from a fourparameter
-JSB distribution with pdf given by
-f
-􀀀
-x
-
-
-
-=
-
-p
-2(x 􀀀 )( +  􀀀 x)
-exp
-(
-􀀀
-1
-2
-"
 
- +  log
-
-x 􀀀 
- +  􀀀 x
-#2)
-;
-where  < x <  +  and  = (; 
-; ; )T with ;  > 0, 􀀀1 < 
- < 1, and 􀀀1 <  < 1.
-Using the Bayesian approach, we compute the Bayes’ estimators of the JSB distribution parameters.
-Usage
-fitbayesJSB(data, n.burn=8000, n.simul=10000)
-Arguments
-data Vector of observations.
-n.burn Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed
-to attain convergence. By default n.burn is 8000.
-n.simul Total numbers of Gibbas sampler iterations. By default n.simul is 10,000.
-Details
-The Bayes’ estimators are obtained by averaging on the all iterations between n.burn and n.simul.
-fitbayesWeibull 7
-Value
-A list of objects in two parts as
-1. Bayes’ estimators of the parameters.
-2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\’eer-von
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-Author(s)
-Mahdi Teimouri
-References
-N. L. Johnson, 1949. Systems of frequency curves generated by methods of translation, Biometrika,
-36, 149–176.
-L. J. Norman, S. Kotz, and N. Balakrishnan, 1994. Continuous Univariate Distributions, volume I,
-John Wiley & Sons.
-Examples
-n<-20
-xi<-0
-delta<-2
-gamma<-2
-lambda<-20
-z<-rnorm(n)
-data<-xi+lambda/(1+exp(-(z-gamma)/delta))
-fitbayesJSB(data, n.burn=50, n.simul=80)
-fitbayesWeibull Estimating parameters of the Weibull distribution using the Bayesian
-approach
-Description
-Suppose x = (x1; : : : ; xn)T denotes a vector of n independent observations coming from a threeparameter
-Weibull distribution. Using the methodology given in Green et al. (1994), we compute
-the Bayes’ estimators of the shape, scale, and location parameters.
-Usage
-fitbayesWeibull(data, n.burn=8000, n.simul=10000)
-Arguments
-data Vector of observations.
-n.burn Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed
-to attain convergence. By default n.burn is 8000.
-n.simul Total numbers of Gibbas sampler iterations. By default n.simul is 10,000.
-8 fitgrouped
-Details
-The Bayes’ estimators are obtained by averaging on the all iterations between n.burn and n.simul.
-Value
-A list of objects in two parts as
-1. Bayes’ estimators of the parameters.
-2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\’eer-von
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-Note
-The methodology used here for computing the Bayes’ estimator of the location parameter is different
-from that used by Green et al. (1994). This means that the location parameter is allowed to be
-any real value.
-Author(s)
-Mahdi Teimouri
-References
-E. J. Green, F. A. R. Jr, A. F. M. Smith, and W. E. Strawderman, 1994. Bayesian estimation for the
-three-parameter Weibull distribution with tree diameter data, Biometrics, 50(1), 254-269.
-Examples
-n<-20
-alpha<-2
-beta<-2
-theta<-3
-data<-rweibull(n,shape=alpha,scale=beta)+theta
-fitbayesWeibull(data, n.burn=100, n.simul=200)
-fitgrouped Estimating parameters of the three-parameter Birnbaum-saunders
-(BS), generalized exponential (GE), and Weibull distributions fitted to
-grouped data
-Description
-Suppose a sample of n independent observations each follows a three-parameter BS, GE, orWeibull
-distributions have been divided into m separate groups of the form (ri􀀀1; ri], for i = 1; : : : ;m. So,
-the likelihood function is given by
-L() =
-n!
-f1!f2! : : : fm!
-mY
-i=1
-h
-F
-􀀀
-ri
-
-
-
-􀀀 F
-􀀀
-ri􀀀1
-
-
-ifi
-;
-fitgrouped 9
-where the r0 is the lower bound of the first group, rm is the upper bound of the last group, and
-fi is the frequency of observations within i-th group provided that n =
-Pm
-i=1 fi. The cdf of a
-three-parameter BS, GE, and Weibull distributions are given by
-F(x; ) =
-
-1 􀀀 exp
-
-􀀀(x 􀀀 )
-	
-;
-F(x; ) = 
- q
-x
- 􀀀
-q
-
-x
-
-!
-;
-and
-F(x; ) = 1 􀀀 exp
-n
-􀀀
-
-x 􀀀 
-
-o
-;
-where  = (; ; )T .
-Usage
-fitgrouped(r, f, family, method1, starts, method2)
-Arguments
-r A numeric vector of length m + 1. The first element of r is lower bound of the
-first group and other m elements are upper bound of the m groups. We note that
-upper bound of the (i 􀀀 1)-th group is the lower bound of the i-th group, for
-i = 2; : : : ;m. The lower bound of the first group and upper bound of the m-th
-group are chosen arbitrarily.
-f A numeric vector of length m containing the group’s frequency.
-family Can be either "birnbaum-saunders", "ge", or "weibull".
-method1 A character string determining the method of estimation. It can be one of "aml",
-"em" and "ml". The short forms "aml", "em", and "ml" are described as follows.
-""aml" (for method of approximated maximum likelihood (aml)), ""em" (for
-method of expectation maximization (em)), and ""ml" (for method of maximum
-likelihood (ml)).
-starts A numeric vector of the initial values for the shape, scale, and location parameters,
-respectively.
-method2 The method for optimizing the log-likelihood function. It invovles one of "BFGS",
-"Nelder-Mead", "CG", "L-BFGS-B" or "SANN".
-Details
-If the method is "em", then the initial values ("starts") and the log-likelihood optimizing method
-("method2") are ignored.
-10 fitgrowth
-Value
-A two-part list of objects given by the following:
-1. Estimated parameters of the three-parameter GE, Birnbaum-Saunders, or Weibull distribution
-fitted to the gropued data.
-2. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Chi-square (Chi-square), Cram\’eervon
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-Author(s)
-Mahdi Teimouri
-References
-G. J. McLachlan and T. Krishnan, 2007. The EM Algorithm and Extensions, John Wiley & Sons.
-A. P. Dempster, N. M. Laird, and D. B. Rubin, 1977. Maximum likelihood from incomplete data
-via the EM algorithm, Journal of the Royal Statistical Society, Series B (methodological), 1-38.
-M. Teimouri and A. K. Gupta, 2012. Estimation Methods for the Gompertz–Makeham Distribution
-Under Progressively Type-I Interval Censoring Scheme, National Academy Science Letters, 35(3).
-Examples
-r<-c(0,1,2,3,4,10)
-f<-c(2,8,12,15,4)
-starts<-c(2,2,0)
-fitgrouped(r,f,"birnbaum-saunders","em")
-fitgrouped(r,f,"weibull","ml",starts,"CG")
-fitgrouped(r,f,"ge","em")
-fitgrowth Estimatinng the parametersof the fitted non-linear growth curve to the
-height-diameter(H-D) observations
-Description
-Estimates the parameters of the nine well-known three-parameter non-linear curves fitted to the
-height-diameter observations. These nine models are given by the following.
-• Richards (Richards(1959))
-H = 1:3 + 1 +
-2
-D + 3
-;
-• Gompertz (Winsor(1992))
-H = 1:3 + 1e􀀀2e􀀀3D
-;
-fitgrowth 11
-• Hossfeld IV (Zeide(1993))
-H = 1:3 +
-1
-1 + 1
-2D3
-;
-• Korf (Flewelling and De Jong(1994))
-H = 1:3 + 1e􀀀2D􀀀3 ;
-• logistic (Pearl and Reed (1920))
-H = 1:3 +
-1
-1 + 2e􀀀3D ;
-• Prodan (Prodan(1968))
-H = 1:3 +
-D2
-1D2 + 2D + 3
-;
-• Ratkowsky (Ratkowsky(1990))
-H = 1:3 + 1e􀀀 2
-D+3 ;
-• Sibbesen (Huang et al. (1992))
-H = 1:3 + 1D2D􀀀3 ;
-• Weibull (Yang et al. (1978))
-H = 1:3 + 1
-
-1 􀀀 e􀀀2D3
-
-;
-Usage
-fitgrowth(h,d,model,starts)
-Arguments
-h Vector of height observations.
-d Vector of diameter observations.
-model The name of the fitted model including "chapman-richards", "gompertz",
-"hossfeldiv", "korf", "logistic", "prodan" , "ratkowsky", "Sibbesen", and
-"weibull".
-starts A list of starting values for the parameters 1, 2, and 3.
-Value
-A list of objects in four parts as
-1. Estimated parameters and corresponding summaries including standard errors, computed t-
-statistics, and p-values.
-2. Residuals.
-3. Covariance matrix of the estimated model parameters (coefficients) ^ 1, ^ 2, and ^ 3.
-4. Residual standard error, i.e., ^.
-5. The hieght-diameter scatterplot superimposed by the fitted model.
-12 fitgsm
-Author(s)
-Mahdi Teimouri
-References
-J. W. Flewelling and R. De Jong. (1994). Considerations in simultaneous curve fitting for repeated
-height-diameter measurements, Canadian Journal of Forest Research, 24(7), 1408-1414.
-S. Huang, S. J. Titus, and D. P. Wiens. 1992. Comparison of nonlinear height±diameter functions
-for major Alberta tree species. Canadian Journal of Forest Research, 22, 1297-1304.
-R. Pearl and L. J. Reed. (1920). On the rate of growth of the population of the United States since
-1790 and its mathematical representation, Proceedings of the National Academy of Sciences of the
-United States of America, 6(6), 275.
-M. Prodan. 1968. The spatial distribution of trees in an area. Allg. Forst Jagdztg, 139, 214-217.
-D. A. Ratkowsky. 1990. Handbook of nonlinear regression, New York, Marcel Dekker, Inc.
-F. J. Richards. 1959. A flexible growth function for empirical use. Journal of Experimental Botany,
-10, 290-300.
-S. B. Winsor. 1992. The Gompertz curve as a growth curve. Proceedings of National Academic
-Science, USA, 18, 1-8.
-R. C. Yang, A. Kozak, J. H. G. Smith. 1978. The potential of Weibull-type functions as a flexible
-growth curves. Canadian Journal of Forest Research, 8, 424-431.
-B. Zeide. 1993. Analysis of growth equation. Forest Science, 39, 594-616.
-Examples
-# use the heigth and diameter at breast height (dbh) of the plot 55 in DBH data set.
-# The first column of DBH dataset contains the plot number. Also, H and D denote the
-# height and dbh variables that located at columns 10 and 11 of data set DBH, respectively.
-data(DBH)
-D<-DBH[DBH[,1]==55,10]
-H<-DBH[DBH[,1]==55,11]
-starts<-c(9,0.0005,2)
-fitgrowth(H,D,"weibull",starts=starts)
-fitgsm Estimating parameters of the gamma shape mixture model
-Description
-Estimates parameters of the gamma shape mixture (GSM) model whose probability density function
-gets the form as follows.
-f(x; ) =
-XK
-j=1
-!j
-j
-􀀀(j)
-xj􀀀1 exp
-􀀀
-􀀀x
-
-;
-fitgsm 13
-where  = (!1; : : : ; !K; )T is the parameter vector and known constant K is the number of
-components. The vector of mixing parameters is given by ! = (!1; : : : ; !K)T where !js sum to
-one, i.e.,
-PK
-j=1 !j = 1. Here  is the rate parameter that is equal for all components.
-Usage
-fitgsm(data,K)
-Arguments
-data Vector of observations.
-K Number of components.
-Details
-Supposing that the number of components, i.e., K is known, the parameters are estimated through
-the EM algorithm developed by the maintainer.
-Value
-A list of objects in three parts as
-1. The EM estimator of the rate parameter.
-2. The EM estimator of the mixing parameters.
-3. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\’eer-von Misses (CVM), Kolmogorov-
-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-Author(s)
-Mahdi Teimouri
-References
-A. P. Dempster, N. M. Laird, and D. B. Rubin, 1977. Maximum likelihood from incomplete data
-via the EM algorithm, Journal of the Royal Statistical Society Series B, 39, 1-38.
-S. Venturini, F. Dominici, and G. Parmigiani, 2008. Gamma shape mixtures for heavy-tailed distributions,
-The Annals of Applied Statistics, 2(2), 756–776.
-Examples
-n<-100
-omega<-c(0.05, 0.1, 0.15, 0.2, 0.25, 0.25)
-beta<-2
-data<-rgsm(n,omega,beta)
-K<-length(omega)
-fitgsm(data,K)
-14 fitmixture
-fitmixture Estimating parameters of the well-known mixture models
-Description
-Estimates parameters of the mixture model using the expectation maximization (EM) algorithm.
-General form for the cdf of a statistical mixture model is given by
-F(x; ) =
-XK
-j=1
-!jFj(x; j);
-where  = (1; : : : ; K)T , is the whole parameter vector, j for j = 1; : : : ;K is the parameter
-space of the j-th component, i.e. j = (j ; j)T , Fj(:; j) is the cdf of the j-th component, and
-known constant K is the number of components. Parameters  and  are the shape and scale
-parameters or both are the shape parameters. In the latter case, the parameters  and  are called
-the first and second shape parameters, respectively. We note that the constants !js sum to one,
-i.e.
-PK
-j=1 !j = 1. The families considered for the cdf F include Birnbaum-Saunders, Burr type
-XII, Chen, F, Frechet, Gamma, Gompertz, Log-normal, Log-logistic, Lomax, skew-normal, and
-Weibull.
-Usage
-fitmixture(data, family, K, initial=FALSE, starts)
-Arguments
-data Vector of observations.
-family Name of the family including: "birnbaum-saunders", "burrxii", "chen", "f",
-"Frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax",
-"skew-normal", and "weibull".
-K Number of components.
-initial The sequence of initial values including !1; : : : ; !K; 1; : : : ; K; 1; : : : ; K.
-For skew normal case the vector of initial values of skewness parameters will
-be added. By default the initial values automatically is determind by k-means
-method of clustering.
-starts If initial=TRUE, then sequence of the initial values must be given.
-Details
-It is worth noting that identifiability of the mixture models supposed to be held. For skew-normal
-case we have j = (j ; j ; j)T in which 􀀀1 < j < 1, j > 0, and 􀀀1 < j < 1,
-respectively, are the location, scale, and skewness parameters of the j-th component, see Azzalini
-(1985).
-fitmixturegrouped 15
-Value
-1. The output has three parts, The first part includes vector of estimated weight, shape, and scale
-parameters.
-2. The second part involves a sequence of goodness-of-fit measures consist of Akaike Information
-Criterion (AIC), Consistent Akaike Information Criterion (CAIC), Bayesian Information
-Criterion (BIC), Hannan-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\’eervon
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-3. The last part of the output contains clustering vector.
-Author(s)
-Mahdi Teimouri
-References
-A. Azzalini, 1985. A class of distributions which includes the normal ones, Scandinavian Journal
-of Statistics, 12, 171-178.
-A. P. Dempster, N. M. Laird, and D. B. Rubin, 1977. Maximum likelihood from incomplete data
-via the EM algorithm, Journal of the Royal Statistical Society Series B, 39, 1-38.
-M. Teimouri, S. Rezakhah, and A. Mohammdpour, 2018. EM algorithm for symmetric stable
-mixture model, Communications in Statistics-Simulation and Computation, 47(2), 582-604.
-Examples
-n<-50
-K<-2
-m<-10
-weight<-c(0.3,0.7)
-alpha<-c(1,2)
-beta<-c(2,1)
-param<-c(weight,alpha,beta)
-data<-rmixture(n, "weibull", K, param)
-fitmixture(data,"weibull", K, initial=FALSE)
-fitmixturegrouped Estimating parameters of the well-known mixture models fitted to the
-grouped data
-Description
-Estimates parameters of the gamma, log-normal, and Weibull mixture models fitted to the grouped
-data using the expectation maximization (EM) algorithm. General form for the cdf of a statistical
-mixture model is given by
-F(x; ) =
-XK
-k=1
-!kFk(x; k);
-16 fitmixturegrouped
-where  = (1; : : : ; K)T , is the whole parameter vector, k for k = 1; : : : ;K is the parameter
-space of the j-th component, i.e. k = (k; k)T , Fj(:; j) is the cdf of the k-th component,
-and known constant K is the number of components. Parameters  and  are the shape and scale
-parameters. The constants !ks sum to one, i.e.
-PK
-k=1 !k = 1. The families considered for the
-cdf F include Gamma, Log-normal, and Weibull. If a sample of n independent observations each
-follows a distribution with cdf F have been divided into m separate groups of the form (ri􀀀1; ri],
-for i = 1; : : : ;m. So, the likelihood function of the observed data is given by
-L(jf1; : : : ; fm) =
-n!
-f1!f2! : : : fm!
-mY
-i=1
-hFi()
-F()
-ifi
-;
-where
-Fi() =
-XK
-k=1
-!k
-Z ri
-ri􀀀1
-f(xjk)dx;
-F() =
-XK
-k=1
-!kf(xjk)dx;
-in which f(xjk) denotes the pdf of the j-th component. Using the the EM algorithm proposed by
-Dempster et al. (1977), we can solve @L(jf1; : : : ; fm)=@ = 0 by introducing two new missing
-variables.
-Usage
-fitmixturegrouped(family, r, f, K, initial=FALSE, starts)
-Arguments
-family Name of the family including: "gamma", "log-normal", "skew-normal", and
-"weibull".
-r A numeric vector of length m + 1. The first element of r is lower bound of the
-first group and other m elements are upper bound of the m groups. We note that
-upper bound of the (i 􀀀 1)-th group is the lower bound of the i-th group, for
-i = 2; : : : ;m. The lower bound of the first group and upper bound of the m-th
-group are chosen arbitrarily. If raw data are available, the smallest and largest
-observations are chosen for lower bound of the first group and upper bound of
-the m-th group, respectively.
-f A numeric vector of length m containing the group’s frequency.
-K Number of components.
-initial The sequence of initial values including !1; : : : ; !K; 1; : : : ; K; 1; : : : ; K.
-For skew normal case the vector of initial values of skewness parameters will
-be added. By default the initial values automatically is determind by k-means
-method of clustering.
-starts If initial=TRUE, then sequence of the initial values must be given.
-Details
-Identifiability of the mixture models supposed to be held. For skew-normal mixture model the
-parameter vector of k-th component gets the form k = (k; k; k)T where k; k; and k denote
-the location, scale, and skewness parameters, respectively.
-fitWeibull 17
-Value
-1. The output has two parts, The first part includes vector of estimated weight, shape, and scale
-parameters.
-2. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\’eer-von Misses (CVM), Kolmogorov-
-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-Author(s)
-Mahdi Teimouri
-References
-G. J. McLachlan and P. N. Jones, 1988. Fitting mixture models to grouped and truncated data via
-the EM algorithm, Biometrics, 44, 571-578
-Examples
-n<-50
-K<-2
-m<-10
-weight<-c(0.3,0.7)
-alpha<-c(1,2)
-beta<-c(2,1)
-param<-c(weight,alpha,beta)
-data<-rmixture(n, "weibull", K, param)
-r<-seq(min(data),max(data),length=m+1)
-D<-data.frame(table(cut(data,r,labels=NULL,include.lowest=TRUE,right=FALSE,dig.lab=4)))
-f<-D$Freq
-fitmixturegrouped("weibull",r,f,K,initial=FALSE)
-fitWeibull Estimating parameters of the Weibull distribution through classical
-methods
-Description
-Estimates the parameters of the two- and three-parameter Weibull model with pdf and cdf given by
-f(x; ; ; ) =
-
-
-
-x 􀀀 
-
-􀀀1
-exp
-
-􀀀
-
-x 􀀀 
-
-
-;
-and
-F(x; ; ; ) = 1 􀀀 exp
-
-􀀀
-
-x 􀀀 
-
-
-;
-where x > ,  > 0,  > 0 and 􀀀1 <  < 1. Here, the parameters , , and  are known in the
-literature as the shape, scale, and location, respectively. If  = 0, then f(x; ; ) and F(x; ; ) in
-above are the pdf and cdf of a two-parameter Weibull distribution, respectively.
-18 fitWeibull
-Usage
-fitWeibull(data, location, method, starts)
-Arguments
-data Vector of observations
-starts Initial values for starting the iterative procedures such as Newton-Raphson.
-location Either TRUE or FALSE. If location=TRUE, then shift parameter will be considered;
-otherwise the shift parameter omitted.
-method Used method for estimating the parameters. In the two-parameter case, methods
-are "greg1" (for the method of generalized regression type 1), "greg2" (for the
-method of generalized regression type 2), "lm" (for the method of L-moment),
-"ml" (for the method of maximum likelihood (ML)), "mlm" (for the method
-of logarithmic moment), "moment" (for the method of moment), "pm" (for the
-method of percentile), "rank" (for the method of rank correlation), "reg" (for
-the method of least square), "ustat" (for the method of U-statistic), "wml" (for
-the method of weighted ML), and "wreg" (for the method of weighted least
-square). In three-parameter case the methods are "mle" (for the method of ML),
-"mm1" (for the method of modified moment (MM) type 1), "mm2" (for the method
-ofMMtype 2), "mm3" (for the method ofMMtype 3), "mml1" (for the method of
-modified ML type 1), "mml2" (for the method of modified ML type 2), "mml3"
-(for the method of modified ML type 3), "mml4" (for the method of modified
-ML type 4), "moment" (for the method of moment), "mps" (for the method of
-maximum product spacing), "tlm" (for the method of T-L moment), and "wml"
-(for the method of weighted ML).
-Details
-For the method wml, all weights have been provided for sample size less that or equal to 100. This
-means that both methods ml and wml give the same estimates for samples of size larger than 100.
-Value
-A list of objects in two parts given by the following:
-1. Estimated parameters for two- or three-parameter Weibull distribution.
-2. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\’eer-von Misses (CVM), Kolmogorov-
-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-Author(s)
-Mahdi Teimouri
-pgsm 19
-References
-R. C. H. Cheng and M. A. Stephens, 1989. A goodness-of-fit test using Moran’s statistic with
-estimated parameters, Biometrika, 76(2), 385-392.
-C. A. Clifford and B. Whitten, 1982. Modified maximum likelihood and modified moment estimators
-for the three-parameterWeibull distribution, Communication in Statistics-Theory and Methods,
-11(23), 2631-2656.
-D. Cousineau, 2009. Nearly unbiased estimators for the three-parameter Weibull distribution with
-greater efficiency than the iterative likelihood method, British Journal of Mathematical and Statistical
-Psychology, 62, 167-191.
-G. Cran, 1988. Moment estimators for the 3-parameter Weibull distribution, IEEE Transactions on
-Reliability, 37(4), 360-363.
-J. R. Hosking, 1990. L-moments: analysis and estimation of distributions using linear combinations
-of order statistics, Journal of the Royal Statistical Society. Series B (Methodological), 52(1), 105-
-124.
-Y. M. Kantar, 2015. Generalized least squares and weighted least squares estimation methods for
-distributional parameters, REVSTAT-Statistical Journal, 13(3), 263-282.
-M. Teimouri and S. Nadarajah, 2012. A simple estimator for the Weibull shape parameter, International
-Journal of Structural Stability and Dynamics, 12(2), 2395-402.
-M. Teimouri, S. M. Hoseini, and S. Nadarajah, 2013. Comparison of estimation methods for the
-Weibull distribution, Statistics, 47(1), 93-109.
-F. Wang and J. B. Keats, 1995. Improved percentile estimation for the two-parameter Weibull
-distribution, Microelectronics Reliability, 35(6), 883-892.
-L. Zhang, M. Xie, and L. Tang, 2008. On Weighted Least Squares Estimation for the Parameters
-of Weibull Distribution. In: Pham H. (eds) Recent Advances in Reliability and Quality in Design.
-Springer Series in Reliability Engineering. Springer, London.
-Examples
-n<-100
-alpha<-2
-beta<-2
-theta<-3
-data<-rweibull(n,shape=alpha,scale=beta)+theta
-starts<-c(2,2,3)
-fitWeibull(data, TRUE, "mps", starts)
-fitWeibull(data, TRUE, "wml", starts)
-fitWeibull(data, FALSE, "mlm", starts)
-fitWeibull(data, FALSE, "ustat", starts)
-pgsm Computing cumulative distribution function of the gamma shape mixture
-model
-20 pgsm
-Description
-Computes cumulative distribution function (cdf) of the gamma shape mixture (GSM) model. The
-general form for the cdf of the GSM model is given by
-F(x; ) =
-XK
-j=1
-!jF(x; j; );
-where
-F(x; j; ) =
-Z x
-0
-j
-􀀀(j)
-yj􀀀1 exp
-􀀀
-􀀀y
-
-dy;
-in which  = (!1; : : : ; !K; )T is the parameter vector and known constant K is the number of
-components. The vector of mixing parameters is given by ! = (!1; : : : ; !K)T where !js sum to
-one, i.e.,
-PK
-j=1 !j = 1. Here  is the rate parameter that is equal for all components.
-Usage
-pgsm(data, omega, beta, log.p = FALSE, lower.tail = TRUE)
-Arguments
-data Vector of observations.
-omega Vector of the mixing parameters.
-beta The rate parameter.
-log.p If TRUE, then log(cdf) is returned.
-lower.tail If FALSE, then 1-cdf is returned.
-Value
-A vector of the same length as data, giving the cdf of the GSM model.
-Author(s)
-Mahdi Teimouri
-References
-S. Venturini, F. Dominici, and G. Parmigiani, 2008. Gamma shape mixtures for heavy-tailed distributions,
-The Annals of Applied Statistics, 2(2), 756–776.
-Examples
-data<-seq(0,20,0.1)
-omega<-c(0.05, 0.1, 0.15, 0.2, 0.25, 0.25)
-beta<-2
-pgsm(data, omega, beta)
-pmixture 21
-pmixture Computing cumulative distribution function of the well-known mixture
-models
-Description
-Computes cumulative distribution function (cdf) of the mixture model. The general form for the cdf
-of the mixture model is given by
-F(x; ) =
-XK
-j=1
-!jF(x; j);
-where  = (1; : : : ; K)T , is the whole parameter vector, j for j = 1; : : : ;K is the parameter
-space of the j-th component, i.e. j = (j ; j)T , Fj(:; j) is the cdf of the j-th component,
-and known constant K is the number of components. The vector of mixing parameters is given
-by ! = (!1; : : : ; !K)T where !js sum to one, i.e.,
-PK
-j=1 !j = 1. Parameters  and  are the
-shape and scale parameters or both are the shape parameters. In the latter case, the parameters 
-and  are called the first and second shape parameters, respectively. The families considered for
-each component include Birnbaum-Saunders, Burr type XII, Chen, F, Frechet, Gamma, Gompertz,
-Log-normal, Log-logistic, Lomax, skew-normal, and Weibull.
-Usage
-pmixture(data, g, K, param)
-Arguments
-data Vector of observations.
-g Name of the family including: "birnbaum-saunders", "burrxii", "chen", "f",
-"frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax",
-"skew-normal", and "weibull".
-K Number of components.
-param Vector of the !, , , and .
-Details
-For the skew-normal case, , , and  are the location, scale, and skewness parameters, respectively.
-Value
-A vector of the same length as data, giving the cdf of the mixture model computed at data.
-Author(s)
-Mahdi Teimouri
-22 rgsm
-Examples
-data<-seq(0,20,0.1)
-K<-2
-weight<-c(0.6,0.4)
-alpha<-c(1,2)
-beta<-c(2,1)
-param<-c(weight,alpha,beta)
-pmixture(data, "weibull", K, param)
-rgsm Simulating realizations from the gamma shape mixture model
-Description
-Simulates realizations from a gamma shape mixture (GSM) model with probability density function
-given by
-f(x; ) =
-XK
-j=1
-!j
-j
-􀀀(j)
-xj􀀀1 exp
-􀀀
-􀀀x
-
-;
-where  = (!1; : : : ; !K; )T is the parameter vector and known constant K is the number of
-components. The vector of mixing parameters is given by ! = (!1; : : : ; !K)T where !js sum to
-one, i.e.,
-PK
-j=1 !j = 1. Here  is the rate parameter that is equal for all components.
-Usage
-rgsm(n, omega, beta)
-Arguments
-n Vector of observations.
-omega Vector of the mixing parameters.
-beta The rate parameter.
-Value
-A vector of length n, giving random generated values from GSM model.
-Author(s)
-Mahdi Teimouri
-References
-S. Venturini, F. Dominici, and G. Parmigiani, 2008. Gamma shape mixtures for heavy-tailed distributions,
-The Annals of Applied Statistics, 2(2), 756–776.
-rmixture 23
-Examples
-n<-100
-omega<-c(0.05, 0.1, 0.15, 0.2, 0.25, 0.25)
-beta<-2
-rgsm(n, omega, beta)
-rmixture Generating random realizations from the well-known mixture models
-Description
-Generates iid realizations from the mixture model with pdf given by
-f(x; ) =
-XK
-j=1
-!jf(x; j);
-where K is the number of components, j , for j = 1; : : : ;K is parameter space of the j-th component,
-i.e. j = (j ; j)T , and  is the whole parameter vector  = (1; : : : ; K)T . Parameters
- and  are the shape and scale parameters or both are the shape parameters. In the latter
-case, parameters  and  are called the first and second shape parameters, respectively. We note
-that the constants !js sum to one, i.e.,
-PK
-j=1 !j = 1. The families considered for the cdf f
-include Birnbaum-Saunders, Burr type XII, Chen, F, Fr\’echet, Gamma, Gompertz, Log-normal,
-Log-logistic, Lomax, skew-normal, and Weibull.
-Usage
-rmixture(n, g, K, param)
-Arguments
-n Number of requested random realizations.
-g Name of the family including "birnbaum-saunders", "burrxii", "chen", "f",
-"frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax",
-"skew-normal", and "weibull".
-K Number of components.
-param Vector of the !, , , and .
-Details
-For the skew-normal case, , , and  are the location, scale, and skewness parameters, respectively.
-Value
-A vector of length n, giving a sequence of random realizations from given mixture model.
-24 rmixture
-Author(s)
-Mahdi Teimouri
-Examples
-n<-50
-K<-2
-weight<-c(0.3,0.7)
-alpha<-c(1,2)
-beta<-c(2,1)
-param<-c(weight,alpha,beta)
-rmixture(n, "weibull", K, param)
-Index
-Topic datasets
-DBH, 2
-DBH, 2
-dgsm, 3
-dmixture, 4
-fitbayesJSB, 6
-fitbayesWeibull, 7
-fitgrouped, 8
-fitgrowth, 10
-fitgsm, 12
-fitmixture, 14
-fitmixturegrouped, 15
-fitWeibull, 17
-pgsm, 19
-pmixture, 21
-rgsm, 22
-rmixture, 23
-25
+

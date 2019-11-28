@@ -1,0 +1,124 @@
+---
+title: "Untitled"
+author: "Kevin O Brien"
+date: "28 November 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+fitgrouped Estimating parameters of the three-parameter Birnbaum-saunders
+(BS), generalized exponential (GE), and Weibull distributions fitted to
+grouped data
+
+#### Description
+
+Suppose a sample of n independent observations each follows a three-parameter BS, GE, orWeibull
+distributions have been divided into m separate groups of the form (ri????1; ri], for i = 1, \ldots,m. So,
+the likelihood function is given by
+L(\Theta ) =
+n!
+f1!f2! : : : fm!
+mY
+i=1
+h
+F
+????
+ri
+\beta\beta
+\Theta 
+
+???? F
+????
+ri????1
+\beta\beta
+\Theta 
+ifi
+;
+fitgrouped 9
+where the r0 is the lower bound of the first group, rm is the upper bound of the last group, and
+fi is the frequency of observations within i-th group provided that n =
+Pm
+i=1 fi. The cdf of a
+three-parameter BS, GE, and Weibull distributions are given by
+F(x; \Theta ) =
+\theta 
+1 ???? exp
+\Psi
+????\beta(x ???? )
+	\alpha\;
+;
+F(x; \Theta ) = \Psi
+ q
+x
+\beta ????
+q
+\beta
+x
+\alpha\;
+!
+;
+and
+F(x; \Theta ) = 1 ???? exp
+n
+????
+\theta 
+x ???? 
+\beta
+\alpha\;o
+;
+where \Theta  = (\alpha\;; \beta; )T .
+
+#### Usage
+
+<pre><code>
+fitgrouped(r, f, family, method1, starts, method2)
+</code></pre>
+
+#### Arguments
+
+* ``r``: A numeric vector of length m + 1. The first element of r is lower bound of the
+first group and other m elements are upper bound of the m groups. We note that
+upper bound of the (i ???? 1)-th group is the lower bound of the i-th group, for
+i = 2, \ldots,m. The lower bound of the first group and upper bound of the m-th group are chosen arbitrarily.
+* ``f``: A numeric vector of length m containing the group's frequency.
+family Can be either "birnbaum-saunders", "ge", or "weibull".
+method1 A character string determining the method of estimation. It can be one of "aml",
+"em" and "ml". The short forms "aml", "em", and "ml" are described as follows.
+""aml" (for method of approximated maximum likelihood (aml)), ""em" (for method of expectation maximization (em)), and ""ml" (for method of maximum
+likelihood (ml)).
+starts A numeric vector of the initial values for the shape, scale, and location parameters, respectively.
+method2 The method for optimizing the log-likelihood function. It invovles one of "BFGS",
+"Nelder-Mead", "CG", "L-BFGS-B" or "SANN".
+
+#### Details
+
+If the method is "em", then the initial values ("starts") and the log-likelihood optimizing method ("method2") are ignored.
+
+#### Value
+
+A two-part list of objects given by the following:
+1. Estimated parameters of the three-parameter GE, Birnbaum-Saunders, or Weibull distribution
+fitted to the gropued data.
+2. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
+Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
+Quinn information criterion (HQIC), Anderson-Darling (AD), Chi-square (Chi-square), Cram\'eervon
+Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
+### Author(s)
+Mahdi Teimouri
+
+
+
+#### Examples
+```{r}
+
+r<-c(0,1,2,3,4,10)
+f<-c(2,8,12,15,4)
+starts<-c(2,2,0)
+fitgrouped(r,f,"birnbaum-saunders","em")
+fitgrouped(r,f,"weibull","ml",starts,"CG")
+fitgrouped(r,f,"ge","em")
+```
+

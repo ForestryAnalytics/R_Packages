@@ -1,0 +1,64 @@
+---
+title: "``ForestFit::rmixture``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
+```
+
+ Generating random realizations from the well-known mixture models
+
+#### Description
+
+Generates iid realizations from the mixture model with pdf given by
+\[f(x; ) =
+XK
+j=1
+!jf(x; j);
+\]
+where K is the number of components, j , for j = 1; : : : ;K is parameter space of the j-th component,
+i.e. j = (j ; j)T , and  is the whole parameter vector  = (1; : : : ; K)T . Parameters
+ and  are the shape and scale parameters or both are the shape parameters. 
+ 
+ In the latter
+case, parameters  and  are called the first and second shape parameters, respectively. We note
+that the constants !js sum to one, i.e.,
+PK
+j=1 !j = 1. The families considered for the cdf f
+include Birnbaum-Saunders, Burr type XII, Chen, F, Fr\'echet, Gamma, Gompertz, Log-normal,
+Log-logistic, Lomax, skew-normal, and Weibull.
+
+#### Usage
+
+rmixture(n, g, K, param)
+
+#### Arguments
+
+* ``n``: Number of requested random realizations.
+* ``g``:  Name of the family including "birnbaum-saunders", "burrxii", "chen", "f",
+"frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax",
+"skew-normal", and "weibull".
+* `` K``:    Number of components.
+* `` param ``:    Vector of the !, , , and .
+
+#### Details
+
+For the skew-normal case, , , and  are the location, scale, and skewness parameters, respectively.
+
+#### Value
+
+A vector of length n, giving a sequence of random realizations from given mixture model.
+
+#### Examples
+```{r}
+
+n<-50
+K<-2
+weight<-c(0.3,0.7)
+alpha<-c(1,2)
+beta<-c(2,1)
+param<-c(weight,alpha,beta)
+rmixture(n, "weibull", K, param)
+```

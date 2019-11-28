@@ -1,0 +1,63 @@
+---
+title: "rgsm"
+author: "Kevin O Brien"
+date: "28 November 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
+```
+
+rgsm Simulating realizations from the gamma shape mixture model
+
+#### Description
+
+Simulates realizations from a gamma shape mixture (GSM) model with probability density function
+given by
+\[f(x; \Theta ) =
+XK
+j=1
+\omega_{j}
+\beta j
+????(j)
+xj????1 exp
+????
+????\ta be  tax
+
+;\]
+where $\Theta  = (\omega_{1}, \ldots, \omega_{K}; \beta)^T$ is the parameter vector and known constant K is the number of
+components. The vector of mixing parameters is given by ! = (\omega_{1}, \ldots, \omega_{K})T where $\omega_{j}s$ sum to
+one, i.e.,
+\[ \sum^{K}_{j=1} \omega_{j} = 1.\] Here $\beta$ is the rate parameter that is equal for all components.
+
+#### Usage
+
+<pre><code>
+rgsm(n, omega, beta)
+</code></pre>
+
+#### Arguments
+
+* n Vector of observations.
+* omega Vector of the mixing parameters.
+* beta The rate parameter.
+
+#### Value
+
+A vector of length n, giving random generated values from GSM model.
+
+### Author(s)
+
+Mahdi Teimouri
+
+
+
+#### Examples
+```{r}
+
+n<-100
+omega<-c(0.05, 0.1, 0.15, 0.2, 0.25, 0.25)
+beta<-2
+rgsm(n, omega, beta)
