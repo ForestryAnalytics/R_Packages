@@ -1,54 +1,35 @@
 ---
-title: "Untitled"
-author: "Kevin O Brien"
-date: "28 November 2019"
+title: "``ForestFit::fitbayesWeibull``"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
 ```
 
-fitbayesWeibull Estimating parameters of the Weibull distribution using the Bayesian
+Estimating parameters of the Weibull distribution using the Bayesian
 approach
 
 #### Description
 
-Suppose $x = (x1, \ldots, xn)^T$ denotes a vector of n independent observations coming from a threeparameter
+Suppose $x = (x^1, \ldots, x^n)^T$ denotes a vector of n independent observations coming from a threeparameter
 Weibull distribution. Using the methodology given in Green et al. (1994), we compute
 the Bayes' estimators of the shape, scale, and location parameters.
 
 #### Usage
 
+<pre><code>
 fitbayesWeibull(data, n.burn=8000, n.simul=10000)
+</code></pre>
 
 #### Arguments
 
 * ``data``:   Vector of observations.
-n.burn Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed
-to attain convergence. By default n.burn is 8000.
-n.simul Total numbers of Gibbas sampler iterations. By default n.simul is 10,000.
-8 fitgrouped
+* ``n.burn``: Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed
+to attain convergence. By default ``n.burn`` is 8000.
+* ``n.simul``: Total numbers of Gibbas sampler iterations. By default ``n.simul`` is 10,000.
 
-#### Details
-
-The Bayes' estimators are obtained by averaging on the all iterations between n.burn and n.simul.
-
-#### Value
-
-A list of objects in two parts as
-1. Bayes' estimators of the parameters.
-2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\'eer-von
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-
-Note
-
-The methodology used here for computing the Bayes' estimator of the location parameter is different
-from that used by Green et al. (1994). This means that the location parameter is allowed to be
-any real value.
-
-### Author(s)
-Mahdi Teimouri
 
 
 
@@ -63,3 +44,22 @@ data<-rweibull(n,shape=alpha,scale=beta)+theta
 fitbayesWeibull(data, n.burn=100, n.simul=200)
 ```
 
+#### Details
+
+The Bayes' estimators are obtained by averaging on the all iterations between ``n.burn`` and ``n.simul``.
+
+#### Value
+
+A list of objects in two parts as
+1. Bayes' estimators of the parameters.
+2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\'eer-von
+Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
+
+### Note
+
+The methodology used here for computing the Bayes' estimator of the location parameter is different
+from that used by Green et al. (1994). This means that the location parameter is allowed to be
+any real value.
+
+### Author(s)
+Mahdi Teimouri

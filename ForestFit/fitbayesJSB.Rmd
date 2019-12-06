@@ -1,78 +1,47 @@
 ---
-title: "Untitled"
-author: "Kevin O Brien"
-date: "28 November 2019"
+title: "``ForestFit::fitbayesJSB``"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
 ```
 
-fitbayesJSB Estimating parameters of the Johnson's SB (JSB) distribution using
+ Estimating parameters of the Johnson's SB (JSB) distribution using
 the Bayesian approach
 
 #### Description
 
-Suppose $x = (x1, \ldots, xn)^T$ denotes a vector of n independent observations coming from a fourparameter
+Suppose $x = (x^1, \ldots, x^n)^T$ denotes a vector of $n$ independent observations coming from a four parameter
 JSB distribution with pdf given by
-f
-????
-x
-\beta\beta
-\Theta 
-
-=
-\delta \; \lambda 
-p
-2(x ???? \upsilon \; )(\lambda  + \upsilon \;  ???? x)
-exp
-(
-????
-1
-2
-"
 
- + \delta \;  log
-\theta 
-x ???? \upsilon \; 
-\lambda  + \upsilon \;  ???? x
-#2)
-;
-where \upsilon \;  < x < \lambda  + \upsilon \;  and \Theta  = (\delta \; ; 
-; \lambda ; \upsilon \; )T with \delta \; ; \lambda  > 0, ????1 < 
- < 1, and ????1 < \upsilon \;  < 1.
+
+\[
+f(x|\Theta )
+=
+\frac{\delta \lambda}{\sqrt{2\pi}(x -\xi)(\lambda + \xi -x )} exp\left\{ -\frac{1}{2} \left[ \gamma + \delta \log \left( \frac{x -\xi}{\lambda + \xi -x } \right) \right]^2  \right\}\]
+
+where $\xi \;  < x < \lambda  + \xi \;$  and $\Theta  = (\delta \; ; 
+; \lambda ; \xi \; )^T$ with $\delta \; ; \lambda  > 0, -\infty < 
+ < \infty, $ and $ -\infty  < \xi \;  < \infty $
+ 
 Using the Bayesian approach, we compute the Bayes' estimators of the JSB distribution parameters.
 
 #### Usage
 
+<pre><code>
 fitbayesJSB(data, n.burn=8000, n.simul=10000)
+</code></pre>
 
 #### Arguments
 
 * ``data``:   Vector of observations.
-n.burn Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed
-to attain convergence. By default n.burn is 8000.
-n.simul Total numbers of Gibbas sampler iterations. By default n.simul is 10,000.
-
-#### Details
-
-The Bayes' estimators are obtained by averaging on the all iterations between n.burn and n.simul.
-fitbayesWeibull 7
-
-#### Value
-
-A list of objects in two parts as
-1. Bayes' estimators of the parameters.
-2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\'eer-von
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-
-### Author(s)
-Mahdi Teimouri
-
-
+* ``n.burn``: Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed to attain convergence. By default ``n.burn`` is 8000.
+* ``n.simul``: Total numbers of Gibbas sampler iterations. By default n.simul is 10,000.
 
 #### Examples
+
 ```{r}
 
 n<-20
@@ -84,3 +53,17 @@ z<-rnorm(n)
 data<-xi+lambda/(1+exp(-(z-gamma)/delta))
 fitbayesJSB(data, n.burn=50, n.simul=80)
 ```
+
+#### Details
+
+The Bayes' estimators are obtained by averaging on the all iterations between n.burn and n.simul.
+
+#### Value
+
+A list of objects in two parts as
+1. Bayes' estimators of the parameters.
+2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\'eer-von
+Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
+
+### Author(s)
+Mahdi Teimouri

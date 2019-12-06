@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
 ```
 
 fitgsm Estimating parameters of the gamma shape mixture model
@@ -15,27 +16,17 @@ fitgsm Estimating parameters of the gamma shape mixture model
 
 Estimates parameters of the gamma shape mixture (GSM) model whose probability density function
 gets the form as follows.
-f(x; \Theta ) =
-XK
-j=1
-\omega_{j}
-\betaj
-????(j)
-xj????1 exp
-????
-????\betax
-
-;
-fitgsm 13
-where $\Theta  = (\omega_{1}, \ldots, \omega_{K}; \beta)^T$ is the parameter vector and known constant K is the number of
-components. The vector of mixing parameters is given by ! = (\omega_{1}, \ldots, \omega_{K})T where \omega_{j}s sum to
+
+\[f(x; \Theta ) = \sum_{j=1}^{K}\omega_{j} \frac{\beta^{j}}{\Gamma(j)} x^{j-1} exp(\-beta x);\]
+where $\Theta  = (\omega_{1}, \ldots, \omega_{K}; \beta)^T$ is the parameter vector and known constant $K$ is the number of
+components. The vector of mixing parameters is given by $\omega = (\omega_{1}, \ldots, \omega_{K})^T where $\omega_{j}s$ sum to
 one, i.e.,
-PK
-j=1 \omega_{j} = 1. Here \beta is the rate parameter that is equal for all components.
+\[ \sum^{K}_{j=1} \omega_{j} = 1.\] Here $\beta$ is the rate parameter that is equal for all components.
 
 #### Usage
-
+<pre><code>
 fitgsm(data,K)
+</code></pre>
 
 #### Arguments
 
@@ -44,20 +35,10 @@ fitgsm(data,K)
 
 #### Details
 
-Supposing that the number of components, i.e., K is known, the parameters are estimated through
+Supposing that the number of components, i.e., $K$ is known, the parameters are estimated through
 the EM algorithm developed by the maintainer.
 
-#### Value
 
-A list of objects in three parts as
-1. The EM estimator of the rate parameter.
-2. The EM estimator of the mixing parameters.
-3. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\'eer-von Misses (CVM), Kolmogorov-
-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
-### Author(s)
-Mahdi Teimouri
 
 
 #### Examples
@@ -70,3 +51,16 @@ data<-rgsm(n,omega,beta)
 K<-length(omega)
 fitgsm(data,K)
 ```
+
+#### Value
+
+A list of objects in three parts as
+1. The EM estimator of the rate parameter.
+2. The EM estimator of the mixing parameters.
+3. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
+Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
+Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\'eer-von Misses (CVM), Kolmogorov-
+Smirnov (KS), and log-likelihood (log-likelihood) statistics.
+
+### Author(s)
+Mahdi Teimouri
