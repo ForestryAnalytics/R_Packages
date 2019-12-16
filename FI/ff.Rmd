@@ -1,3 +1,14 @@
+---
+title: "FI::ff "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FI)
+```
+
+
 ## ff
 
 Factor form for the given volume
