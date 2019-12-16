@@ -8,8 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ForestFit)
 ```
 
-Estimating parameters of the Weibull distribution using the Bayesian
-approach
+Estimating parameters of the Weibull distribution using the Bayesian approach
 
 #### Description
 
@@ -26,8 +25,7 @@ fitbayesWeibull(data, n.burn=8000, n.simul=10000)
 #### Arguments
 
 * ``data``:   Vector of observations.
-* ``n.burn``: Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed
-to attain convergence. By default ``n.burn`` is 8000.
+* ``n.burn``: Length of the burn-in period, i.e., the point after which Gibbs sampler is supposed to attain convergence. By default ``n.burn`` is 8000.
 * ``n.simul``: Total numbers of Gibbas sampler iterations. By default ``n.simul`` is 10,000.
 
 
@@ -40,8 +38,8 @@ n<-20
 alpha<-2
 beta<-2
 theta<-3
-data<-rweibull(n,shape=alpha,scale=beta)+theta
-fitbayesWeibull(data, n.burn=100, n.simul=200)
+set.seed(1234); mydata<-rweibull(n,shape=alpha,scale=beta)+theta
+fitbayesWeibull(mydata, n.burn=100, n.simul=200)
 ```
 
 #### Details

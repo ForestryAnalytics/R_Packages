@@ -50,20 +50,19 @@ delta<-2
 gamma<-2
 lambda<-20
 z<-rnorm(n)
-data<-xi+lambda/(1+exp(-(z-gamma)/delta))
-fitbayesJSB(data, n.burn=50, n.simul=80)
+mydata<-xi+lambda/(1+exp(-(z-gamma)/delta))
+fitbayesJSB(mydata, n.burn=50, n.simul=80)
 ```
 
 #### Details
 
-The Bayes' estimators are obtained by averaging on the all iterations between n.burn and n.simul.
+The Bayes' estimators are obtained by averaging on the all iterations between ``n.burn`` and ``n.simul``.
 
 #### Value
 
 A list of objects in two parts as
 1. Bayes' estimators of the parameters.
-2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cram\'eer-von
-Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
+2. A sequence of four goodness-of-fit measures consist of Anderson-Darling (AD), Cramer-von Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
 
 ### Author(s)
 Mahdi Teimouri

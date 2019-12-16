@@ -15,27 +15,10 @@ methods
 
 Estimates the parameters of the two- and three-parameter Weibull model with pdf and cdf given by
 \[
-f(x; \alpha\;; \beta; \theta ) =
-\alpha\;
-\beta
-\theta 
-x ???? \theta 
-\beta
-\alpha\;????1
-exp????
-\theta 
-x ???? \theta 
-\beta
-\alpha\;
-;\]
+f(x; \alpha\;; \beta; \theta ) = \frac{ \alpha}{\beta} \left(   \frac{x - \theta }{\beta} \right)^{\alpha-1} exp \left\{ - \left(  \frac{x - \theta }{\beta} \right)^{\alpha} \right\}\]
 and
-\[F(x; \alpha\;; \beta; \theta ) = 1 ???? exp
-\theta 
-x ???? \theta 
-\beta
-\alpha\;
-;\]
-where x > \theta , \alpha\; > 0, $\beta > 0$ and $????1 < \theta  <$ 1. Here, the parameters \alpha\;, \beta, and \theta  are known in the
+\[F(x; \alpha\;; \beta; \theta ) = 1 - exp \left\{ - \left(  \frac{x - \theta }{\beta} \right)^{\alpha} \right\}\]
+where $x > \theta$ , $\alpha\; > 0$, $\beta > 0$ and $????1 < \theta  <$ 1. Here, the parameters \alpha\;, \beta, and \theta  are known in the
 literature as the shape, scale, and location, respectively. If $\theta  = 0$, then $f(x; \alpha\;; \beta)$ and $F(x; \alpha\;; \beta)$ in
 above are the pdf and cdf of a two-parameter Weibull distribution, respectively.
 
@@ -57,35 +40,60 @@ fitWeibull(data, location, method, starts)
 
 * In the two-parameter case, methods are "greg1" (for the method of generalized regression type 1), "greg2" (for the method of generalized regression type 2), "lm" (for the method of L-moment), "ml" (for the method of maximum likelihood (ML)), "mlm" (for the method of logarithmic moment), "moment" (for the method of moment), "pm" (for the method of percentile), "rank" (for the method of rank correlation), "reg" (for the method of least square), "ustat" (for the method of U-statistic), "wml" (for the method of weighted ML), and "wreg" (for the method of weighted least square). 
 
-* In three-parameter case the methods are "mle" (for the method of ML), "mm1" (for the method of modified moment (MM) type 1), "mm2" (for the method ofMMtype 2), "mm3" (for the method ofMMtype 3), "mml1" (for the method of modified ML type 1), "mml2" (for the method of modified ML type 2), "mml3" (for the method of modified ML type 3), "mml4" (for the method of modified ML type 4), "moment" (for the method of moment), "mps" (for the method of maximum product spacing), "tlm" (for the method of T-L moment), and "wml"
+* In three-parameter case the methods are "mle" (for the method of ML), "mm1" (for the method of modified moment (MM) type 1), "mm2" (for the method ofMMtype 2), "mm3" (for the method of ML type 3), "mml1" (for the method of modified ML type 1), "mml2" (for the method of modified ML type 2), "mml3" (for the method of modified ML type 3), "mml4" (for the method of modified ML type 4), "moment" (for the method of moment), "mps" (for the method of maximum product spacing), "tlm" (for the method of T-L moment), and "wml"
 (for the method of weighted ML).
 
-#### Details
-
-For the method wml, all weights have been provided for sample size less that or equal to 100. This
-means that both methods ml and wml give the same estimates for samples of size larger than 100.
-
-#### Value
-
-A list of objects in two parts given by the following:
-1. Estimated parameters for two- or three-parameter Weibull distribution.
-2. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\'eer-von Misses (CVM), Kolmogorov-
-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
 
 
 #### Examples
 ```{r}
 
-n<-100
+n<-5000
 alpha<-2
 beta<-2
 theta<-3
-data<-rweibull(n,shape=alpha,scale=beta)+theta
-starts<-c(2,2,3)
-fitWeibull(data, TRUE, "mps", starts)
-fitWeibull(data, TRUE, "wml", starts)
-fitWeibull(data, FALSE, "mlm", starts)
-fitWeibull(data, FALSE, "ustat", starts)
+set.seed(1234);mydata<-rweibull(n,shape=alpha,scale=beta)+theta
+
 ```
+
+```{r}
+head(mydata)
+
+```
+
+```{r}
+hist(mydata,breaks=100)
+```
+
+```{r}
+
+starts<-c(2,2,3)
+fitWeibull(mydata, TRUE, "mps", starts)
+```
+
+
+```{r}
+fitWeibull(mydata, TRUE, "wml", starts)
+```
+
+
+```{r}
+fitWeibull(mydata, FALSE, "mlm", starts)
+```
+
+
+```{r}
+fitWeibull(mydata, FALSE, "ustat", starts)
+```
+
+
+#### Details
+
+For the method wml, all weights have been provided for sample size less that or equal to 100. 
+This means that both methods ml and wml give the same estimates for samples of size larger than 100.
+
+#### Value
+
+A list of objects in two parts given by the following:
+1. Estimated parameters for two- or three-parameter Weibull distribution.
+2. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-Quinn information criterion (HQIC), Anderson-Darling (AD), Cramer-von Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
