@@ -1,3 +1,14 @@
+---
+title: "FI::volume "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FI)
+```
+
+
 ## volume
 Estimates the stem volume
 
@@ -15,19 +26,10 @@ volume(trees, method = "smalian")
 * trees a data frame or matrix in format described in dataset inventory (more help inventory)
 * method method used for estimation of the stem volume
 
-##### Value
-a named vector of volumes, names are defined as same as in first column
-
-#### Note
-Newton and Huber methods have small modifications for working just with two mensures (lower and upper diameter). Both of them use mean instead of real middle diameter.
-
-##### References
-http://wiki.awf.forst.uni-goettingen.de/wiki/index.php/Stem_volume
-See Also
-ff sf
 
 #### Examples
 
+```{r}
 example_data <- data.frame(tree_number = 1,
 dhb = 5,
 total_height = 20,
@@ -43,4 +45,15 @@ data(inventory)
 volume_output <- volume(inventory)
 summary(volume_output)
 hist(volume_output)
+```
+##### Value
+a named vector of volumes, names are defined as same as in first column
+
+#### Note
+Newton and Huber methods have small modifications for working just with two mensures (lower and upper diameter). Both of them use mean instead of real middle diameter.
+
+##### References
+http://wiki.awf.forst.uni-goettingen.de/wiki/index.php/Stem_volume
+See Also
+ff sf
 
