@@ -1,5 +1,5 @@
 ---
-title: "ForestFit::pmixture "
+title: "``ForestFit::pmixture`` "
 output: html_document
 ---
 
@@ -9,17 +9,14 @@ library(ForestFit)
 ```
 
 
-Computing cumulative distribution function of the well-known mixture
-models
+Computing cumulative distribution function of the well-known mixture models
 
 #### Description
 
 Computes cumulative distribution function (cdf) of the mixture model. The general form for the cdf of a statistical mixture model is given by
 \[F(x; \Theta ) =  \sum^{K}_{j=1}
 \omega_{j}F_j(x; \theta j);\]
-where $\Theta  = (\theta 1, \ldots, \theta_K)^T$ , is the whole parameter vector, $\theta_j$ for $ j = 1, \ldots,K$ is the parameter
-space of the j-th component, i.e. $\theta_j = (\alpha_j ; \beta_j)^T$ , $F_j( \cdot , \theta_j)$ is the cdf of the j-th component, and
-known constant $K$ is the number of components.
+where $\Theta  = (\theta 1, \ldots, \theta_K)^T$ , is the whole parameter vector, $\theta_j$ for $ j = 1, \ldots,K$ is the parameter space of the j-th component, i.e. $\theta_j = (\alpha_j ; \beta_j)^T$ , $F_j( \cdot , \theta_j)$ is the cdf of the j-th component, and known constant $K$ is the number of components.
 
 The vector of mixing parameters is given
 by \[ ! = (\omega_{1}, \ldots, \omega_{K})^T\] where $\omega_{j}$s sum to one, i.e.,
@@ -27,8 +24,7 @@ by \[ ! = (\omega_{1}, \ldots, \omega_{K})^T\] where $\omega_{j}$s sum to one, i
 
 
 Parameters $\alpha$ and $\beta$ are the shape and scale
-parameters or both are the shape parameters. In the latter case, the parameters $\alpha$ and $\beta$ are called
-the first and second shape parameters, respectively.
+parameters or both are the shape parameters. In the latter case, the parameters $\alpha$ and $\beta$ are called the first and second shape parameters, respectively.
 
 #### Families
 
@@ -66,4 +62,10 @@ alpha<-c(1,2)
 beta<-c(2,1)
 param<-c(weight,alpha,beta)
 pmixture(data, "weibull", K, param)
+```
+
+
+```{r}
+plot( pmixture(data, "weibull", K, param),type="l" )
+
 ```

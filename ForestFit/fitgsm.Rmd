@@ -1,7 +1,5 @@
 ---
-title: "Untitled"
-author: "Kevin O Brien"
-date: "28 November 2019"
+title: "``ForestFit::fitgsm``"
 output: html_document
 ---
 
@@ -10,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ForestFit)
 ```
 
-fitgsm Estimating parameters of the gamma shape mixture model
+Estimating parameters of the gamma shape mixture model
 
 #### Description
 
@@ -19,7 +17,7 @@ gets the form as follows.
 
 \[f(x; \Theta ) = \sum_{j=1}^{K}\omega_{j} \frac{\beta^{j}}{\Gamma(j)} x^{j-1} exp(\-beta x);\]
 where $\Theta  = (\omega_{1}, \ldots, \omega_{K}; \beta)^T$ is the parameter vector and known constant $K$ is the number of
-components. The vector of mixing parameters is given by $\omega = (\omega_{1}, \ldots, \omega_{K})^T where $\omega_{j}s$ sum to
+components. The vector of mixing parameters is given by $\omega = (\omega_{1}, \ldots, \omega_{K})^T$ where $\omega_{j}s$ sum to
 one, i.e.,
 \[ \sum^{K}_{j=1} \omega_{j} = 1.\] Here $\beta$ is the rate parameter that is equal for all components.
 
@@ -44,23 +42,28 @@ the EM algorithm developed by the maintainer.
 #### Examples
 ```{r}
 
-n<-100
+n<-1000
 omega<-c(0.05, 0.1, 0.15, 0.2, 0.25, 0.25)
-beta<-2
+beta<-3
 data<-rgsm(n,omega,beta)
 K<-length(omega)
 fitgsm(data,K)
 ```
+
+```{r}
+fittedmodel.beta <-fitgsm(data,K)$`beta`
+fittedmodel.omega <-fitgsm(data,K)$omega
+
+
+```
+
 
 #### Value
 
 A list of objects in three parts as
 1. The EM estimator of the rate parameter.
 2. The EM estimator of the mixing parameters.
-3. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent
-Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-
-Quinn information criterion (HQIC), Anderson-Darling (AD), Cram\'eer-von Misses (CVM), Kolmogorov-
-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
+3. A sequence of goodness-of-fit measures consist of Akaike Information Criterion (AIC), Consistent Akaike Information Criterion (CAIC), Bayesian Information Criterion (BIC), Hannan-Quinn information criterion (HQIC), Anderson-Darling (AD), Cramer-von Misses (CVM), Kolmogorov-Smirnov (KS), and log-likelihood (log-likelihood) statistics.
 
 ### Author(s)
 Mahdi Teimouri

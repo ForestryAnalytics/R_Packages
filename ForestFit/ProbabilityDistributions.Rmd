@@ -1,0 +1,179 @@
+---
+title: "ForestFit"
+author: "Kevin O Brien"
+date: "17 December 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+. Birnbaum-Saunders
+f(x; \theta ) =
+q
+x
+\beta +
+q
+\beta
+x
+2\alpha\;x
+
+ q
+x
+\beta ????
+q
+\beta
+x
+\alpha\;
+!
+;
+. Burr XII
+f(x; \theta ) = \alpha\;\betax\alpha\;????1
+
+1 + x\alpha\;
+????\beta????1
+;
+. Chen
+f(x; \theta ) = \alpha\;\betax\alpha\; exp
+????
+x\alpha\;
+exp
+n
+????\beta exp
+????
+x\alpha\;
++ \beta
+o
+;
+. F
+f(x; \theta ) =
+????
+
+\alpha\;+\beta
+2
+
+????
+????\alpha\;
+2
+
+????
+???? \beta
+2
+
+\alpha\;
+\beta
+\alpha\;
+2
+x
+\alpha\;
+2 ????1
+
+1 +
+\alpha\;
+\beta
+x
+????\alpha\;+\beta
+2
+;
+dmixture 5
+. Frechet
+f(x; \theta ) =
+\alpha\;
+\beta
+x
+\beta
+????\alpha\;????1
+exp
+n
+????
+x
+\beta
+????\alpha\;o
+;
+. gamma
+f(x; \theta ) =
+\Theta 
+\beta\alpha\;????(\alpha\;)
+????1
+x\alpha\;????1 exp
+
+????
+x
+\beta
+
+;
+. Gompertz
+f(x; \theta ) = \beta exp
+????
+\alpha\;x
+
+exp
+(
+\beta exp
+????
+\alpha\;x
+
+???? 1
+\alpha\;
+)
+;
+. log-logistic
+f(x; \theta ) =
+\alpha\;
+\beta\alpha\; x\alpha\;????1
+x
+\beta
+\alpha\;
++ 1
+\lambda ????2
+;
+. log-normal
+f(x; \theta ) =
+????p
+2\betax
+????1
+exp
+
+????
+1
+2
+\theta 
+log x ???? \alpha\;
+\beta
+2
+;
+. Lomax
+f(x; \theta ) =
+\alpha\;\beta
+(1 + \alpha\;x)\beta+1 ;
+. skew-normal
+f(x; \theta ) = 2
+x ???? \alpha\;
+\beta
+
+\Psi
+
+\lambda 
+x ???? \alpha\;
+\beta
+
+;
+. Weibull
+f(x; \theta ) =
+\alpha\;
+\beta
+x
+\beta
+\alpha\;????1
+exp
+n
+????
+x
+\beta
+\alpha\;o
+;
+where \theta  = (\alpha\;; \beta). In the skew-normal case, (:) and \Psi(:) are the density and distribution functions
+of the standard normal distribution, respectively.

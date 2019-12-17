@@ -8,21 +8,16 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ForestFit)
 ```
 
- Generating random realizations from the well-known mixture models
+Generating random realizations from the well-known mixture models
 
 #### Description
 
 Generates iid realizations from the mixture model with pdf given by
-
 \[f(x; \theta ) =  \sum^{K}_{j=1} \omega_{j}f_j(x; \theta j);\]
-where K is the number of components, $\theta_j$ for $ j = 1, \ldots,K$ is the parameter
-space of the j-th component,
-i.e. j = (j ; j)T , and $\Theta  = (\theta 1, \ldots, \theta_K)^T$ , is the whole parameter vector. 
+where K is the number of components, $\theta_j$ for $ j = 1, \ldots,K$ is the parameter space of the j-th component, i.e. $theta_j = (\alpha_j ; \beta_j)^T$ , and $\Theta  = (\theta_1, \ldots, \theta_K)^T$ , is the whole parameter vector. 
 
 Parameters $\alpha$ and $\beta$ are the shape and scale parameters or both are the shape parameters. 
-In the latter case, the parameters $\alpha$ and $\beta$ are called the first and second shape parameters, respectively.
-
-We note that the constants $\omega_{j}$s sum to one, i.e.
+In the latter case, the parameters $\alpha$ and $\beta$ are called the first and second shape parameters, respectively. We note that the constants $\omega_{j}$s sum to one, i.e.
 \[ \sum^{K}_{j=1} \omega_{j} \;=\; 1 \]
 
 #### Families
