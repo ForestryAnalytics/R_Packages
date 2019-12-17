@@ -1,8 +1,19 @@
+---
+title: "``forestmangr::dom_height``"
+output: html_document
+---
 
-dom_height Calculate the Dominant Height of forest inventory data plots
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
+Calculate the Dominant Height of forest inventory data plots
+
 #### Description
-This function is used to get a data frame with Dominant height values for each plot in an forest
-inventory data.
+
+This function is used to get a data frame with Dominant height values for each plot in an forest inventory data.
+
 #### Usage
 <pre><code>
 dom_height(df, th, dbh, plot, obs, dom, .groups, merge_data = FALSE,
@@ -10,14 +21,12 @@ dh_name = "DH")
 </code></pre>
 
 #### Arguments 
-*``df``: A data frame.
-th Quoted name of the total height variable.
-* ``dbh``: Quoted nameof the diameter at breast height variable. Used to filter out trees
-with no diameter measurement.
+* ``df``: A data frame.
+* ``th``: Quoted name of the total height variable.
+* ``dbh``: Quoted nameof the diameter at breast height variable. Used to filter out trees with no diameter measurement.
 * `` plot``:  Quoted name of the plot variable. used to differentiate the data’s plots. If this argument is missing, the defined groups in the data frame will be used, If there
 are no groups in the data, the function will fail.
-* ``obs``: Quoted name of the observations variable. This will be used to tell which trees
-are dominant, i.e. it’s the variable that tells the type of tree; if it is normal, dominant, suppressed, etc. If this argument is not supplied, the function will
+* ``obs``: Quoted name of the observations variable. This will be used to tell which trees are dominant, i.e. it’s the variable that tells the type of tree; if it is normal, dominant, suppressed, etc. If this argument is not supplied, the function will
 calculate the average value of 2 trees with bigger height values in each plot, and  use that as the dominant value.
 * ``dom``: Character value for the dominant tree code used in the observations variable variable supplied in the obs argument. This is used alongside the obs argument
 to differentiate dominant trees from the others.
@@ -27,11 +36,7 @@ differentiate subdivisions of the data. Default: NA.
 FALSE.
 dh_name Character value for the name of the dominant height variable created. Default:
 "DH"
-est_clutter 11
-Value
-A data frame with the the dominant height values by plot.
-Author(s)
-Sollano Rabelo Braga <sollanorb@gmail.com>
+
 #### Examples
 ```{r}
 library(forestmangr)
@@ -47,6 +52,9 @@ dom_height(df=exfm9,th="TH",dbh="DBH",plot="PLOT")
 # Let's check the levels in our OBS variable, to see which one is associated
 # with dominant trees.
 levels(as.factor(exfm9$OBS))
+```
+
+```{r}
 # So, the "D" level must be the one that tells which trees are dominant. Let's use it:#'
 dom_height(df=exfm9,th="TH",dbh="DBH",plot="PLOT",obs="OBS",dom="D")
 # If there are subdivisions of the data, like different strata, they can be included in the
@@ -57,3 +65,10 @@ dom_height(df=exfm9,th="TH",dbh="DBH",plot="PLOT",obs="OBS",dom="D",.groups="STR
 dom_height(df=exfm9,th="TH",dbh="DBH",plot="PLOT",obs="OBS",
 dom="D",.groups="STRATA", merge_data=TRUE)
 ```
+
+
+est_clutter 11
+Value
+A data frame with the the dominant height values by plot.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
