@@ -1,38 +1,32 @@
 ---
-title: "Untitled"
-author: "Kevin O Brien"
-date: "28 November 2019"
+title: "ForestFit::dmixture"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
 ```
 
-dmixture Computing probability density function of the well-known mixture
-models
+Computing probability density function of the well-known mixture models
 
 #### Description
 
-Computes probability density function (pdf) of the mixture model. The general form for the pdf of
-the mixture model is given by
-f(x; \Theta ) =
-XK
-j=1
-\omega_{j}fj(x; \theta j);
-where \Theta  = (\theta 1, \ldots, \theta K)T , is the whole parameter vector, \theta j for $ j = 1, \ldots,K$ is the parameter
-space of the j-th component, i.e. \theta j = (\alpha\;j ; \betaj)T , fj(:; \theta j) is the pdf of the j-th component, and
-known constant K is the number of components. The vector of mixing parameters is given by
-! = (\omega_{1}, \ldots, \omega_{K})T where \omega_{j}s sum to one, i.e.,
-PK
-j=1 \omega_{j} = 1. Parameters \alpha\;j and \betaj are the shape
-and scale parameters of the j-th component or both are the shape parameters. In the latter case,
-the parameters $\alpha$ and $\beta$ are called the first and second shape parameters, respectively. We note that
-the constants \omega_{j}s sum to one, i.e.
-PK
-j=1 \omega_{j} = 1. The families considered for each component
-include Birnbaum-Saunders, Burr type XII, Chen, F, Frechet, Gamma, Gompertz, Log-normal,
-Log-logistic, Lomax, skew-normal, and Weibull with pdf given by the following.
+Computes probability density function (pdf) of the mixture model. General form for the cdf of a statistical mixture model is given by
+\[F(x; \Theta ) =  \sum^{K}_{j=1}
+\omega_{j}F_j(x; \theta j);\]
+where $\Theta  = (\theta 1, \ldots, \theta_K)^T$ , is the whole parameter vector, $\theta_j$ for $ j = 1, \ldots,K$ is the parameter
+space of the j-th component, i.e. $\theta_j = (\alpha_j ; \beta_j)^T$ , $F_j( \cdot , \theta_j)$ is the cdf of the j-th component, and
+known constant $K$ is the number of components. Parameters $\alpha$ and $\beta$ are the shape and scale
+parameters or both are the shape parameters. In the latter case, the parameters $\alpha$ and $\beta$ are called
+the first and second shape parameters, respectively. 
+We note that the constants $\omega_{j}$s sum to one,
+i.e.
+\[ \sum^{K}_{j=1} \omega_{j} \;=\; 1 \]
+
+The families considered for the cdf F include Birnbaum-Saunders, Burr type
+XII, Chen, F, Frechet, Gamma, Gompertz, Log-normal, Log-logistic, Lomax, skew-normal, and
+Weibull, with pdf given by the following.
 . Birnbaum-Saunders
 f(x; \theta ) =
 q
@@ -165,7 +159,7 @@ exp
 \theta 
 log x ???? \alpha\;
 \beta
-2
+2
 ;
 . Lomax
 f(x; \theta ) =
@@ -202,28 +196,18 @@ of the standard normal distribution, respectively.
 
 #### Usage
 
+<pre><code>
 dmixture(data, g, K, param)
+</code></pre>
 
 #### Arguments
 
 * ``data``:   Vector of observations.
-* ``g``:  Name of the family including "birnbaum-saunders", "burrxii", "chen", "f",
-"Frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax",
-"skew-normal", and "weibull".
+* ``g``:  Name of the family including "birnbaum-saunders", "burrxii", "chen", "f", "Frechet", "gamma", "gompetrz", "log-normal", "log-logistic", "lomax", "skew-normal", and "weibull".
 * `` K``:    Number of components.
 * `` param ``:    Vector of the !, \alpha\;, \beta, and \lambda .
 
-#### Details
 
-For the skew-normal case, \alpha\;, \beta, and \lambda  are the location, scale, and skewness parameters, respectively.
-6 fitbayesJSB
-
-#### Value
-
-A vector of the same length as data, giving the pdf of the mixture model of families computed at
-data.
-### Author(s)
-Mahdi Teimouri
 
 #### Examples
 ```{r}
@@ -235,3 +219,17 @@ alpha<-c(1,2)
 beta<-c(2,1)
 param<-c(weight,alpha,beta)
 dmixture(data, "weibull", K, param)
+```
+
+
+#### Details
+
+For the skew-normal case, $\alpha$, $\beta$, and $\lambda$  are the location, scale, and skewness parameters, respectively.
+
+
+#### Value
+
+A vector of the same length as data, giving the pdf of the mixture model of families computed at data.
+
+### Author(s)
+Mahdi Teimouri
