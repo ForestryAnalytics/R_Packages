@@ -1,18 +1,18 @@
-threephase
-threephase
+---
+title: "``forestinventory::threephase``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ForestFit)
+```
 
 #### Description
-threephase is used to calculate estimations based on triple sampling under the model-assisted
-Monte Carlo approach. A zero phase of auxiliary information (e.g. taken from remote sensing
-data) is used to generate model predictions based on multiple linear regression using the method of
-ordinary least squares. A subsample of the zero phase comprises further auxiliary information that
-produces another set of model predictions. A further subsample produces a second phase based on
-terrestrial observations (i.e. the local densities of the ground truth) and is used to correct for bias
-in the design-based sense. The estimation method is available for simple and cluster sampling and
-includes the special case where the first phase is based on an exhaustive sample (i.e. a census).
-Small-area applications are supported for synthetic estimation as well as two varieties of bias-
-corrected estimators: the traditional small-area estimator and an asymptotically equivalent version
-derived under * Mandallaz’s extended model approach.
+
+``threephase`` is used to calculate estimations based on triple sampling under the model-assisted Monte Carlo approach. A zero phase of auxiliary information (e.g. taken from remote sensing data) is used to generate model predictions based on multiple linear regression using the method of ordinary least squares. A subsample of the zero phase comprises further auxiliary information that produces another set of model predictions. A further subsample produces a second phase based on terrestrial observations (i.e. the local densities of the ground truth) and is used to correct for bias in the design-based sense. The estimation method is available for simple and cluster sampling and includes the special case where the first phase is based on an exhaustive sample (i.e. a census).
+
+Small-area applications are supported for synthetic estimation as well as two varieties of bias-corrected estimators: the traditional small-area estimator and an asymptotically equivalent version derived under * Mandallaz’s extended model approach.
 
 ### Usage
 <pre><code>
@@ -43,45 +43,28 @@ used in case of cluster sampling.
 * ``small_area``: (Optional) a list that if containing three elements:
 * ``sa.col``: the column name in data containing domain identification
 * ``areas``: vector of desired small-area domain identifiers
-* ``unbiased``: an object of type "logical" that when FALSE designates that
-the estimator is allowed to be biased (i.e. the synthetic estimator) and when TRUE forces it to be design-unbiased. See Details.
+* ``unbiased``: an object of type "logical" that when FALSE designates that the estimator is allowed to be biased (i.e. the synthetic estimator) and when TRUE forces it to be design-unbiased. See Details.
 Note: If small_area is left unchanged then twophase defaults to global estimation.
 * boundary_weights: (Optional) Specifies the column name in data containing the weights for bound-
 ary adjustment. See Details.
-* exhaustive (Optional) For global estimation, a vector of true auxiliary means corresponding
-to an exhaustive first phase. The vector must be input in the same order that lm processes a formula object and include the intercept term. For small area estimation, exhaustive is a data.frame containing column names (colnames)
-for every variable appearing in the parameter formula including the variable
-"Intercept".Rownames (row.names) have to be used and must correspond to the
-names of the small areas. See Details.
-* progressbar (Optional) an object a type "logical" that when TRUE prints the progress of
-the calculation in the console (recommended for large amount of small areas).
+* exhaustive (Optional) For global estimation, a vector of true auxiliary means corresponding to an exhaustive first phase. The vector must be input in the same order that lm processes a formula object and include the intercept term. For small area estimation, exhaustive is a data.frame containing column names (colnames)
+for every variable appearing in the parameter formula including the variable "Intercept".Rownames (row.names) have to be used and must correspond to the names of the small areas. See Details.
+* progressbar (Optional) an object a type "logical" that when TRUE prints the progress of the calculation in the console (recommended for large amount of small areas).
 * Defaults to FALSE.
-psmall (Optional) an object a type "logical" used for small area estimations that only
-works when unbiased in the parameter small_area is set to TRUE. 
+psmall (Optional) an object a type "logical" used for small area estimations that only works when unbiased in the parameter small_area is set to TRUE. 
 
 #### Details
-* s1.id identifies "second phase only" plots because the terrestrial phase is known to be part of the
-second phase by the construction of the subsampling.
-* If estimations for multiple small-area domains should be computed, the domains have to be defined within a character vector using c(). Using small_area(..., unbiased=FALSE) calculates design-based estimates with the synthetic estimator and may be design-biased if the model is biased in that small area. The default, small_area(..., unbiased=TRUE), allows for a residual
-correction by one of two asymptotically equivalent methods to create design-unbiased estimates:
+* s1.id identifies "second phase only" plots because the terrestrial phase is known to be part of the second phase by the construction of the subsampling.
+* If estimations for multiple small-area domains should be computed, the domains have to be defined within a character vector using c(). Using small_area(..., unbiased=FALSE) calculates design-based estimates with the synthetic estimator and may be design-biased if the model is biased in that small area. The default, small_area(..., unbiased=TRUE), allows for a residual correction by one of two asymptotically equivalent methods to create design-unbiased estimates:
 *  Mandallaz’s extended model approach calculates the residual correction by extending the
 model formula with an indicator variable in the small area. It is the default method ``psmall=FALSE``.
 *  the traditional small area estimator calculates the residual correction by taking the synthetic
 estimator and adding the mean residual observed in the small area. It is activated when ``psmall=TRUE``.
-Missing values (NA) in the auxiliary variables (i.e. at least one auxiliary variable cannot be observed
-at a* n inventory location) are automatically removed from the dataset before the estimations are
-computed. Note that missingness in the auxiliary variables is only allowed if we assume that they
+Missing values (NA) in the auxiliary variables (i.e. at least one auxiliary variable cannot be observed at a* n inventory location) are automatically removed from the dataset before the estimations are computed. Note that missingness in the auxiliary variables is only allowed if we assume that they
 are missing at random, since the unbiasedness of the estimates is based on the sampling design.
-The boundary weight adjustment is pertinent for auxiliary information derived from remote sensing
-and is equal to the percentage of forested area (e.g. as defined by a forest mask) in the interpretation
-area.
-* Exhaustive estimation refers to when the true means of certain auxiliary variables are known at an
-exhaustive zero phase (i.e. a census). For global estimation, the vector must be input in the same
-order that lm processes a formula object including the intercept term whose true mean will always
-be one. For small area estimation, exhaustive is a data.frame containing column names for every
-variable appearing in the parameter formula including the variable "Intercept". The observations of
-the data.frame must represent the true auxiliary means in the same order as was presented in areas
-from the parameter small_area. See Examples 
+The boundary weight adjustment is pertinent for auxiliary information derived from remote sensing and is equal to the percentage of forested area (e.g. as defined by a forest mask) in the interpretation area.
+* Exhaustive estimation refers to when the true means of certain auxiliary variables are known at an exhaustive zero phase (i.e. a census). For global estimation, the vector must be input in the same order that lm processes a formula object including the intercept term whose true mean will always
+be one. For small area estimation, exhaustive is a data.frame containing column names for every variable appearing in the parameter formula including the variable "Intercept". The observations of the data.frame must represent the true auxiliary means in the same order as was presented in areas from the parameter small_area. See Examples 
 
 ####  Value
 threephase returns an object of class "threephase".
