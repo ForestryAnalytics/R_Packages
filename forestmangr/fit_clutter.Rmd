@@ -1,37 +1,36 @@
-fit_clutter Fit the Clutter model for growth and yield
+---
+title: "``forestmangr::fit_clutter``:  Fit the Clutter model for growth and yield"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
 #### Description
+
 Fit the Clutter model for growth and yield using the two stage least squares method (2SLS).
+
 #### Usage
+
+<pre><code>
 fit_clutter(df, age, dh, basal_area, volume, site, plot, .groups = NA,
 model = "full", keep_model = FALSE)
+</code></pre>
+
 #### Arguments 
-*``df``: A data frame.
-age Quoted name for the age variable.
-dh Quoted name for the dominant height variable.
+
+* ``df``: A data frame.
+* ``age``: Quoted name for the age variable.
+* ``dh``: Quoted name for the dominant height variable.
 * ``basal_area``: Quoted name for the basal area variable.
-volume Quoted name for the volume area variable.
-* `` site``: Quoted name for the site variable.
-fit_clutter 29
-* `` plot``:  Quoted name for the plot variable.
-* ``.groups``: Optional argument. Quoted name(s) of grouping variables used to fit multiple
-regressions, one for each level of the provided variable(s). Default NA.
-model Character variable for the type of the model fitted. If "full", the full model
-will be used. if "mod", a modified model will be fitted, where the X3 variable is
-excluded from the regression. Default: full.
-keep_model If TRUE a variable with the regression model will be kept in the data frame.
-Default: FALSE.
-Value
-A data frame with the regressions coefficients.
-Author(s)
-Sollano Rabelo Braga <sollanorb@gmail.com>
-#### References
-Clutter, J. L. (1963) Compatible Growth For Loblolly by the Southeastern, Forest Science, 9(3), pp.
-354–371. Sullivan, A. D. and Clutter, J. L. (1972) A Simultaneous Growth and Yield for Loblolly
-Pine, Forest Science, 18(1), pp. 76–86. Campos, J. C. C. and Leite, H. G. (2017) Mensuracao
-Florestal: Perguntas e Respostas. 5a. Vicosa: UFV.
-See Also
-other sampling functions: est_clutter for estimating the Clutter Growth and Yield model variables,
-and classify_site for classifying data according to site.
+* ``volume``: Quoted name for the volume area variable.
+* ``site``: Quoted name for the site variable.
+* ``plot``:  Quoted name for the plot variable.
+* ``.groups``: Optional argument. Quoted name(s) of grouping variables used to fit multiple regressions, one for each level of the provided variable(s). Default NA.
+* ``model``: Character variable for the type of the model fitted. If "full", the full model will be used. if "mod", a modified model will be fitted, where the X3 variable is excluded from the regression. Default: full.
+* ``keep_model``: If TRUE a variable with the regression model will be kept in the data frame. Default: FALSE.
+
 #### Examples
 ```{r}
 library(forestmangr)
@@ -46,3 +45,17 @@ fit_clutter(exfm17, "age", "DH", "B", "V", "S", "plot",model="mod")
 fit_clutter(exfm17, "age", "DH", "B", "V", "S", "plot", keep_model=TRUE)
 ```
 
+#### Value
+A data frame with the regressions coefficients.
+
+#### Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
+
+#### References
+Clutter, J. L. (1963) Compatible Growth For Loblolly by the Southeastern, Forest Science, 9(3), pp.
+354–371. Sullivan, A. D. and Clutter, J. L. (1972) A Simultaneous Growth and Yield for Loblolly
+Pine, Forest Science, 18(1), pp. 76–86. Campos, J. C. C. and Leite, H. G. (2017) Mensuracao
+Florestal: Perguntas e Respostas. 5a. Vicosa: UFV.
+See Also
+other sampling functions: est_clutter for estimating the Clutter Growth and Yield model variables,
+and classify_site for classifying data according to site.
