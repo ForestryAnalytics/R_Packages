@@ -1,5 +1,13 @@
+---
+title: "``forestinventory::zberg``"
+output: html_document
+---
 
-zberg
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestinventory)
+```
+
 Data from a multiphase forest inventory at the zurichberg (zurich), switzerland
 
 #### Description
