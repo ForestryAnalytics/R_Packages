@@ -1,48 +1,50 @@
-plot_summarise 45
-plot_summarise Summarize forest inventory data
+  
+---
+title: "``forestmangr::plot_summarise``:  Summarize forest inventory data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(forestmangr)
+```
+
 #### Description
-Get informations about forest inventory plots, like number of individuals, mean DBH, q, Height,
-basal area, volume, etc.
+
+Get informations about forest inventory plots, like number of individuals, mean DBH, q, Height, basal area, volume, etc.
+
 #### Usage
-plot_summarise(df, plot, plot_area, dbh, th, .groups, total_area, vwb,
-vwob, dh, age, dec_places = 4)
+
+<pre><code>
+plot_summarise(df, plot, plot_area, dbh, th, .groups, total_area, vwb, vwob, dh, age, dec_places = 4)
+</code></pre>
+
 #### Arguments 
-*``df``: A data frame.
-* `` plot``:  Quoted name of the plot variable. used to differentiate the data’s plots. If this
-argument is missing, the defined groups in the data frame will be used, If there
-are no groups in the data, the function will fail.
+
+* ``df``: A data frame.
+* `` plot``:  Quoted name of the plot variable. used to differentiate the data’s plots. If this argument is missing, the defined groups in the data frame will be used, If there are no groups in the data, the function will fail.
 * `` plot_area``:  Quoted name of the plot area variable, or a numeric vector with the plot area
 value. The plot area value must be in square meters.
-dbh Optional parameter. Quoted name of the diameter at breast height variable. If
-supplied, will be used to calculate the mean diameter per plot, quadratic diameter
+dbh Optional parameter. Quoted name of the diameter at breast height variable. If supplied, will be used to calculate the mean diameter per plot, quadratic diameter
 (q), basal area and basal area per hectare. Default NA.
-th Optional parameter. Quoted name of the total height variable. If supplied, will
-be used to calculate the mean total height, and the dominant height variable, if
-the dh is NA. Default NA.
-* ``.groups``: Optional argument. Quoted name(s) of grouping variables that can be added to
-differentiate subdivisions of the data. Default: NA.
+th Optional parameter. Quoted name of the total height variable. If supplied, will be used to calculate the mean total height, and the dominant height variable, if the dh is NA. Default NA.
+* ``.groups``: Optional argument. Quoted name(s) of grouping variables that can be added to differentiate subdivisions of the data. Default: NA.
 total_area Optional argument. Quoted name of the total area variable, or a numeric vector
 with the total area value. The total area value must be in hectares. Default: NA.
-vwb Optional parameter. Quoted name of the volume with bark variable. If supplied,
-will be used to calculate the total vwb per plot, and vwb per hectare per plot.
-Default NA.
+vwb Optional parameter. Quoted name of the volume with bark variable. If supplied, will be used to calculate the total vwb per plot, and vwb per hectare per plot. Default NA.
 vwob Optional parameter. Quoted name of the volume without bark variable. If supplied,
 will be used to calculate the total vwob per plot, and vwob per hectare per
 plot. Default NA.
-dh Optional parameter. Quoted name of the dominant height variable. If supplied,
-will be used to calculate the mean dominant height per plot. If not, the ht
-variable supplied will be used to calculate the average of the top two trees of
-each plot, and use that as dh. Default: NA.
-age Optional parameter. Quoted name of the age variable. If supplied, will be used
-to calculate the average age per plot. Default: NA.
+dh Optional parameter. Quoted name of the dominant height variable. If supplied, will be used to calculate the mean dominant height per plot. If not, the ht
+variable supplied will be used to calculate the average of the top two trees of each plot, and use that as dh. Default: NA.
+age Optional parameter. Quoted name of the age variable. If supplied, will be used to calculate the average age per plot. Default: NA.
 dec_places Numeric value for the number of decimal places to be used in the output tables.
 Default: 4.
-46 plot_summarise
-Value
-A data frame with informations per plot.
-Author(s)
-Sollano Rabelo Braga <sollanorb@gmail.com>
+
+
 #### Examples
+```{r}
+
 library(forestmangr)
 data("exfm21")
 head(exfm21)
@@ -72,5 +74,10 @@ plot_summarise(exfm21, "PLOT", "PLOT_AREA", "DBH", "TH_EST", "STRATA", "* ``STRA
 plot_summarise(exfm21, "PLOT", "PLOT_AREA", "DBH", "TH_EST", "STRATA", "* ``STRATA_AREA``:  ",
 "VWB", "VWOB", "DH", "AGE")
 
+```
 
-
+46 plot_summarise
+Value
+A data frame with informations per plot.
+Author(s)
+Sollano Rabelo Braga <sollanorb@gmail.com>
