@@ -20,10 +20,10 @@ sf(volume, height, length, depth)
 </code></pre>
 
 #### Arguments
-* volume real volume of the logs
-* height height of the stack (in meters)
-* length length of the stack (in meters)
-* depth depth of the stack (in meters)
+* ``volume``: real volume of the logs
+* ``height``: height of the stack (in meters)
+* ``length``: length of the stack (in meters)
+* ``depth``: depth of the stack (in meters)
 
 #### Value
 stacking factor ranging from 0-14
