@@ -1,7 +1,5 @@
 ---
 title: "fdq : ``find_missing_age``"
-author: "Kevin O'Brien"
-date: "27 November 2018"
 output: html_document
 ---
 
